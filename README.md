@@ -114,6 +114,20 @@ python evaluate_m4.py dashscope   # 或 openai / anthropic
 - [ ] 与 ST 官方 checklist 逐条对齐校正 schema
 - [ ] 审计仪表盘（偏倚可视化）、公开排行榜
 
+## 部署（Streamlit Community Cloud）
+
+无需本地环境，一键把公开仓库部署成在线 Web 应用：
+
+[![Deploy to Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=github.com/echocheng-y/MedDataCard)
+
+步骤：
+1. 打开 [Streamlit Cloud](https://streamlit.io/cloud)，用 GitHub 登录并授权。
+2. 新建 App，选择仓库 `echocheng-y/MedDataCard`、分支 `main`、主文件 `app.py`，点 **Deploy**。
+3. 完成后获得一个公开 URL，任何人可直接打开使用（已通过本地冒烟测试，无 key 时自动降级 baseline 模式）。
+
+> 如需启用 LLM 抽取：在 App 的 **Settings → Secrets** 中加入
+> `DASHSCOPE_API_KEY = "你的key"`（或 `OPENAI_API_KEY` / `ANTHROPIC_API_KEY`）；不配置则自动使用目录基线元数据生成。
+
 ## 许可证
 
 [MIT](LICENSE)。
