@@ -17,6 +17,7 @@
     "access_method": "credentialed",
     "custodian": "PhysioNet",
     "purpose": "To support collaborative multi-center research, external validation, and federated learning of clinical models.",
+    "avoided_uses": "Commercial use.",
     "creators": [
       "Pollard, T.J.",
       "Johnson, A.E.W.",
@@ -35,10 +36,7 @@
     ]
   },
   "medical_fields": [
-    "临床医学",
-    "影像学",
-    "内科学",
-    "外科学"
+    "临床医学"
   ],
   "modality": {
     "modalities": [
@@ -57,10 +55,9 @@
     "license": "PhysioNet Credentialed Data Use Agreement",
     "commercial_use_allowed": false,
     "consent": "waived",
-    "irb_approval": true,
     "data_use_agreement": true,
-    "privacy_measures": "De-identification performed per HIPAA Safe Harbor standards; re-identification risk mitigated via aggregation and suppression.",
-    "legal_compliance": "Compliant with HIPAA and US federal human subjects regulations (45 CFR 46)."
+    "privacy_measures": "De-identification performed per HIPAA Safe Harbor method; no protected health information retained.",
+    "legal_compliance": "Compliant with HIPAA de-identification standards."
   },
   "extraction": {
     "method": "hybrid",
@@ -68,45 +65,43 @@
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
     "pending_verification": [
-      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：annotation_type, tasks_and_use/intended_tasks[list-items]"
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：medical_fields[list-items]"
     ]
   },
   "bias_and_limitations": {
     "known_limitations": [
       "Limited to US hospitals (208 centers), potentially limiting generalizability to non-US or resource-limited settings.",
-      "Data restricted to 2014–2015; may not reflect current ICU technologies, protocols, or patient demographics.",
-      "No explicit reporting of race/ethnicity, gender, or socioeconomic variables — limits bias auditing and subgroup analysis.",
-      "Potential selection bias: hospitals voluntarily joined the eICU program; may differ systematically from non-participating ICUs."
+      "Data restricted to 2014–2015; may not reflect current practices, technologies, or disease patterns.",
+      "No explicit reporting on demographic representation (race, ethnicity, sex, age distribution).",
+      "Potential selection bias due to voluntary hospital participation and exclusion of non-participating ICUs."
     ],
-    "modifications": "Yes — data were de-identified, harmonized, and structured from heterogeneous source EHR systems.",
+    "modifications": "Data de-identified and harmonized; no synthetic data generation reported.",
     "bias_sources": [
-      "sampling_bias",
-      "geographic_bias",
-      "temporal_bias",
-      "missing_demographic_attributes"
+      "sampling",
+      "geographic",
+      "temporal",
+      "missing demographic attributes"
     ],
-    "representativeness_concerns": "US-only, 2014–2015, 208 participating hospitals — may not represent global, rural, or safety-net ICUs.",
-    "generalizability_statement": "Designed for multi-center generalization and external validation within US adult/pediatric ICU settings; generalizability to other regions, time periods, or care models is unassessed.",
-    "subgroup_coverage": "Subgroup coverage (e.g., by race, sex, age strata, hospital type) is not reported in the source data descriptor.",
-    "missing_data": "Missingness patterns not quantified in abstract; known to vary by variable (e.g., lab values more sparse than vitals)."
+    "representativeness_concerns": "US-only, 2014–2015, 208 participating hospitals — may not represent global or evolving ICU practice.",
+    "generalizability_statement": "Designed for multi-center generalization and external validation within similar US academic/community ICU settings; limited generalizability outside this domain and timeframe.",
+    "subgroup_coverage": "No subgroup coverage statistics provided in source text.",
+    "missing_data": "Missingness patterns not quantified in abstract; known to exist in EHR-derived fields (e.g., labs, vitals)."
   },
   "data_origin": {
     "origin_type": "clinical-care",
-    "selection_rationale": "Records from ICU admissions across 208 US hospitals to enable multi-center critical care research.",
-    "sampling_strategy": "Consecutive ICU admissions from participating hospitals during 2014–2015; no explicit description of sampling beyond temporal and institutional inclusion.",
-    "aggregation_multisource": "Aggregated from 208 geographically distributed US hospitals; data harmonized and curated for consistency.",
-    "data_shifts_overtime": "Data collected only from 2014–2015; no longitudinal follow-up or multi-version release reported — potential temporal shift relative to current ICU practice or technology."
+    "selection_rationale": "Records selected from de-identified ICU admissions across participating US hospitals to enable multi-center critical care research.",
+    "sampling_strategy": "Consecutive ICU admissions from 208 US hospitals during 2014–2015; no explicit sampling strategy beyond temporal and institutional inclusion.",
+    "aggregation_multisource": "Aggregated from 208 US hospitals; data harmonized and curated for consistency.",
+    "data_shifts_overtime": "Data collected only from 2014–2015; no longitudinal or multi-version shift analysis reported."
   },
   "population": {
-    "target_population": "Adult and pediatric ICU patients in US hospitals.",
+    "target_population": "Adult and pediatric ICU patients in the United States.",
     "sex": "not-reported",
     "inclusion_criteria": "ICU admission at a participating hospital during 2014–2015.",
     "vulnerable_groups": [
-      "critical-care",
-      "pediatric",
-      "elderly"
+      "critical-care"
     ],
-    "missing_groups": "No explicit reporting on underrepresented subgroups (e.g., race/ethnicity, socioeconomic status, rural vs. urban); abstract states 'no explicit demographic subgroup statistics'.",
+    "missing_groups": "No explicit reporting on underrepresented groups (e.g., race/ethnicity, age subgroups, rural vs. urban); abstract states 'no explicit demographic subgroup statistics'.",
     "attribute_recording": {
       "method": "unknown"
     }
@@ -126,20 +121,17 @@
     "institution_count": 208
   },
   "annotation": {
-    "annotation_method": "Clinically documented data extracted and structured from ICU EHR systems; severity scores (e.g., APACHE) computed from raw measurements.",
-    "annotators": {
-      "type": "clinician"
-    },
-    "labeling_provenance": "Derived from routine clinical documentation and automated scoring algorithms applied to EHR data."
+    "annotation_type": "automatic",
+    "annotation_method": "Derived from structured EHR fields (e.g., ICD-9 codes, lab results, vitals, nursing notes).",
+    "labeling_provenance": "Labels extracted from clinical documentation and coded data within the EHR system."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "classification"
     ],
     "benchmarks": [
-      "eICU Benchmark (MIMIC-III cross-validation)",
-      "Predicting ICU mortality/morbidity"
+      "eICU benchmark tasks (e.g., mortality prediction, length-of-stay estimation)"
     ],
-    "excluded_tasks": "Real-time clinical decision support; commercial deployment; use without credentialed access."
+    "excluded_tasks": "Commercial applications; real-time clinical decision support without further validation."
   }
 }

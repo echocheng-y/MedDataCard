@@ -1,30 +1,60 @@
 {
   "schema_version": "0.2",
-  "dataset_id": "PhysioNet/CinC 2020",
-  "dataset_name": "PhysioNet/CinC 2020",
+  "dataset_id": "PhysioNet-CinC-2020",
+  "dataset_name": "PhysioNet/Computing in Cardiology (CinC) 2020 Challenge",
   "metadata": {
     "source_type": "challenge",
-    "homepage": "https://physionet.org/content/challenge-2020/1.0.2/",
+    "homepage": "https://physionet.org/content/challenge-2020",
     "repositories": [
       {
         "platform": "PhysioNet",
-        "url": "https://physionet.org/content/challenge-2020/1.0.2/"
+        "url": "https://physionet.org/content/challenge-2020"
+      }
+    ],
+    "summary": "The 2020 PhysioNet/CinC Challenge aimed to develop algorithms to classify cardiac abnormalities from 12-lead ECG recordings. The public training set comprised ~43,000 12-lead ECGs aggregated from six sources (including inpatient/outpatient clinics in China, the US, and Germany, plus existing databases such as CPSC, CPSC-Extra, PTB, and others), labeled for a set of diagnostic classes (originally 9, expanded to 27/96-class variants).",
+    "persistent_identifier": "https://doi.org/10.13026/j81c-5j02",
+    "access_method": "open",
+    "custodian": "PhysioNet",
+    "purpose": "To develop algorithms to classify cardiac abnormalities from 12-lead ECG recordings.",
+    "creators": [
+      "PhysioNet CinC 2020 Challenge organizers",
+      "Perez Alday et al."
+    ],
+    "papers": [
+      {
+        "title": "PhysioNet/Computing in Cardiology (CinC) Challenge 2020: Classifying Cardiac Abnormalities from 12-lead ECGs",
+        "url": "https://physionet.org/content/challenge-2020",
+        "year": 2020
       }
     ]
   },
   "medical_fields": [
-    "临床医学"
+    "影像学",
+    "内科学"
   ],
   "modality": {
     "modalities": [
       "ECG"
-    ]
+    ],
+    "scope": "12-lead ECG for cardiac abnormality classification",
+    "acquisition_device": "heterogeneous devices",
+    "data_format": [
+      "MAT",
+      "WFDB"
+    ],
+    "sample_counts": {
+      "samples": 43000
+    }
   },
   "ethics": {
-    "license": "公开(Challenge)"
+    "license": "Open Data Commons (ODC) license",
+    "consent": "de-identified",
+    "data_use_agreement": false,
+    "privacy_measures": "Data de-identified prior to release.",
+    "commercial_use_allowed": true
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
@@ -32,14 +62,71 @@
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "标签噪声",
-      "多源异质",
-      "采样率不一"
-    ]
+      "Label noise across sources",
+      "Heterogeneous devices and sampling rates",
+      "Class imbalance",
+      "Mixed at-rest and other recording settings"
+    ],
+    "modifications": "Yes — labels harmonized and expanded (9 → 27/96 classes); data aggregated and preprocessed for challenge use.",
+    "bias_sources": [
+      "label noise",
+      "heterogeneous acquisition",
+      "class imbalance",
+      "mixed recording settings"
+    ],
+    "representativeness_concerns": "Overrepresentation of data from specific geographic regions (China, US, Germany) and underrepresentation of other populations; limited demographic reporting.",
+    "long_tail_classes": "Yes — class imbalance reported.",
+    "generalizability_statement": "Generalizability may be limited by heterogeneous recording conditions, device variability, and geographic/clinical setting bias.",
+    "subgroup_coverage": "Geographic subgroups covered (China, US, Germany); no reported coverage by age, sex, or ethnicity.",
+    "missing_data": "No explicit description of missing data volume or patterns."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "classification"
+    ],
+    "benchmarks": [
+      "PhysioNet/CinC Challenge 2020"
     ]
+  },
+  "aliases": [
+    "CinC 2020",
+    "PhysioNet Challenge 2020"
+  ],
+  "catalog_ref": "PhysioNet-CinC-2020",
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "Aggregated from six sources including inpatient/outpatient clinics in China, the US, and Germany, plus existing databases (CPSC, CPSC-Extra, PTB, etc.) to enable robust multi-class rhythm/diagnosis classification under heterogeneous conditions.",
+    "sampling_strategy": "Heterogeneous sampling across clinical settings and public databases; no explicit random or stratified sampling described.",
+    "aggregation_multisource": "Aggregated from six sources: inpatient/outpatient clinics in China, US, Germany, and existing databases (CPSC, CPSC-Extra, PTB, and others); labels harmonized across sources with original 9-class schema later expanded to 27/96-class variants."
+  },
+  "population": {
+    "target_population": "Patients undergoing 12-lead ECG recording in inpatient or outpatient clinical settings.",
+    "sex": "not-reported",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "geography": {
+    "countries": [
+      "China",
+      "United States",
+      "Germany"
+    ],
+    "regions": [
+      "Asia",
+      "North America",
+      "Europe"
+    ],
+    "data_collection_setting": "multi-country"
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Labels derived from clinical interpretation (e.g., physician-reviewed reports or database ground truth); harmonized across sources.",
+    "annotators": {
+      "type": "radiologist"
+    },
+    "labeling_provenance": "Labels sourced from clinical reports and existing public ECG databases (CPSC, PTB, etc.), with harmonization and expansion.",
+    "known_label_noise": true,
+    "label_noise_description": "Label noise across sources due to differing annotation standards and clinical contexts."
   }
 }

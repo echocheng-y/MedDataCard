@@ -1,0 +1,16 @@
+TITLE: MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D/3D Medical Image Classification
+AUTHORS: Yang et al.; released 2021 (MedMNIST / MedMNISTv2)
+VENUE: medmnist.com; HuggingFace / Zenodo
+
+ABSTRACT:
+MedMNIST is a collection of standardized, pre-processed medical image classification datasets covering 18 (v1) / 20+ (v2) tasks across diverse modalities (dermoscopy, X-ray, OCT, pathology, chest CT, retinal, etc.), at small uniform resolutions (28x28 / 64x64 / 128x128 for 2D, 28x28x28 for 3D). It aggregates ~708K 2D images and ~10K 3D images from existing public sources, intended as an educational benchmark for reproducible ML rather than a clinical-scale resource. Most sub-datasets are CC BY 4.0 (DermaMNIST is CC BY-NC).
+
+KEY FACTS:
+- Modality: multi-modal imaging (collected under the generic imaging enum; includes dermoscopy, X-ray, OCT, pathology, etc.)
+- Scale: ~708K 2D images + ~10K 3D volumes across 18-20+ tasks
+- Geography: aggregated from multiple original public datasets (global)
+- Access: HuggingFace / Zenodo, CC BY 4.0 (DermaMNIST CC BY-NC)
+- Intended tasks: standardized image classification benchmarks
+- License: CC BY 4.0 (DermaMNIST CC BY-NC)
+- Source type: aggregated benchmark
+- Limitations: tiny image resolution (not clinical scale); designed for education/reproducibility, not real-world deployment; class balance and label quality inherited from upstream sources.

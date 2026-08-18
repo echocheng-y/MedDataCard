@@ -1,0 +1,16 @@
+TITLE: PubMedQA: A Dataset for Biomedical Research Question Answering
+AUTHORS: Jin et al.; released 2019 (EMNLP)
+VENUE: pubmedqa.github.io; HuggingFace
+
+ABSTRACT:
+PubMedQA is a biomedical QA dataset built from PubMed abstracts. It comprises 1,000 manually annotated (expert) QA pairs (PQA-L), 61.2K artificially generated QA pairs from existing abstract rationales (PQA-A), and 211K unlabeled QA pairs (PQA-U). Each question is answered with Yes / No / Maybe based on a given PubMed abstract, targeting evidence-based biomedical reasoning. It is widely used to evaluate reading comprehension of scientific literature.
+
+KEY FACTS:
+- Modality: text (PubMed abstracts + questions)
+- Scale: ~1,000 labeled + 61.2K artificial + 211K unlabeled
+- Geography: international (English biomedical literature)
+- Access: HuggingFace, CC BY 4.0 (PQA-L)
+- Intended tasks: biomedical yes/no/maybe question answering
+- License: CC BY 4.0
+- Source type: literature-derived benchmark
+- Limitations: derived from PubMed abstracts (not patient data); ternary answer restricts granularity; expert-labeled set is small; abstract-level evidence only.

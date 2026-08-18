@@ -1,46 +1,109 @@
 {
   "schema_version": "0.2",
   "dataset_id": "CHB-MIT",
-  "dataset_name": "CHB-MIT",
+  "dataset_name": "CHB-MIT Scalp EEG Database",
   "metadata": {
     "source_type": "repository",
-    "homepage": "https://physionet.org/content/chbmit/1.0.0",
+    "homepage": "https://physionet.org/content/chbmit/",
     "repositories": [
       {
         "platform": "PhysioNet",
-        "url": "https://physionet.org/content/chbmit/1.0.0"
+        "url": "https://physionet.org/content/chbmit/"
       }
+    ],
+    "summary": "Continuous scalp EEG recordings from 23 pediatric patients (24 recordings) with intractable seizures at Boston Children's Hospital; 916+ hours, 23-channel, 256 Hz, 198 expert-annotated seizure events with onset times.",
+    "persistent_identifier": "https://doi.org/10.13026/c2jg-ta72",
+    "access_method": "open",
+    "custodian": "Boston Children's Hospital and MIT",
+    "purpose": "Benchmark for epileptic seizure detection and prediction from EEG.",
+    "creators": [
+      "Children's Hospital Boston (now Boston Children's Hospital)",
+      "MIT"
     ]
   },
   "medical_fields": [
-    "临床医学"
+    "临床医学",
+    "影像学",
+    "内科学"
   ],
   "modality": {
     "modalities": [
       "EEG"
-    ]
+    ],
+    "scope": "scalp EEG for epileptic seizure detection",
+    "data_format": [
+      "EDF"
+    ],
+    "sample_counts": {
+      "patients": 23,
+      "studies": 24,
+      "samples": 916
+    }
   },
   "ethics": {
     "license": "ODC-BY 1.0",
-    "commercial_use_allowed": true
+    "commercial_use_allowed": true,
+    "consent": "de-identified",
+    "irb_approval": true,
+    "privacy_measures": "Data de-identified per HIPAA Safe Harbor; no protected health information included."
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
-    "pending_verification": []
+    "pending_verification": [
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：medical_fields[list-items], source_type"
+    ]
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "小儿难治性癫痫",
-      "单中心",
-      "样本少"
-    ]
+      "Pediatric intractable epilepsy only",
+      "Single-center collection",
+      "Small subject count (n=23)",
+      "Labels are event-level (seizure onset), not frame-wise or dense annotations"
+    ],
+    "representativeness_concerns": "Not representative of adult epilepsy, generalized epilepsy without intractability, or non-US healthcare settings.",
+    "subgroup_coverage": "Only pediatric patients from a single US tertiary center; no reported sex, ethnicity, or socioeconomic subgroup breakdown."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "detection"
-    ]
+    ],
+    "excluded_tasks": "Frame-wise segmentation, classification of non-seizure EEG patterns (e.g., interictal spikes) without additional annotation"
+  },
+  "aliases": [
+    "CHB-MIT EEG",
+    "CHB-MIT"
+  ],
+  "catalog_ref": "CHB-MIT",
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "Pediatric patients with intractable seizures admitted to a tertiary epilepsy center."
+  },
+  "population": {
+    "target_population": "Pediatric patients with intractable epilepsy",
+    "age_reported": false,
+    "sex": "not-reported",
+    "vulnerable_groups": [
+      "pediatric"
+    ],
+    "missing_groups": "Adults, geriatric patients, non-pediatric epilepsy subtypes, diverse geographic/ethnic populations"
+  },
+  "geography": {
+    "countries": [
+      "United States"
+    ],
+    "regions": [
+      "North America"
+    ],
+    "data_collection_setting": "single-center",
+    "institution_count": 1
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "labeling_provenance": "Expert-annotated seizure onset times; labels are per-recording event marks, not dense frame-wise.",
+    "known_label_noise": false,
+    "annotation_guidelines_available": false
   }
 }

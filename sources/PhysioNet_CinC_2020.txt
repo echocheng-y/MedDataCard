@@ -1,0 +1,16 @@
+TITLE: PhysioNet/Computing in Cardiology (CinC) 2020 Challenge: Classifying Cardiac Abnormalities from 12-lead ECGs
+AUTHORS: PhysioNet CinC 2020 Challenge organizers; Perez Alday et al.
+VENUE: physionet.org/content/challenge-2020
+
+ABSTRACT:
+The 2020 PhysioNet/CinC Challenge aimed to develop algorithms to classify cardiac abnormalities from 12-lead ECG recordings. The public training set comprised ~43,000 12-lead ECGs aggregated from six sources (including inpatient/outpatient clinics in China, the US, and Germany, plus existing databases such as CPSC, CPSC-Extra, PTB, and others), labeled for a set of diagnostic classes (originally 9, expanded to 27/96-class variants). The task evaluates multi-class rhythm/diagnosis classification under heterogeneous recording conditions.
+
+KEY FACTS:
+- Modality: ECG (12-lead, heterogeneous sampling rates)
+- Scale: ~43,000 12-lead ECG recordings from 6 data sources
+- Geography: multi-source — China, United States, Germany (and others)
+- Access: open (Challenge / ODC)
+- Intended tasks: 12-lead ECG diagnostic classification (multi-class)
+- License: open challenge license / ODC
+- Source type: aggregated clinical + public ECG databases
+- Limitations: label noise across sources; heterogeneous devices/sampling rates; class imbalance; mixed at-rest and other recording settings.

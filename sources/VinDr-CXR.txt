@@ -1,0 +1,16 @@
+TITLE: VinDr-CXR: A Large-Scale Benchmark for Chest X-ray Abnormality Detection
+AUTHORS: Nguyen et al. (VinBigData); released 2021
+VENUE: physionet.org/content/vindr-cxr ; arXiv 2101.06453
+
+ABSTRACT:
+VinDr-CXR is a large chest X-ray dataset of 18,000 posteroanterior (PA) radiographs from 18,000 patients, collected at two hospitals in Vietnam. It provides 22 localized bounding-box annotations for findings plus 6 global (image-level) labels. The training set (15,000) was labeled by 17 radiologists, and the test set (3,000) was labeled by a consensus of senior radiologists. It is used for lesion detection and image-level classification benchmarks.
+
+KEY FACTS:
+- Modality: X-ray (chest, PA view)
+- Scale: 18,000 images (15,000 train / 3,000 test) from 18,000 patients
+- Geography: two centers — Vietnam
+- Access: PhysioNet, open (CC BY 4.0 / PhysioNet Open Data)
+- Intended tasks: abnormality detection (bounding boxes), image-level classification
+- License: PhysioNet open / CC BY 4.0
+- Source type: clinical-care (two hospitals)
+- Limitations: Vietnam two-center; PA view only (no lateral); test labels are consensus (limited individual-rater variance); adult chest findings scoped.

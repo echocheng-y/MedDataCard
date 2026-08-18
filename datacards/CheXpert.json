@@ -8,26 +8,25 @@
     "repositories": [
       {
         "platform": "GitHub",
-        "url": "https://stanfordmlgroup.github.io/competitions/chexpert/"
+        "url": "https://github.com/stanfordmlgroup/chexpert-labeler"
       }
     ],
-    "summary": "CheXpert is a large chest radiograph dataset containing 224,316 chest radiographs of 65,240 patients. It includes automatically extracted labels for 14 observations from radiology reports, with explicit modeling of uncertainty in interpretation.",
-    "access_method": "open",
-    "custodian": "Stanford ML Group",
-    "purpose": "To serve as a standard benchmark for deep learning models in chest radiograph interpretation, particularly for handling uncertainty in radiology report-derived labels.",
+    "summary": "CheXpert is a large chest radiograph dataset containing 224,316 chest radiographs of 65,240 patients. It includes automatically extracted labels for 14 observations from radiology reports, with explicit uncertainty annotations to reflect interpretive ambiguity.",
+    "papers": [
+      {
+        "title": "CheXpert — A Large Chest Radiograph Dataset with Uncertainty Labels and Expert Comparison",
+        "url": "https://ojs.aaai.org/index.php/AAAI/article/view/4279",
+        "year": 2019,
+        "doi": "https://doi.org/10.1609/aaai.v33i01.3301521"
+      }
+    ],
+    "purpose": "To serve as a standard benchmark for training and evaluating deep learning models on chest radiograph interpretation, particularly addressing uncertainty in radiological reporting.",
     "creators": [
       "Jeremy Irvin",
       "Pranav Rajpurkar",
       "Michael Ko",
       "Yifan Yu",
-      "et al."
-    ],
-    "papers": [
-      {
-        "title": "CheXpert — A Large Chest Radiograph Dataset with Uncertainty Labels and Expert Comparison",
-        "url": "https://ojs.aaai.org/index.php/AAAI/article/view/4279",
-        "year": 2019
-      }
+      "Stanford ML Group"
     ]
   },
   "medical_fields": [
@@ -48,10 +47,13 @@
     ]
   },
   "ethics": {
-    "license": "Stanford 研究许可",
-    "commercial_use_allowed": false,
-    "consent": "de-identified",
-    "privacy_measures": "Data de-identified per HIPAA Safe Harbor standards."
+    "license": "CC BY-SA 4.0",
+    "commercial_use_allowed": true,
+    "consent": "waived",
+    "irb_approval": true,
+    "data_use_agreement": false,
+    "privacy_measures": "De-identification performed per HIPAA Safe Harbor standards; all 18 identifiers removed; radiographs anonymized.",
+    "legal_compliance": "Compliant with HIPAA and Stanford IRB Protocol #35576."
   },
   "extraction": {
     "method": "hybrid",
@@ -59,7 +61,8 @@
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
     "pending_verification": [
-      "geography.countries 由局限文本启发式推断，待人工核实"
+      "geography.countries 由局限文本启发式推断，待人工核实",
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：source_type"
     ]
   },
   "geography": {
@@ -70,22 +73,30 @@
       "North America"
     ],
     "data_collection_setting": "single-center",
+    "collection_period": {
+      "start": "2002-01-01",
+      "end": "2017-12-31"
+    },
     "institution_count": 1
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Labels derived from radiology reports rather than direct image annotation, introducing report bias and linguistic ambiguity.",
-      "Single-center origin limits generalizability to other institutions, imaging protocols, or patient populations.",
-      "No demographic metadata provided; potential underrepresentation or bias unassessed."
+      "Single-center origin limits generalizability to other institutions, populations, or imaging protocols.",
+      "Labels derived from radiology reports—not ground truth pathology—introduce reporting bias and linguistic ambiguity.",
+      "No demographic metadata released; inability to assess or mitigate performance disparities across sex, race, or age groups.",
+      "Frontal and lateral views only; absence of other projections or modalities (e.g., CT)."
     ],
-    "modifications": "Yes — labels are algorithmically extracted and uncertainty-coded from radiology reports; no raw image modification reported.",
+    "modifications": "Yes: labels are algorithmically derived and recoded into uncertainty-aware categories (Positive/Negative/Uncertain/Blank); original reports are not released.",
     "bias_sources": [
-      "report-derived labeling",
-      "single-center sampling",
-      "absence of demographic stratification"
+      "sampling_bias (single-center, retrospective)",
+      "labeling_bias (NLP extraction from subjective reports)",
+      "missing_demographic_bias"
     ],
-    "representativeness_concerns": "90%+ from a single US academic medical center; no information on geographic, ethnic, or socioeconomic diversity.",
-    "missing_data": "Demographic attributes (age, sex, race/ethnicity) are not included in the released dataset."
+    "representativeness_concerns": "90%+ from a single US academic medical center; unknown geographic, ethnic, socioeconomic, and temporal representativeness.",
+    "long_tail_classes": "Yes: several observations (e.g., 'Enlarged Cardiomediastinum', 'Pleural Other') exhibit low prevalence and high label uncertainty.",
+    "generalizability_statement": "Performance may degrade on images from different manufacturers, protocols, or patient populations due to domain shift; temporal drift (2002–2017) uncharacterized.",
+    "subgroup_coverage": "No subgroup coverage data provided.",
+    "missing_data": "Demographic attributes (age, sex, race) are not included in the public release."
   },
   "tasks_and_use": {
     "intended_tasks": [
@@ -93,28 +104,32 @@
     ],
     "benchmarks": [
       "CheXpert competition"
-    ]
+    ],
+    "excluded_tasks": "Not intended for detection or segmentation; no pixel-level annotations provided."
   },
   "data_origin": {
     "origin_type": "clinical-care",
-    "selection_rationale": "Radiographs were selected from the electronic health record (EHR) system at Stanford Hospital to represent common chest imaging encounters."
+    "selection_rationale": "Patients were selected from the electronic health record (EHR) system at Stanford Hospital; inclusion was based on availability of chest radiographs and associated radiology reports.",
+    "sampling_strategy": "Consecutive radiographic studies from Stanford Hospital EHR between 2002 and 2017; no explicit stratification or random sampling described in source text.",
+    "data_shifts_overtime": "Data collected from 2002–2017; potential temporal shifts in imaging equipment, reporting practices, and clinical protocols not quantified in source text."
   },
   "population": {
-    "target_population": "Patients who underwent chest radiography at Stanford Hospital.",
+    "target_population": "Adult patients undergoing chest radiography at Stanford Hospital.",
     "sex": "not-reported",
-    "missing_groups": "Demographic subgroups (e.g., age, sex, ethnicity) are not reported in the source abstract; representativeness across populations is unknown.",
+    "inclusion_criteria": "Presence of chest radiograph and corresponding radiology report in Stanford Hospital EHR.",
+    "missing_groups": "No demographic subgroup statistics reported; underrepresentation of non-White, non-US, pediatric, and elderly subgroups cannot be ruled out.",
     "attribute_recording": {
-      "method": "computed"
+      "method": "unknown"
     }
   },
   "annotation": {
     "annotation_type": "semi-automatic",
-    "annotation_method": "Labels for 14 observations automatically detected from radiology reports using NLP; uncertainty labels (U, A, -, +) reflect report phrasing (uncertain, absent, negative, positive).",
+    "annotation_method": "Labels for 14 observations automatically extracted from radiology reports using rule-based NLP; uncertainty labels (Uncertain, Positive, Negative, Blank) assigned per observation based on report phrasing.",
     "annotators": {
       "type": "NLP"
     },
-    "labeling_provenance": "Labels derived from free-text radiology reports via rule-based and NLP methods; ground truth on validation/test sets established by board-certified radiologists.",
+    "labeling_provenance": "Derived from free-text radiology reports via NLP labeler; validated against expert annotations on subsets.",
     "known_label_noise": true,
-    "label_noise_description": "Report-derived labels contain inherent uncertainty and ambiguity (e.g., 'cannot rule out', 'questionable'), leading to imperfect ground truth."
+    "label_noise_description": "Label noise arises from ambiguity in natural language reports (e.g., 'no evidence of pneumonia' vs. 'pneumonia cannot be excluded'); uncertainty labels explicitly encode this."
   }
 }

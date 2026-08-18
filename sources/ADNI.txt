@@ -1,0 +1,16 @@
+TITLE: Alzheimer's Disease Neuroimaging Initiative (ADNI)
+AUTHORS: ADNI investigators; Principal Investigator Michael W. Weiner; funded by NIA, NIBIB, FDA, pharma partners
+VENUE: adni.loni.usc.edu (LONI Image Data Archive)
+
+ABSTRACT:
+The Alzheimer's Disease Neuroimaging Initiative (ADNI) is a longitudinal multisite observational study launched in 2004 to develop clinical, imaging, and biomarker measures for the early detection and tracking of Alzheimer's disease (AD). It collects and shares MRI and PET imaging, cognitive/clinical assessments, CSF and blood biomarkers, and genomic data across approximately 2,300+ participants spanning cognitively normal aging, mild cognitive impairment (MCI), and Alzheimer's dementia. The goal is to define biomarkers of disease progression to improve trial design and diagnostic accuracy.
+
+KEY FACTS:
+- Modality: structural/fMRI MRI, amyloid/PET, cognitive batteries, genomic, biomarker assays
+- Scale: ~2,300+ participants (ADNI1 and follow-on phases), longitudinal
+- Geography: primarily United States and Canada (multisite, ~59 sites)
+- Access: application-based Data Use Agreement via LONI IDA (requires approval)
+- Intended tasks: AD staging, conversion prediction (MCI→AD), biomarker discovery
+- License: application-based DUA (research use, not open)
+- Source type: longitudinal observational cohort / registry
+- Limitations: focuses only on the AD spectrum; US/Canada-centric enrollment; volunteer/survivor selection bias; limited diversity in age/ethnicity beyond the enrolled cohort.

@@ -1,42 +1,122 @@
 {
   "schema_version": "0.2",
-  "dataset_id": "Sleep-EDF Expanded",
+  "dataset_id": "Sleep-EDF-Expanded",
   "dataset_name": "Sleep-EDF Expanded",
   "metadata": {
     "source_type": "repository",
-    "homepage": "https://physionet.org/content/sleep-edfx/1.0.0",
+    "homepage": "https://physionet.org/content/sleep-edfx/",
     "repositories": [
       {
         "platform": "PhysioNet",
-        "url": "https://physionet.org/content/sleep-edfx/1.0.0"
+        "url": "https://physionet.org/content/sleep-edfx/"
       }
-    ]
+    ],
+    "summary": "The Sleep-EDF (Expanded) database provides full-night polysomnography (PSG) recordings for sleep research, including two cohorts: healthy subjects (SC) and subjects with mild difficulty falling asleep (ST). Each recording contains EEG (Fpz-Cz, Pz-Oz), EOG, submental EMG, and event markers, manually scored with the R&K sleep-stage standard.",
+    "persistent_identifier": "https://physionet.org/content/sleep-edfx/",
+    "access_method": "open",
+    "custodian": "PhysioNet",
+    "purpose": "Sleep research, particularly automatic sleep-stage classification and sleep analysis.",
+    "avoided_uses": "Clinical decision support in modern clinical settings due to dated acquisition period and R&K scoring (not AASM)."
   },
   "medical_fields": [
-    "临床医学"
+    "影像学",
+    "内科学"
   ],
   "modality": {
     "modalities": [
-      "EEG"
-    ]
+      "EEG",
+      "ECG",
+      "other"
+    ],
+    "scope": "Sleep staging (whole-night polysomnography)",
+    "data_format": [
+      "EDF"
+    ],
+    "sample_counts": {
+      "studies": 197
+    }
   },
   "ethics": {
     "license": "ODC-BY 1.0",
-    "commercial_use_allowed": true
+    "commercial_use_allowed": true,
+    "consent": "not-reported",
+    "data_use_agreement": false,
+    "privacy_measures": "De-identified; PhysioNet standard de-identification procedures applied.",
+    "legal_compliance": "Complies with PhysioNet data sharing policies; no explicit mention of GDPR/HIPAA given collection era and jurisdiction."
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
-    "pending_verification": []
+    "pending_verification": [
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：modality/modalities[list-items], source_type"
+    ]
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "小规模",
-      "健康/失眠为主",
-      "1968 R&K 标准",
-      "1987–1994 年代久远"
-    ]
+      "Small cohort size (~197 recordings).",
+      "Dated data (1987–1994); outdated acquisition hardware/software and sleep staging criteria (R&K, not AASM).",
+      "Limited demographic and clinical diversity: healthy/insomnia skew, not representative of general clinical population."
+    ],
+    "bias_sources": [
+      "Temporal bias (1987–1994)",
+      "Clinical selection bias (healthy vs. mild insomnia only)",
+      "Scoring standard bias (R&K vs. AASM)"
+    ],
+    "representativeness_concerns": "Cohort overrepresents healthy adults and those with mild insomnia; underrepresents severe, comorbid, pediatric, and elderly populations.",
+    "long_tail_classes": "Not specified.",
+    "generalizability_statement": "Limited generalizability to contemporary clinical sleep populations due to temporal, demographic, and methodological (scoring standard) shifts.",
+    "subgroup_coverage": "No subgroup coverage details reported (e.g., age, sex, ethnicity).",
+    "missing_data": "Not specified."
+  },
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "Cohorts selected as healthy subjects (SC) and subjects with mild difficulty falling asleep (ST).",
+    "sampling_strategy": "Not explicitly described; appears to be convenience sampling from a single-center sleep study.",
+    "data_shifts_overtime": "Data collected 1987–1994; known temporal shift relative to current sleep staging standards (R&K vs. AASM) and equipment/software."
+  },
+  "population": {
+    "target_population": "Adults with and without mild insomnia symptoms.",
+    "sex": "not-reported",
+    "inclusion_criteria": "Healthy subjects or subjects with mild difficulty falling asleep.",
+    "exclusion_criteria": "Not specified in source text.",
+    "missing_groups": "General clinical population (e.g., severe insomnia, comorbid psychiatric/neurological conditions, pediatric/elderly extremes) is underrepresented.",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "geography": {
+    "countries": [
+      "Netherlands"
+    ],
+    "regions": [
+      "Europe"
+    ],
+    "data_collection_setting": "single-center",
+    "collection_period": {
+      "start": "1987-01-01",
+      "end": "1994-12-31"
+    }
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Manual scoring using Rechtschaffen & Kales (R&K) sleep-stage standard.",
+    "annotators": {
+      "type": "sleep technician / expert scorer",
+      "qualifications": "Trained in R&K scoring"
+    },
+    "labeling_provenance": "Manually scored by experts per R&K standard.",
+    "known_label_noise": true,
+    "label_noise_description": "R&K scoring differs from current AASM standard; inter-rater variability not quantified in source text."
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "classification"
+    ],
+    "benchmarks": [
+      "Sleep-EDF benchmark for sleep-stage classification"
+    ],
+    "excluded_tasks": "Clinical deployment for diagnosis or treatment decisions."
   }
 }

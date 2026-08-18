@@ -1,0 +1,16 @@
+TITLE: Sleep-EDF Database (Expanded) — Polysomnography Recordings
+AUTHORS: PhysioNet (originally Kemp et al.); expanded sleep cohort
+VENUE: physionet.org/content/sleep-edfx
+
+ABSTRACT:
+The Sleep-EDF (Expanded) database provides full-night polysomnography (PSG) recordings for sleep research. It includes two cohorts: healthy subjects (SC) and subjects with mild difficulty falling asleep (ST). Each recording contains EEG (Fpz-Cz, Pz-Oz), EOG, submental EMG, and event markers, manually scored with the R&K sleep-stage standard. The expanded set is commonly used for automatic sleep-stage classification.
+
+KEY FACTS:
+- Modality: EEG / PSG (plus EOG, EMG), time-series
+- Scale: ~197 whole-night PSG recordings (healthy + insomnia cohorts)
+- Geography: single center — Netherlands (originally); collected 1987–1994
+- Access: open via PhysioNet, ODC-BY 1.0
+- Intended tasks: sleep-stage classification, sleep analysis
+- License: ODC-BY 1.0
+- Source type: epidemiological/clinical sleep study
+- Limitations: small cohort; dated (late-1980s to mid-1990s); R&K scoring (not AASM); healthy/insomnia skew, not general clinical population.

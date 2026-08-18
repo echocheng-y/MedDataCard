@@ -1,0 +1,16 @@
+TITLE: CHB-MIT Scalp EEG Database (Children's Hospital Boston–MIT)
+AUTHORS: Children's Hospital Boston (now Boston Children's Hospital) and MIT; published on PhysioNet
+VENUE: physionet.org/content/chbmit
+
+ABSTRACT:
+The CHB-MIT Scalp EEG database comprises continuous intracranial/extracranial EEG recordings from 23 pediatric patients (24 recordings; one patient contributed two) with intractable seizures at Boston Children's Hospital. The dataset contains 916+ hours of recorded scalp EEG (sampled at 256 Hz, 23 electrodes) with 198 marked seizure events, provided with expert-annotated seizure onset times. It is a widely used benchmark for seizure detection and prediction from EEG.
+
+KEY FACTS:
+- Modality: EEG (scalp, 23-channel, 256 Hz)
+- Scale: 23 patients / 24 recordings / 916+ hours / 198 seizures
+- Geography: single center — Boston Children's Hospital, United States
+- Access: open via PhysioNet
+- Intended tasks: epileptic seizure detection / onset localization
+- License: ODC-BY 1.0 (Open Data Commons Attribution)
+- Source type: clinical-care (tertiary pediatric epilepsy center)
+- Limitations: pediatric intractable epilepsy only; single-center; small subject count; labels are per-recording event marks, not dense frame-wise.

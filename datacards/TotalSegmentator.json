@@ -17,10 +17,9 @@
     ],
     "summary": "Dataset of 1,204 abdominal and thoracic CT images with manual segmentations of 104 anatomical structures, including organs, bones, muscles, and vessels, retrospectively collected at the University Hospital Basel.",
     "persistent_identifier": "https://doi.org/10.5281/zenodo.6802614",
-    "version": "2022",
     "access_method": "open",
     "custodian": "University Hospital Basel",
-    "purpose": "Benchmark and pretraining resource for medical image segmentation.",
+    "purpose": "Intended as a benchmark and pretraining resource for medical image segmentation.",
     "creators": [
       "Wasserthal, J.",
       "Meyer, M.",
@@ -39,7 +38,9 @@
     ]
   },
   "medical_fields": [
-    "影像学"
+    "影像学",
+    "外科学",
+    "内科学"
   ],
   "modality": {
     "modalities": [
@@ -50,16 +51,17 @@
       "NIfTI"
     ],
     "sample_counts": {
-      "images": 1204,
-      "samples": 1204
+      "images": 1204
     }
   },
   "ethics": {
     "license": "CC BY 4.0",
     "commercial_use_allowed": true,
-    "consent": "de-identified",
+    "consent": "waived",
+    "irb_approval": true,
     "data_use_agreement": false,
-    "privacy_measures": "Data de-identified."
+    "privacy_measures": "De-identified; no protected health information retained.",
+    "legal_compliance": "Compliant with Swiss data protection law (necessity of waiver confirmed by local IRB)."
   },
   "extraction": {
     "method": "hybrid",
@@ -70,24 +72,16 @@
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Single-center origin may limit generalizability.",
-      "No demographic metadata (age, sex, ethnicity) reported."
+      "Single-center origin limits geographic and demographic diversity.",
+      "Limited to abdominal and thoracic CT scans; not representative of head, extremity, or pediatric CT.",
+      "No reported age, sex, or ethnicity distribution."
     ],
-    "bias_sources": [
-      "Geographic bias (Switzerland only)",
-      "Clinical setting bias (retrospective, single-center)"
-    ],
-    "representativeness_concerns": "90%+ from single center in Switzerland; no demographic diversity information provided.",
-    "generalizability_statement": "Limited generalizability beyond Swiss abdominal/thoracic CT practice without validation.",
-    "subgroup_coverage": "No subgroup coverage data reported.",
-    "missing_data": "Demographic and clinical metadata largely missing."
+    "representativeness_concerns": "90%+ from single Swiss academic center; unknown demographic composition.",
+    "missing_data": "Demographic metadata (age, sex, ethnicity) not provided."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "segmentation"
-    ],
-    "benchmarks": [
-      "TotalSegmentator benchmark"
     ]
   },
   "data_origin": {
@@ -95,8 +89,7 @@
     "selection_rationale": "Retrospectively collected abdominal and thoracic CT images."
   },
   "population": {
-    "target_population": "Patients undergoing abdominal and thoracic CT imaging.",
-    "sex": "not-reported"
+    "target_population": "Patients undergoing abdominal and thoracic CT imaging at University Hospital Basel."
   },
   "geography": {
     "countries": [
@@ -110,11 +103,13 @@
   },
   "annotation": {
     "annotation_type": "expert",
-    "annotation_method": "Manual segmentations by experts.",
+    "annotation_method": "Manual segmentations by experts of 104 anatomical structures.",
     "annotators": {
-      "type": "radiologist"
+      "type": "radiologist",
+      "qualifications": "Expert annotation"
     },
     "labeling_provenance": "Manual expert segmentations.",
-    "known_label_noise": false
+    "known_label_noise": false,
+    "annotation_guidelines_available": false
   }
 }

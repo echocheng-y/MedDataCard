@@ -10,47 +10,128 @@
         "platform": "PhysioNet",
         "url": "https://physionet.org/content/vindr-cxr/"
       }
+    ],
+    "summary": "VinDr-CXR is a large chest X-ray dataset of 18,000 posteroanterior (PA) radiographs from 18,000 patients, collected at two hospitals in Vietnam. It provides 22 localized bounding-box annotations for findings plus 6 global (image-level) labels.",
+    "persistent_identifier": "https://physionet.org/content/vindr-cxr/",
+    "version": "2021",
+    "access_method": "open",
+    "custodian": "VinBigData",
+    "purpose": "Used for lesion detection and image-level classification benchmarks.",
+    "creators": [
+      "Nguyen et al.",
+      "VinBigData"
+    ],
+    "papers": [
+      {
+        "title": "VinDr-CXR: A Large-Scale Benchmark for Chest X-ray Abnormality Detection",
+        "url": "https://arxiv.org/abs/2101.06453",
+        "year": 2021,
+        "doi": "arXiv:2101.06453"
+      }
     ]
   },
   "medical_fields": [
-    "影像学"
+    "影像学",
+    "内科学"
   ],
   "modality": {
     "modalities": [
       "X-ray"
     ],
     "sample_counts": {
-      "images": 18000
-    }
+      "images": 18000,
+      "patients": 18000,
+      "samples": 18000
+    },
+    "scope": "chest",
+    "data_format": [
+      "DICOM"
+    ]
   },
   "ethics": {
-    "license": "PhysioNet 开放"
+    "license": "CC BY 4.0",
+    "consent": "de-identified",
+    "data_use_agreement": false,
+    "privacy_measures": "De-identification performed prior to release.",
+    "commercial_use_allowed": true,
+    "legal_compliance": "Complies with PhysioNet Open Data policy."
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
     "pending_verification": [
-      "geography.countries 由局限文本启发式推断，待人工核实"
+      "geography.countries 由局限文本启发式推断，待人工核实",
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：source_type"
     ]
   },
   "geography": {
     "countries": [
       "Vietnam"
-    ]
+    ],
+    "regions": [
+      "Asia"
+    ],
+    "data_collection_setting": "multi-center",
+    "institution_count": 2
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "越南两中心",
-      "仅 PA 位",
-      "测试集仅共识标签"
-    ]
+      "Vietnam two-center",
+      "PA view only (no lateral)",
+      "Test labels are consensus (limited individual-rater variance)",
+      "Adult chest findings scoped"
+    ],
+    "bias_sources": [
+      "geographic bias (Vietnam-only)",
+      "view bias (PA-only)",
+      "consensus labeling reduces inter-rater variability in test set"
+    ],
+    "representativeness_concerns": "Limited to two centers in Vietnam; lacks geographic, demographic, and technical diversity.",
+    "generalizability_statement": "Generalizability may be limited to adult PA chest X-rays in similar healthcare settings; not validated on lateral views or non-Vietnamese populations.",
+    "subgroup_coverage": "No explicit reporting on sex, age, or ethnicity subgroups.",
+    "missing_data": "No information provided on missingness of clinical metadata or imaging quality."
   },
   "tasks_and_use": {
     "intended_tasks": [
-      "classification",
-      "detection"
-    ]
+      "detection",
+      "classification"
+    ],
+    "benchmarks": [
+      "abnormality detection",
+      "image-level classification"
+    ],
+    "excluded_tasks": "Tasks requiring lateral views, pediatric populations, or fine-grained temporal follow-up."
+  },
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "18,000 posteroanterior (PA) radiographs from 18,000 patients, collected at two hospitals in Vietnam.",
+    "sampling_strategy": "All images are PA view; no lateral views included."
+  },
+  "population": {
+    "target_population": "Adult chest X-ray patients",
+    "sex": "not-reported",
+    "inclusion_criteria": "Posteroanterior chest X-rays from patients at two hospitals in Vietnam.",
+    "exclusion_criteria": "Lateral views; non-chest X-rays; pediatric or non-adult cases (implied by 'adult chest findings scoped').",
+    "vulnerable_groups": [
+      "adult"
+    ],
+    "missing_groups": "Pediatric, pregnancy, elderly subgroups not explicitly reported or confirmed; lateral-view absence limits anatomical completeness.",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Training set labeled by 17 radiologists; test set labeled by consensus of senior radiologists.",
+    "annotators": {
+      "type": "radiologist",
+      "count": 17,
+      "qualifications": "radiologists (training), senior radiologists (test consensus)"
+    },
+    "labeling_provenance": "Bounding-box and global labels derived from clinical radiology reports and expert review.",
+    "known_label_noise": true,
+    "label_noise_description": "Test set uses consensus labeling, limiting individual-rater variance; training set may contain inter-rater variability."
   }
 }

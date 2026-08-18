@@ -11,11 +11,10 @@
         "url": "https://www.isic-archive.com/"
       }
     ],
-    "summary": "The ISIC Archive and its annual challenges provide the largest publicly available collection of dermoscopic images of skin lesions for skin cancer analysis. ISIC 2024 (SLICE-3D) released 401,059 training images (crops from 3D total-body photography) from 1,042 patients for melanoma classification. Historical challenges (e.g., 2020) contributed 33,126 DICOM images and incorporated prior datasets including HAM10000.",
+    "summary": "The ISIC Archive and its annual challenges provide the largest publicly available collection of dermoscopic images of skin lesions for skin cancer analysis. ISIC 2024 (SLICE-3D) released 401,059 training images (crops from 3D total-body photography) from 1,042 patients for melanoma classification. Historical ISIC challenges (e.g., 2020) contributed 33,126 DICOM images and incorporated prior datasets including HAM10000.",
     "access_method": "open",
     "custodian": "International Skin Imaging Collaboration (ISIC)",
-    "purpose": "Skin cancer classification and segmentation for academic challenge participation.",
-    "avoided_uses": "Commercial use.",
+    "purpose": "Supporting skin cancer classification and segmentation research via annual academic challenges.",
     "creators": [
       "International Skin Imaging Collaboration (ISIC)"
     ]
@@ -31,11 +30,11 @@
     "scope": "skin lesions",
     "data_format": [
       "DICOM",
-      "JPEG",
-      "PNG"
+      "PNG",
+      "JPEG"
     ],
     "sample_counts": {
-      "images": 401059,
+      "images": 434185,
       "patients": 1042
     }
   },
@@ -44,8 +43,8 @@
     "commercial_use_allowed": false,
     "consent": "informed",
     "data_use_agreement": false,
-    "privacy_measures": "De-identification performed per HIPAA Safe Harbor; removal of all protected health information and facial features.",
-    "legal_compliance": "Compliant with GDPR and HIPAA de-identification standards where applicable."
+    "privacy_measures": "De-identification performed per HIPAA Safe Harbor standards; facial and identifying features removed or obscured.",
+    "legal_compliance": "Complies with GDPR and HIPAA de-identification requirements where applicable."
   },
   "extraction": {
     "method": "hybrid",
@@ -58,26 +57,35 @@
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Underrepresentation of rare skin lesion subtypes and non-Caucasian skin tones.",
-      "Geographic bias toward high-resource dermatology centers.",
-      "Temporal bias: older subsets (e.g., HAM10000) reflect earlier imaging protocols and annotation practices."
+      "Underrepresentation of pediatric and elderly populations",
+      "Geographic bias toward high-resource countries with dermatology imaging infrastructure",
+      "Limited diversity in skin tone (Fitzpatrick I–IV overrepresented; V–VI underrepresented)",
+      "Label noise from clinical vs. histopathological diagnosis discordance",
+      "Temporal shift: older subsets (e.g., HAM10000) reflect earlier imaging protocols and diagnostic practices"
     ],
+    "modifications": "Yes — 2024 images are crops from 3D total-body photography; historical images underwent format conversion (e.g., DICOM to PNG), re-sampling, and label harmonization.",
     "bias_sources": [
       "sampling",
+      "labeling",
       "geographic",
-      "temporal",
-      "labeling"
+      "demographic"
     ],
-    "representativeness_concerns": "Predominantly light-skin-tone and Western-center derived; limited representation of Fitzpatrick skin types V–VI and low-resource settings.",
-    "long_tail_classes": "Yes — melanoma, nevus, and basal cell carcinoma dominate; rarer classes (e.g., dermatofibroma, vascular lesions) are underrepresented.",
-    "missing_data": "Missing demographic metadata (age, sex, ethnicity) for majority of samples."
+    "representativeness_concerns": "Predominantly North American and European institutions; Fitzpatrick skin types V–VI underrepresented.",
+    "long_tail_classes": "Rare malignancies (e.g., Merkel cell carcinoma, dermatofibrosarcoma protuberans) severely underrepresented.",
+    "generalizability_statement": "Performance may degrade on populations with darker skin tones, in low-resource settings, or with non-standard imaging devices.",
+    "subgroup_coverage": "Subgroup coverage by skin tone, age, sex, and geography is incompletely reported and likely uneven.",
+    "missing_data": "Age, sex, ethnicity, and Fitzpatrick scale metadata missing or inconsistently recorded across historical releases."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "classification",
       "segmentation"
     ],
-    "excluded_tasks": "Commercial deployment without explicit permission; real-time clinical decision support without regulatory validation."
+    "benchmarks": [
+      "ISIC 2020",
+      "ISIC 2024 SLICE-3D"
+    ],
+    "excluded_tasks": "Direct clinical deployment without validation; use in commercial diagnostic products without explicit license amendment."
   },
   "aliases": [
     "ISIC Archive",
@@ -85,15 +93,20 @@
   ],
   "data_origin": {
     "origin_type": "clinical-care",
-    "selection_rationale": "Images selected from international multi-site contributors for skin cancer analysis challenges.",
-    "sampling_strategy": "Multi-site aggregation; images derived from 3D total-body photography (2024) and prior dermoscopic collections (e.g., HAM10000, 2020 challenge)."
+    "selection_rationale": "Images selected from international multi-site contributors for standardized skin lesion analysis challenges.",
+    "sampling_strategy": "Multi-site, multi-institutional aggregation; historical inclusion of pre-existing datasets (e.g., HAM10000) with possible re-cropping and re-labeling per challenge protocol.",
+    "aggregation_multisource": "Aggregated from international clinical sites and prior public datasets (e.g., HAM10000); 2024 data derived from 3D total-body photography crops."
   },
   "population": {
-    "target_population": "Patients with skin lesions undergoing dermoscopic or 3D total-body imaging.",
+    "target_population": "Patients undergoing dermatologic evaluation for skin lesions, including melanoma and benign lesions.",
     "sex": "not-reported",
+    "inclusion_criteria": "Skin lesion images acquired via dermoscopy or 3D total-body photography, meeting challenge-specific quality and annotation criteria.",
+    "exclusion_criteria": "Images failing quality control or lacking diagnostic consensus labels per challenge protocol.",
     "vulnerable_groups": [
-      "dermatology-patients"
+      "pediatric",
+      "elderly"
     ],
+    "missing_groups": "Pediatric and elderly populations underrepresented relative to general skin cancer epidemiology; no explicit reporting of age distribution or representation balance.",
     "attribute_recording": {
       "method": "unknown"
     }
@@ -104,19 +117,19 @@
       "Europe",
       "Asia",
       "Oceania",
-      "South America",
-      "Africa"
+      "South America"
     ],
     "data_collection_setting": "multi-country"
   },
   "annotation": {
     "annotation_type": "expert",
+    "annotation_method": "Expert dermatologist consensus labeling; some labels derived from clinical ground truth (e.g., biopsy-confirmed diagnosis).",
     "annotators": {
-      "type": "dermatologist",
-      "qualifications": "board-certified dermatologists and/or dermatopathologists"
+      "type": "radiologist",
+      "qualifications": "Board-certified dermatologists and skin imaging specialists"
     },
-    "labeling_provenance": "Expert-labeled clinical ground truth; labels derived from histopathology or expert consensus diagnosis.",
+    "labeling_provenance": "Labels sourced from clinical diagnosis (e.g., histopathology), expert consensus, or prior dataset annotations (e.g., HAM10000).",
     "known_label_noise": true,
-    "label_noise_description": "Label noise exists due to inter-observer variability and diagnostic uncertainty in borderline cases."
+    "label_noise_description": "Label noise exists due to inter-observer variability, evolving diagnostic criteria, and reliance on non-biopsy clinical diagnoses in some subsets."
   }
 }

@@ -1,0 +1,16 @@
+TITLE: MedMCQA: A Large-scale Multi-Subject Multi-Choice Dataset for Medical QA
+AUTHORS: Pal et al.; released 2022 (AIIMS Delhi / NEET-PG exam data)
+VENUE: GitHub (medmcqa/medmcqa); ACL 2022
+
+ABSTRACT:
+MedMCQA is a large-scale multiple-choice QA dataset for medical education and entrance examination, containing 194,000 questions spanning 21 medical subjects drawn from Indian medical qualifying examinations (AIIMS/NEET-PG). Each question has four answer options and a single correct answer, covering pre-clinical, para-clinical, and clinical medicine. It is intended for benchmarking medical knowledge of language models.
+
+KEY FACTS:
+- Modality: text (multiple-choice questions)
+- Scale: 194,000 questions across  ́21 subjects; ~10% held out as test
+- Geography: India (Indian medical exam context)
+- Access: GitHub / HuggingFace, MIT license
+- Intended tasks: medical multiple-choice QA, knowledge evaluation
+- License: MIT
+- Source type: educational examination corpus
+- Limitations: derived from entrance exams (not clinical practice); single-correct-answer format; no explicit reasoning-chain labels; India-centric curriculum.

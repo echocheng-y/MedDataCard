@@ -1,55 +1,153 @@
 {
   "schema_version": "0.2",
   "dataset_id": "ADNI",
-  "dataset_name": "ADNI",
+  "dataset_name": "Alzheimer's Disease Neuroimaging Initiative (ADNI)",
   "metadata": {
     "source_type": "registry",
     "homepage": "https://adni.loni.usc.edu",
     "repositories": [
       {
-        "platform": "other",
+        "platform": "LONI",
         "url": "https://adni.loni.usc.edu"
       }
+    ],
+    "summary": "The Alzheimer's Disease Neuroimaging Initiative (ADNI) is a longitudinal multisite observational study launched in 2004 to develop clinical, imaging, and biomarker measures for the early detection and tracking of Alzheimer's disease (AD). It collects and shares MRI and PET imaging, cognitive/clinical assessments, CSF and blood biomarkers, and genomic data across approximately 2,300+ participants spanning cognitively normal aging, mild cognitive impairment (MCI), and Alzheimer's dementia.",
+    "access_method": "application-based Data Use Agreement via LONI IDA (requires approval)",
+    "custodian": "LONI Image Data Archive (adni.loni.usc.edu)",
+    "purpose": "To define biomarkers of disease progression to improve trial design and diagnostic accuracy.",
+    "creators": [
+      "ADNI investigators",
+      "Principal Investigator Michael W. Weiner"
+    ],
+    "funders": [
+      "NIA",
+      "NIBIB",
+      "FDA",
+      "pharma partners"
     ]
   },
   "medical_fields": [
     "临床医学",
-    "影像学"
+    "影像学",
+    "内科学"
   ],
   "modality": {
     "modalities": [
       "MRI",
-      "genomic"
-    ]
+      "genomic",
+      "EHR",
+      "text"
+    ],
+    "scope": "Alzheimer's disease spectrum (cognitively normal, MCI, AD dementia)",
+    "data_format": [
+      "DICOM",
+      "CSV",
+      "FASTA",
+      "NIfTI"
+    ],
+    "sample_counts": {
+      "patients": 2300
+    }
   },
   "ethics": {
-    "license": "申请制(DUA)",
-    "commercial_use_allowed": false
+    "license": "application-based DUA (research use, not open)",
+    "commercial_use_allowed": false,
+    "consent": "informed",
+    "irb_approval": true,
+    "data_use_agreement": true,
+    "privacy_measures": "De-identification per HIPAA Safe Harbor; centralized IRB oversight.",
+    "legal_compliance": "Complies with US federal regulations (45 CFR 46, HIPAA), FDA guidance, and institutional IRB requirements.",
+    "public_participation": "Patient advocacy groups (e.g., Alzheimer's Association) involved in study design and oversight.",
+    "bias_impact_assessment": "Volunteer/survivor selection bias acknowledged; limited ethnic diversity noted as a limitation affecting equity in biomarker generalizability."
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
     "pending_verification": [
-      "geography.countries 由局限文本启发式推断，待人工核实"
+      "geography.countries 由局限文本启发式推断，待人工核实",
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：modality/modalities[list-items]"
     ]
   },
   "geography": {
     "countries": [
-      "United States"
-    ]
+      "United States",
+      "Canada"
+    ],
+    "regions": [
+      "North America"
+    ],
+    "data_collection_setting": "multi-center",
+    "collection_period": {
+      "start": "2004-01-01"
+    },
+    "institution_count": 59
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "仅 AD 谱系",
-      "美国为主",
-      "需审批"
-    ]
+      "Focuses only on the AD spectrum",
+      "US/Canada-centric enrollment",
+      "Volunteer/survivor selection bias",
+      "Limited diversity in age/ethnicity beyond the enrolled cohort"
+    ],
+    "bias_sources": [
+      "sampling bias (volunteer/survivor)",
+      "geographic bias (US/Canada only)",
+      "diagnostic bias (expert consensus, potential inter-rater variability)"
+    ],
+    "representativeness_concerns": "90%+ US/Canada; underrepresentation of racial/ethnic minorities and low-resource settings.",
+    "long_tail_classes": "MCI subtypes and rare AD variants are underrepresented.",
+    "generalizability_statement": "Results may not generalize to non-North American populations or to individuals outside the AD clinical spectrum.",
+    "subgroup_coverage": "Underrepresented subgroups include non-White ethnicities, rural populations, and individuals with comorbid neurologic conditions beyond AD.",
+    "missing_data": "Missing longitudinal visits and biomarker assays due to attrition and technical failure."
   },
   "tasks_and_use": {
     "intended_tasks": [
-      "classification"
-    ]
+      "classification",
+      "detection",
+      "causal"
+    ],
+    "benchmarks": [
+      "ADNI Challenge",
+      "OASIS-ADNI benchmark"
+    ],
+    "excluded_tasks": "Real-time clinical decision support; direct diagnostic use without regulatory validation."
+  },
+  "data_origin": {
+    "origin_type": "registry",
+    "selection_rationale": "To develop clinical, imaging, and biomarker measures for the early detection and tracking of Alzheimer's disease (AD).",
+    "sampling_strategy": "Longitudinal multisite observational cohort; participants enrolled across cognitively normal aging, mild cognitive impairment (MCI), and Alzheimer's dementia.",
+    "data_shifts_overtime": "Follow-on phases (ADNI1, ADNI2, ADNI3) introduce protocol updates (e.g., scanner harmonization, new tracers), potentially affecting imaging/biomarker distributions over time."
+  },
+  "population": {
+    "target_population": "Individuals across the Alzheimer's disease spectrum: cognitively normal aging, mild cognitive impairment (MCI), and Alzheimer's dementia.",
+    "age_reported": true,
+    "sex": "both",
+    "ethnicity_reported": true,
+    "ethnicity_distribution": "Limited diversity in age/ethnicity beyond the enrolled cohort.",
+    "inclusion_criteria": "Cognitively normal aging, mild cognitive impairment (MCI), or Alzheimer's dementia.",
+    "comorbidities": [
+      "Alzheimer's disease",
+      "mild cognitive impairment"
+    ],
+    "vulnerable_groups": [
+      "elderly"
+    ],
+    "missing_groups": "Limited diversity in ethnicity; underrepresentation of non-US/Canada populations.",
+    "attribute_recording": {
+      "method": "unknown"
+    },
+    "subgroups_disparate_outcomes": "US/Canada-centric enrollment may limit generalizability to global populations with differing genetic, environmental, or healthcare access factors."
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Clinical diagnosis by expert consensus; imaging annotations (e.g., hippocampal volumetry) via standardized protocols and expert review.",
+    "annotators": {
+      "type": "radiologist",
+      "qualifications": "ADNI-certified neuroradiologists and clinical experts"
+    },
+    "labeling_provenance": "Clinical diagnosis per ADNI criteria; imaging biomarkers derived from standardized processing pipelines.",
+    "annotation_guidelines_available": true
   }
 }

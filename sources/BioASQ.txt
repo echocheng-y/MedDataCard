@@ -1,0 +1,16 @@
+TITLE: BioASQ: A large biomedical semantic QA challenge
+AUTHORS: National Centre for Scientific Research "Demokritos" and collaborators; organized annually since 2012
+VENUE: bioasq.org
+
+ABSTRACT:
+BioASQ is an annual large-scale community challenge on biomedical semantic question answering over the biomedical literature. It releases a growing corpus of biomedical semantic resources and a set of tasks: large-scale online MEDLINE indexing, document retrieval, passage retrieval, snippet extraction, semantic/reading-comprehension question answering, and a novel biomedical semantic QA task that combines retrieval and generation. Training/development data are drawn from PubMed abstracts and full-text biomedical articles in English. The challenge emphasizes literature-based QA rather than clinical prediction.
+
+KEY FACTS:
+- Modality: text (PubMed/PMC biomedical literature)
+- Scale: annual releases; large document/question corpora, thousands of QA pairs per year
+- Geography: international (multilingual authorship, English corpus)
+- Access: registration required; challenge data under CC BY-NC-SA 4.0
+- Intended tasks: document retrieval, passage retrieval, snippet extraction, semantic QA, summarization
+- License: CC BY-NC-SA 4.0
+- Source type: challenge / benchmark
+- Limitations: corpus changes annually; requires registration; QA is literature/retrieval-oriented rather than patient-level; English-only.

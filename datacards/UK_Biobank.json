@@ -7,9 +7,20 @@
     "homepage": "https://www.ukbiobank.ac.uk",
     "repositories": [
       {
-        "platform": "other",
+        "platform": "ukbiobank.ac.uk",
         "url": "https://www.ukbiobank.ac.uk"
       }
+    ],
+    "summary": "UK Biobank is a prospective, population-based cohort of ~500,000 participants aged 40–69 recruited across the United Kingdom, with deep longitudinal phenotyping: genetic, lifestyle, electronic health records, imaging, and biosamples. Roughly 100,000 participants have multimodal MRI (brain, heart, abdomen) plus further imaging.",
+    "access_method": "application-based",
+    "custodian": "UK Biobank Ltd",
+    "purpose": "Supports myriad epidemiological and ML studies",
+    "creators": [
+      "UK Biobank Ltd"
+    ],
+    "funders": [
+      "Wellcome Trust",
+      "MRC"
     ]
   },
   "medical_fields": [
@@ -18,36 +29,95 @@
   "modality": {
     "modalities": [
       "EHR",
-      "genomic"
-    ]
+      "genomic",
+      "MRI"
+    ],
+    "scope": "brain, heart, abdomen",
+    "data_format": [
+      "DICOM",
+      "CSV",
+      "BGEN",
+      "FASTQ"
+    ],
+    "sample_counts": {
+      "patients": 500000,
+      "studies": 100000
+    }
   },
   "ethics": {
-    "license": "申请制(学术免费)"
+    "license": "application-based access (academic free tier / industry fee)",
+    "consent": "informed",
+    "irb_approval": true,
+    "data_use_agreement": true,
+    "commercial_use_allowed": false,
+    "privacy_measures": "De-identification; strict data access controls; secure research environment (RE)",
+    "legal_compliance": "Complies with UK Data Protection Act 2018 and GDPR"
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
     "pending_verification": [
-      "geography.countries 由局限文本启发式推断，待人工核实"
+      "geography.countries 由局限文本启发式推断，待人工核实",
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：medical_fields[list-items]"
     ]
   },
   "geography": {
     "countries": [
       "United Kingdom"
-    ]
+    ],
+    "regions": [
+      "Europe"
+    ],
+    "data_collection_setting": "multi-center",
+    "collection_period": {
+      "start": "2006-01-01",
+      "end": "2010-12-31"
+    },
+    "institution_count": 22
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "英国中老年志愿者偏选(健康偏倚)",
-      "影像为子样本",
-      "需审批"
-    ]
+      "UK-only",
+      "middle-aged/older volunteers (healthy-volunteer bias)",
+      "imaging is a sub-sample",
+      "not real-time EHR"
+    ],
+    "representativeness_concerns": "UK-only; underrepresentation of younger adults, ethnic minorities, and socioeconomically disadvantaged groups",
+    "subgroup_coverage": "Limited coverage of non-White ethnic groups; regional variation in recruitment density across England, Scotland, Wales, and Northern Ireland",
+    "missing_data": "Imaging data available for only ~20% of cohort; EHR linkage incomplete for some participants"
   },
   "tasks_and_use": {
     "intended_tasks": [
-      "classification"
+      "classification",
+      "causal",
+      "retrieval"
+    ],
+    "excluded_tasks": "Real-time clinical decision support; direct patient-facing deployment without validation"
+  },
+  "data_origin": {
+    "origin_type": "registry",
+    "selection_rationale": "Prospective, population-based cohort recruitment across the UK",
+    "sampling_strategy": "Participants aged 40–69 recruited from general population across UK; imaging sub-study (~100,000) is a subset"
+  },
+  "population": {
+    "target_population": "Adults aged 40–69 in the United Kingdom",
+    "age_reported": true,
+    "age_range": {
+      "min": 40,
+      "max": 69,
+      "unit": "years"
+    },
+    "sex": "both",
+    "ethnicity_reported": true,
+    "missing_groups": "Underrepresentation of younger adults (<40), children, and certain ethnic minority groups relative to UK population; healthy-volunteer bias",
+    "vulnerable_groups": [
+      "elderly"
     ]
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Phenotype curation from EHR, imaging reports, and manual review; genomic variant calling pipelines"
   }
 }

@@ -1,13 +1,35 @@
 {
   "schema_version": "0.2",
   "dataset_id": "TCGA",
-  "dataset_name": "TCGA",
+  "dataset_name": "The Cancer Genome Atlas",
   "metadata": {
     "source_type": "registry",
     "homepage": "https://portal.gdc.cancer.gov",
     "repositories": [
       {
-        "platform": "other",
+        "platform": "GDC",
+        "url": "https://portal.gdc.cancer.gov"
+      },
+      {
+        "platform": "cBioPortal",
+        "url": "https://www.cbioportal.org"
+      },
+      {
+        "platform": "TCIA",
+        "url": "https://www.cancerimagingarchive.net"
+      }
+    ],
+    "summary": "A comprehensive, multi-omics characterization of human cancers across 33 cancer types and more than 11,000 patients, combining genomic, transcriptomic, epigenomic, and proteomic data with associated clinical and (for many cohorts) radiologic/pathology imaging via TCIA.",
+    "access_method": "open",
+    "custodian": "National Cancer Institute (NCI) and National Human Genome Research Institute",
+    "purpose": "Molecular subtyping, biomarker discovery, and imaging-genomics research.",
+    "creators": [
+      "National Cancer Institute (NCI)",
+      "National Human Genome Research Institute"
+    ],
+    "papers": [
+      {
+        "title": "The Cancer Genome Atlas (TCGA)",
         "url": "https://portal.gdc.cancer.gov"
       }
     ]
@@ -19,39 +41,123 @@
   "modality": {
     "modalities": [
       "genomic",
-      "single-cell"
+      "single-cell",
+      "pathology-WSI"
     ],
     "sample_counts": {
       "patients": 11000
-    }
+    },
+    "scope": "33 cancer types",
+    "data_format": [
+      "BAM",
+      "FASTQ",
+      "SEG",
+      "SVS",
+      "DICOM"
+    ]
   },
   "ethics": {
-    "license": "开放(DUC)"
+    "license": "Open access with data use certification (GDC); dbGaP controlled access for some sensitive data.",
+    "consent": "informed",
+    "irb_approval": true,
+    "data_use_agreement": true,
+    "privacy_measures": "De-identification per HIPAA Safe Harbor; certificate of confidentiality; controlled access for germline/genomic data.",
+    "commercial_use_allowed": true,
+    "legal_compliance": "Compliant with U.S. Common Rule, HIPAA, and NIH Genomic Data Sharing Policy."
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
     "pending_verification": [
-      "geography.countries 由局限文本启发式推断，待人工核实"
+      "geography.countries 由局限文本启发式推断，待人工核实",
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：medical_fields[list-items], modality/modalities[list-items]"
     ]
   },
   "geography": {
     "countries": [
       "United States"
-    ]
+    ],
+    "regions": [
+      "North America"
+    ],
+    "data_collection_setting": "multi-center",
+    "collection_period": {
+      "start": "2006-01-01",
+      "end": "2018-01-01"
+    },
+    "institution_count": 100
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "回顾性、美国主导",
-      "影像-组学配对有限",
-      "缺纵向"
-    ]
+      "Retrospective design",
+      "US-dominated enrollment",
+      "Limited paired imaging-genomics cohorts",
+      "Cross-platform/batch heterogeneity",
+      "Uneven subtype representation"
+    ],
+    "modifications": "Data harmonized via GDC bioinformatics pipelines; some synthetic controls used in assay validation.",
+    "bias_sources": [
+      "Sampling bias (US-centric, adult-focused)",
+      "Missingness bias (uneven biospecimen availability)",
+      "Technical bias (platform-specific batch effects)"
+    ],
+    "representativeness_concerns": "90%+ US-based; underrepresentation of pediatric, global south, and certain racial/ethnic groups.",
+    "long_tail_classes": "Rare cancer subtypes (e.g., adrenocortical carcinoma) have <100 cases.",
+    "generalizability_statement": "Findings may not generalize to non-US populations or pediatric cancers due to demographic and technical biases.",
+    "subgroup_coverage": "Limited coverage of non-White racial groups; sparse longitudinal follow-up for some cohorts.",
+    "missing_data": "Variable completeness of clinical variables (e.g., treatment history, comorbidities) and imaging metadata."
   },
   "tasks_and_use": {
     "intended_tasks": [
-      "classification"
-    ]
+      "classification",
+      "detection",
+      "segmentation",
+      "report-generation"
+    ],
+    "benchmarks": [
+      "TCGA-BRCA",
+      "TCGA-LUAD",
+      "TCGA-GBM"
+    ],
+    "excluded_tasks": "Real-time clinical decision support; direct diagnostic use without regulatory validation."
+  },
+  "aliases": [
+    "TCGA"
+  ],
+  "data_origin": {
+    "origin_type": "registry",
+    "selection_rationale": "Retrospective collection across 33 cancer types to enable molecular subtyping and biomarker discovery.",
+    "sampling_strategy": "Cohort-based recruitment across multiple institutions; cancer-type stratified sampling.",
+    "aggregation_multisource": "Aggregated from >100 contributing institutions; harmonized via GDC pipelines with platform-specific normalization.",
+    "data_shifts_overtime": "Cross-platform/batch heterogeneity; evolution of sequencing/imaging technologies over time (2006–2018)."
+  },
+  "population": {
+    "target_population": "Patients diagnosed with any of 33 cancer types.",
+    "age_reported": true,
+    "sex": "both",
+    "ethnicity_reported": true,
+    "inclusion_criteria": "Diagnosis of a TCGA-listed cancer type; availability of biospecimens and clinical data.",
+    "exclusion_criteria": "Insufficient sample quality or missing core clinical annotations.",
+    "vulnerable_groups": [
+      "elderly"
+    ],
+    "missing_groups": "Pediatric cancers underrepresented; limited representation of non-US racial/ethnic minorities.",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Pathology review by expert panels; molecular profiling via standardized assays; clinical annotation curation by site PIs.",
+    "annotators": {
+      "type": "pathologist",
+      "qualifications": "Board-certified pathologists and molecular oncologists"
+    },
+    "labeling_provenance": "Clinical and molecular labels derived from centralized biospecimen processing and expert pathology review.",
+    "known_label_noise": true,
+    "label_noise_description": "Inter-observer variability in histopathology grading; batch effects in molecular assays.",
+    "annotation_guidelines_available": true
   }
 }

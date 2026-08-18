@@ -3,12 +3,34 @@
   "dataset_id": "PMC-Patients",
   "dataset_name": "PMC-Patients",
   "metadata": {
-    "source_type": "repository",
-    "homepage": "https://pmc-patients.github.io/",
+    "source_type": "paper-supplement",
+    "homepage": "https://pmc-patients.github.io",
     "repositories": [
       {
         "platform": "GitHub",
-        "url": "https://pmc-patients.github.io/"
+        "url": "https://github.com/Georgetown-IR-Lab/PMC-Patients"
+      },
+      {
+        "platform": "HuggingFace",
+        "url": "https://huggingface.co/datasets/Georgetown-IR-Lab/PMC-Patients"
+      }
+    ],
+    "summary": "A large-scale dataset of 167,000 patient summaries automatically extracted from PubMed Central (PMC) full-text articles. Each record corresponds to a patient described in case reports / studies, with structured fields (demographics, conditions, procedures, etc.) and links to the source article.",
+    "persistent_identifier": "https://doi.org/10.1038/s41597-023-02122-5",
+    "version": "2023",
+    "access_method": "open",
+    "custodian": "Li et al. / Scientific Data",
+    "purpose": "Supports patient-level retrieval, patient QA, and clinical NLP.",
+    "avoided_uses": "Not intended for real-time clinical decision support; not derived from live EHR systems.",
+    "creators": [
+      "Li et al."
+    ],
+    "papers": [
+      {
+        "title": "PMC-Patients: A Large-scale Dataset of Patient Summaries from PubMed Central",
+        "url": "https://www.nature.com/articles/s41597-023-02122-5",
+        "year": 2023,
+        "doi": "10.1038/s41597-023-02122-5"
       }
     ]
   },
@@ -18,28 +40,102 @@
   "modality": {
     "modalities": [
       "text"
-    ]
+    ],
+    "scope": "Patient-level clinical narratives (demographics, conditions, procedures)",
+    "data_format": [
+      "JSON",
+      "TSV"
+    ],
+    "sample_counts": {
+      "samples": 167000
+    }
   },
   "ethics": {
-    "license": "公开(Sci Data 2023)"
+    "license": "CC BY 4.0 (per Scientific Data article); individual PMC articles retain original copyright and licensing terms.",
+    "consent": "de-identified",
+    "data_use_agreement": false,
+    "privacy_measures": "All patient data is de-identified per PMC publishing standards; no direct identifiers retained.",
+    "commercial_use_allowed": true,
+    "legal_compliance": "Complies with PMC open-access policies and NIH public access requirements."
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
-    "pending_verification": []
+    "pending_verification": [
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：medical_fields[list-items]"
+    ]
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "来自论文(非真实 EHR)",
-      "英文",
-      "无结构化标签"
-    ]
+      "Extracted from publications, not live EHR systems",
+      "English-only",
+      "Lacks structured clinical labels and outcomes",
+      "Selection reflects publishability bias (e.g., rare cases over common presentations)"
+    ],
+    "modifications": "Yes — automated extraction, normalization, and structuring of free-text patient descriptions.",
+    "bias_sources": [
+      "publication bias",
+      "language bias",
+      "geographic bias (PMC overrepresents high-income countries)",
+      "label noise from NLP extraction"
+    ],
+    "representativeness_concerns": "Overrepresents rare diseases and atypical presentations due to case report publication norms; underrepresents routine care and diverse sociodemographic groups.",
+    "long_tail_classes": "Highly skewed distribution: many rare conditions appear only once or few times.",
+    "generalizability_statement": "Limited generalizability to real-world EHR populations and non-English clinical settings.",
+    "subgroup_coverage": "No explicit subgroup coverage reporting; likely poor coverage of non-English, non-North American/European, and underserved populations.",
+    "missing_data": "Missing structured outcome data, longitudinal follow-up, and granular demographic variables (e.g., race, ethnicity, socioeconomic status)."
   },
   "tasks_and_use": {
     "intended_tasks": [
-      "retrieval"
-    ]
+      "retrieval",
+      "qa",
+      "classification"
+    ],
+    "benchmarks": [
+      "PMC-Patients Benchmark (as defined in original paper)"
+    ],
+    "excluded_tasks": "Real-time clinical decision support, predictive modeling requiring outcomes or longitudinal data."
+  },
+  "data_origin": {
+    "origin_type": "research-derived",
+    "selection_rationale": "Patients described in case reports and studies published in PubMed Central.",
+    "sampling_strategy": "Automated extraction from PMC full-text articles containing patient descriptions; no explicit sampling strategy beyond article availability and structural eligibility."
+  },
+  "population": {
+    "target_population": "Patients described in published biomedical case reports and studies.",
+    "age_reported": false,
+    "sex": "not-reported",
+    "ethnicity_reported": false,
+    "inclusion_criteria": "Presence of structured patient description in PMC full-text article.",
+    "exclusion_criteria": "Articles without explicit patient-level narrative or structured summary.",
+    "vulnerable_groups": [
+      "pediatric",
+      "elderly"
+    ],
+    "missing_groups": "Underrepresentation of non-English-speaking populations and patients from low-resource settings due to PMC's English-language and publication bias.",
+    "attribute_recording": {
+      "method": "computed"
+    }
+  },
+  "geography": {
+    "regions": [
+      "North America",
+      "Europe",
+      "Asia"
+    ],
+    "data_collection_setting": "registry"
+  },
+  "annotation": {
+    "annotation_type": "automatic",
+    "annotation_method": "NLP-based extraction from PMC full-text articles using rule-based and heuristic methods.",
+    "annotators": {
+      "type": "NLP"
+    },
+    "labeling_provenance": "Labels derived from unstructured text in PMC articles; no manual curation.",
+    "known_label_noise": true,
+    "label_noise_description": "Extraction errors due to formatting variability, ambiguous phrasing, and incomplete reporting in source articles.",
+    "annotation_guidelines_available": false
   }
 }

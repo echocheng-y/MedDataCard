@@ -1,0 +1,16 @@
+TITLE: PMC-Patients: A Large-scale Dataset of Patient Summaries from PubMed Central
+AUTHORS: Li et al.; published in Scientific Data 2023
+VENUE: pmc-patients.github.io; GitHub / HuggingFace
+
+ABSTRACT:
+PMC-Patients is a large-scale dataset of 167,000 patient summaries automatically extracted from PubMed Central (PMC) full-text articles. Each record corresponds to a patient described in case reports / studies, with structured fields (demographics, conditions, procedures, etc.) and links to the source article. It supports patient-level retrieval, patient QA, and clinical NLP, but is derived from published literature rather than real EHR systems.
+
+KEY FACTS:
+- Modality: text (extracted patient summaries)
+- Scale: ~167,000 patient summaries
+- Geography: international (from PMC, predominantly English-language articles)
+- Access: public (Scientific Data 2023 release)
+- Intended tasks: patient retrieval, patient QA, clinical NLP
+- License: public release (article-derived; per-article terms vary)
+- Source type: literature-derived (PMC full text)
+- Limitations: extracted from publications, not live EHR; English-only; lacks structured clinical labels and outcomes; selection reflects what is publishable.

@@ -1,0 +1,16 @@
+TITLE: UK Biobank — A Large Prospective Biomedical Cohort
+AUTHORS: UK Biobank Ltd; funded by Wellcome Trust, MRC, and others
+VENUE: ukbiobank.ac.uk
+
+ABSTRACT:
+UK Biobank is a prospective, population-based cohort of ~500,000 participants aged 40–69 recruited across the United Kingdom, with deep longitudinal phenotyping: genetic, lifestyle, electronic health records, imaging, and biosamples. Roughly 100,000 participants have multimodal MRI (brain, heart, abdomen) plus further imaging. It supports myriad epidemiological and ML studies but requires application-based access with an academic/charity tier.
+
+KEY FACTS:
+- Modality: EHR + genomic + multimodal imaging (brain/heart/abdominal MRI)
+- Scale: ~500,000 participants; ~100,000 with MRI sub-study
+- Geography: United Kingdom (England, Scotland, Wales, NI recruitment)
+- Access: application-based (academic free / industry fee); data use agreement
+- Intended tasks: cohort epidemiology, imaging-genetics, multimodal prediction
+- License: application-based access (not fully open); academic free tier
+- Source type: prospective population cohort / registry
+- Limitations: UK-only, middle-aged/older volunteers (healthy-volunteer bias); imaging is a sub-sample; requires approval and is not real-time EHR.

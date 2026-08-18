@@ -1,0 +1,16 @@
+TITLE: DeepLesion: A Large-Scale and Diverse Database for Lesion Detection from CT
+AUTHORS: Yan et al. (NIH Clinical Center); released 2018 (NIHCC)
+VENUE: NIHCC Box / Kaggle; IEEE TMI 2018
+
+ABSTRACT:
+DeepLesion is a large-scale CT lesion dataset gathered from the NIH Clinical Center, containing 32,735 lesions across 32,120 axial CT slices from 4,427 patients, spanning various body parts (lung, liver, kidney, bone, etc.). Annotations are bounding boxes with RECIST measurements and sizes, mined semi-automatically from PACS bookmarks (radiologist-measured marks), enabling general lesion detection and measurement. It provides image patches with context rather than full segmentation masks.
+
+KEY FACTS:
+- Modality: CT (axial slices + context)
+- Scale: 32,735 lesions / 32,120 slices / 4,427 patients
+- Geography: single institution — NIH Clinical Center, United States
+- Access: NIHCC research-use license (free for research)
+- Intended tasks: generic lesion detection, measurement, bounding-box regression
+- License: research-use permission (NIH Clinical Center)
+- Source type: clinical-care (radiology PACS)
+- Limitations: boxes derived from PACS bookmarks (RECIST), not full segmentation; axial-only with limited context; heterogeneous lesion types pooled; no per-lesion pathology confirmation.

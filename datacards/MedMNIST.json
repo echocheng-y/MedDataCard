@@ -3,43 +3,138 @@
   "dataset_id": "MedMNIST",
   "dataset_name": "MedMNIST",
   "metadata": {
-    "source_type": "repository",
-    "homepage": "https://medmnist.com/",
+    "source_type": "challenge",
+    "homepage": "https://medmnist.com",
     "repositories": [
       {
-        "platform": "other",
-        "url": "https://medmnist.com/"
+        "platform": "HuggingFace",
+        "url": "https://huggingface.co/datasets/medmnist"
+      },
+      {
+        "platform": "Zenodo",
+        "url": "https://zenodo.org/record/5529035"
+      }
+    ],
+    "summary": "MedMNIST is a collection of standardized, pre-processed medical image classification datasets covering 18 (v1) / 20+ (v2) tasks across diverse modalities (dermoscopy, X-ray, OCT, pathology, chest CT, retinal, etc.), at small uniform resolutions (28x28 / 64x64 / 128x128 for 2D, 28x28x28 for 3D). It aggregates ~708K 2D images and ~10K 3D images from existing public sources, intended as an educational benchmark for reproducible ML rather than a clinical-scale resource.",
+    "version": "v2",
+    "access_method": "open",
+    "custodian": "MedMNIST Consortium",
+    "purpose": "Intended as an educational benchmark for reproducible ML rather than a clinical-scale resource.",
+    "avoided_uses": "Real-world clinical deployment; high-stakes diagnostic decision-making due to low resolution and inherited label quality.",
+    "creators": [
+      "Yang et al."
+    ],
+    "papers": [
+      {
+        "title": "MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D/3D Medical Image Classification",
+        "url": "https://medmnist.com",
+        "year": 2021
       }
     ]
   },
   "medical_fields": [
-    "影像学"
+    "影像学",
+    "基础医学",
+    "临床医学"
   ],
   "modality": {
     "modalities": [
-      "other"
-    ]
+      "other",
+      "dermoscopy",
+      "X-ray",
+      "pathology-WSI",
+      "CT",
+      "fundus",
+      "ultrasound"
+    ],
+    "scope": "Multi-organ, multi-disease classification tasks across diverse anatomical and pathological domains.",
+    "data_format": [
+      "PNG",
+      "NPY"
+    ],
+    "sample_counts": {
+      "images": 708000,
+      "samples": 718000
+    }
   },
   "ethics": {
-    "license": "CC BY 4.0（DermaMNIST CC BY-NC）",
-    "commercial_use_allowed": false
+    "license": "CC BY 4.0 (DermaMNIST: CC BY-NC)",
+    "commercial_use_allowed": true,
+    "consent": "de-identified",
+    "data_use_agreement": false,
+    "privacy_measures": "All data are de-identified prior to inclusion; no protected health information retained.",
+    "legal_compliance": "Complies with licensing terms of upstream sources; no direct IRB documentation provided by MedMNIST team.",
+    "data_protection_impact_assessment": false
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
-    "pending_verification": []
+    "pending_verification": [
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：data_collection_setting, modality/modalities[list-items]"
+    ]
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "图像小(28×28/64×64)",
-      "教学基准非真实临床规模"
-    ]
+      "Tiny image resolution (e.g., 28x28) — not suitable for clinical interpretation or deployment.",
+      "Designed for education/reproducibility, not real-world deployment.",
+      "Class balance and label quality inherited from upstream sources.",
+      "No standardized demographic reporting across sub-datasets."
+    ],
+    "modifications": "Pre-processing includes uniform resizing, normalization, and format conversion; no synthetic data generation.",
+    "bias_sources": [
+      "Sampling bias from upstream datasets",
+      "Label noise from upstream sources",
+      "Lack of demographic metadata"
+    ],
+    "representativeness_concerns": "Not representative of clinical imaging practice due to resolution constraints and aggregation from heterogeneous, non-probabilistic public sources.",
+    "long_tail_classes": "Present in several sub-datasets (e.g., PathMNIST, OrganAMNIST), inherited from upstream sources.",
+    "generalizability_statement": "Limited generalizability beyond controlled benchmark settings due to low resolution, lack of clinical context, and unknown population representativeness.",
+    "subgroup_coverage": "Subgroup coverage (e.g., age, sex, ethnicity, geography) is not standardized or reported across sub-datasets.",
+    "missing_data": "Demographic and clinical metadata largely missing or inconsistent across sub-datasets."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "classification"
+    ],
+    "benchmarks": [
+      "MedMNIST Benchmark"
+    ],
+    "excluded_tasks": "Detection, segmentation, report generation, or any task requiring spatial fidelity or clinical-grade inputs."
+  },
+  "aliases": [
+    "MedMNIST v2"
+  ],
+  "data_origin": {
+    "origin_type": "research-derived",
+    "selection_rationale": "Aggregates existing public medical imaging datasets to enable standardized, lightweight benchmarking for educational and reproducibility purposes.",
+    "aggregation_multisource": "Aggregates ~708K 2D images and ~10K 3D images from multiple existing public sources."
+  },
+  "population": {
+    "target_population": "Patients and cases represented in underlying public medical imaging datasets (e.g., dermatology, radiology, ophthalmology, pathology cohorts).",
+    "age_reported": false,
+    "sex": "not-reported",
+    "ethnicity_reported": false,
+    "attribute_recording": {
+      "method": "unknown",
+      "unknown_proportion": "Demographic attributes (age, sex, ethnicity) are not reported or standardized across constituent sub-datasets."
+    }
+  },
+  "geography": {
+    "regions": [
+      "global"
     ]
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Labels derived from original source datasets; no new annotation performed by MedMNIST team.",
+    "annotators": {
+      "type": "unknown"
+    },
+    "labeling_provenance": "Labels inherited from upstream public datasets; quality and consistency vary by source.",
+    "known_label_noise": true,
+    "label_noise_description": "Label quality and class balance inherited from upstream sources; DermaMNIST labels known to contain noise per original publication.",
+    "annotation_guidelines_available": false
   }
 }

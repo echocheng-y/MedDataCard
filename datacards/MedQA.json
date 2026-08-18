@@ -31,15 +31,13 @@
     "临床医学",
     "内科学",
     "外科学",
-    "妇产科学",
-    "影像学",
-    "其他"
+    "妇产科学"
   ],
   "modality": {
     "modalities": [
       "text"
     ],
-    "scope": "multiple medical specialties (e.g., internal medicine, pediatrics, surgery, psychiatry)",
+    "scope": "Multiple medical specialties (e.g., internal medicine, pediatrics, surgery, obstetrics/gynecology, psychiatry)",
     "data_format": [
       "JSON",
       "CSV"
@@ -52,24 +50,26 @@
     "license": "CC BY 4.0",
     "commercial_use_allowed": true,
     "consent": "not-reported",
-    "privacy_measures": "De-identified; no protected health information (PHI) present — all content is publicly available exam material."
+    "data_use_agreement": false
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
-    "pending_verification": []
+    "pending_verification": [
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：medical_fields[list-items]"
+    ]
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Source limited to USMLE-style exams, reflecting US-centric medical curriculum and practice norms.",
-      "No demographic metadata (age, sex, ethnicity) for examinees or question authors.",
-      "Lack of real-world clinical context — questions are decontextualized exam items.",
-      "Potential cultural and linguistic bias limiting generalizability to non-English or non-US settings."
+      "Source limited to USMLE-style exams, reflecting U.S.-centric medical education and practice norms",
+      "Lacks real-world clinical context (e.g., patient history, imaging, labs)",
+      "No demographic or socioeconomic attributes reported for examinees or question authors",
+      "Potential bias toward high-resource, English-dominant medical training environments"
     ],
-    "representativeness_concerns": "USMLE exam takers are not representative of global clinicians or patients; overrepresents US-trained physicians.",
-    "subgroup_coverage": "No subgroup demographic data collected or reported."
+    "representativeness_concerns": "USMLE-focused content may not represent global medical curricula, practice guidelines, or patient populations.",
+    "subgroup_coverage": "No subgroup demographic data available; no reporting on representation across gender, ethnicity, or geographic origin of question authors or examinees."
   },
   "tasks_and_use": {
     "intended_tasks": [
@@ -80,8 +80,8 @@
     "origin_type": "clinical-trial"
   },
   "population": {
-    "target_population": "US medical licensing exam candidates (USMLE test-takers)",
-    "missing_groups": "Non-US medical trainees; non-English-speaking populations; underrepresented demographic groups in US medical education (not reported)"
+    "target_population": "Candidates taking USMLE-style medical licensing examinations in the United States",
+    "missing_groups": "Non-US examinees; non-English-speaking populations; individuals outside formal medical training pathways"
   },
   "geography": {
     "countries": [
@@ -94,7 +94,7 @@
   },
   "annotation": {
     "annotation_type": "expert",
-    "labeling_provenance": "Questions and answers sourced directly from USMLE-style board exam materials; explanations provided by domain experts.",
+    "labeling_provenance": "Questions and answers sourced directly from USMLE-style board exam materials; explanations provided by domain experts or derived from official answer keys.",
     "known_label_noise": false
   }
 }

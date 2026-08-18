@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2",
-  "dataset_id": "TabulaSapiens",
+  "dataset_id": "Tabula Sapiens",
   "dataset_name": "Tabula Sapiens",
   "metadata": {
     "source_type": "paper-supplement",
@@ -8,7 +8,7 @@
     "repositories": [
       {
         "platform": "Zenodo",
-        "url": "https://zenodo.org/communities/tabula-sapiens/"
+        "url": "https://zenodo.org/records/6617125"
       }
     ],
     "summary": "The Tabula Sapiens is a molecular atlas integrating single-cell transcriptomic data from 483,152 cells across 24 tissues and 15 donors, using a unified processing pipeline. It provides cell-type annotations spanning many human organs and serves as a reference for tissue mapping, cell-type identification, and cross-tissue comparative studies.",
@@ -34,7 +34,6 @@
   ],
   "modality": {
     "modalities": [
-      "genomic",
       "single-cell"
     ],
     "scope": "24 human tissues",
@@ -44,7 +43,7 @@
       "FASTQ"
     ],
     "sample_counts": {
-      "cells": 483152,
+      "samples": 483152,
       "patients": 15
     }
   },
@@ -66,31 +65,27 @@
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Limited to 15 healthy adult donors; lacks pediatric, geriatric, and diseased cohorts.",
-      "No representation of underrepresented racial/ethnic groups.",
-      "Tissue sampling bias: some tissues overrepresented (e.g., blood, lung), others scarce (e.g., esophagus, adrenal).",
-      "Single-cell RNA-seq captures only transcriptome; no protein, epigenetic, or spatial context."
+      "Limited to 15 donors and 24 tissues; underrepresentation of rare cell types; absence of longitudinal sampling; potential batch effects despite unified pipeline."
     ],
-    "modifications": "Data processed through unified bioinformatic pipeline (quality control, normalization, integration); no synthetic data generation reported.",
+    "modifications": "Data processed through unified computational pipeline (normalization, integration, clustering); no synthetic data generation reported.",
     "bias_sources": [
-      "sampling_bias",
-      "demographic_underrepresentation",
-      "tissue_availability_bias"
+      "sampling_bias (limited donor count and tissue coverage)",
+      "technical bias (batch effects, platform-specific artifacts)"
     ],
-    "representativeness_concerns": "Not representative of global population diversity; limited to healthy adults from North American institutions.",
-    "long_tail_classes": "Some rare cell types (e.g., thymic epithelial subtypes) have low cell counts (<100).",
-    "generalizability_statement": "Findings generalizable to healthy adult human tissues but not to disease states, developmental stages, or underrepresented populations.",
-    "subgroup_coverage": "Gender-balanced; age centered at ~51 years; no ethnic/racial subgroup coverage reported.",
-    "missing_data": "Some tissues had low cell yield or failed QC; missing data per donor/tissue not quantified in abstract/description."
+    "representativeness_concerns": "15 donors may not represent global demographic diversity; ethnicity not reported.",
+    "long_tail_classes": "Rare cell types underrepresented due to sampling depth and detection limits.",
+    "generalizability_statement": "Findings generalizable to healthy adult human tissues represented; limited generalizability to disease states, pediatric/elderly populations, or underrepresented ethnic groups.",
+    "subgroup_coverage": "Gender-balanced; age mean 51 years; ethnicity and geographic origin not reported.",
+    "missing_data": "Ethnicity, detailed clinical metadata, and socioeconomic variables not reported."
   },
   "data_origin": {
     "origin_type": "research-derived",
-    "selection_rationale": "Donors selected to represent diverse tissues and balanced gender; age range covered (mean 51 years).",
-    "sampling_strategy": "Single-cell RNA-seq performed on 24 tissues from 15 healthy adult donors; no explicit stratified or random sampling rationale stated beyond donor/tissue diversity.",
-    "aggregation_multisource": "Data aggregated across multiple institutions using a unified processing pipeline."
+    "selection_rationale": "Donors selected to represent diverse tissues and balanced gender; age range not specified in abstract but mean age stated as 51 in descriptor.",
+    "sampling_strategy": "Single-cell RNA-seq from 24 tissues across 15 donors; unified processing pipeline applied.",
+    "aggregation_multisource": "Multi-institution consortium; no description of aggregation method or impact on composition in source text."
   },
   "population": {
-    "target_population": "Healthy adult donors",
+    "target_population": "Human donors providing tissue samples for single-cell RNA-seq",
     "age_reported": true,
     "age_range": {
       "unit": "years"
@@ -99,40 +94,26 @@
     "sex_distribution": {
       "unit": "count"
     },
-    "ethnicity_reported": false,
-    "inclusion_criteria": "Healthy adult donors; tissue availability.",
-    "comorbidities": [
-      "none (healthy donors)"
-    ],
-    "missing_groups": "Pediatric, geriatric (>75), pregnant, and underrepresented ethnic/racial groups not included; no explicit reporting of ethnicity.",
     "attribute_recording": {
       "method": "unknown"
     }
   },
   "geography": {
-    "regions": [
-      "North America"
-    ],
     "data_collection_setting": "multi-center"
   },
   "annotation": {
     "annotation_type": "expert",
-    "annotation_method": "Cell-type annotations assigned by expert curators using marker genes and cross-tissue consistency.",
+    "annotation_method": "Cell-type annotations generated by expert curation with cross-tissue consistency checks.",
     "annotators": {
-      "type": "curator",
+      "type": "researcher",
       "qualifications": "Expert biologists and computational biologists"
     },
-    "labeling_provenance": "Manually curated cell-type labels based on gene expression profiles and literature-supported markers.",
-    "annotation_guidelines_available": false
+    "labeling_provenance": "Manually curated cell-type labels based on marker gene expression and literature."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "classification"
     ],
-    "benchmarks": [
-      "CellxGene",
-      "scVI benchmarks"
-    ],
-    "excluded_tasks": "Disease diagnosis, clinical decision support, or therapeutic prediction."
+    "excluded_tasks": "Clinical diagnosis or therapeutic decision support without further validation."
   }
 }

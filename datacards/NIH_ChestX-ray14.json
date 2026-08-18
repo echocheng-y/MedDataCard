@@ -11,10 +11,10 @@
         "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
       }
     ],
-    "summary": "Hospital-scale chest X-ray database comprising 108,948 frontal-view X-ray images from 32,717 unique patients, with weakly-supervised multi-label disease annotations (8 initially, later expanded to 14) text-mined from radiological reports using NLP.",
+    "summary": "ChestX-ray8 comprises 108,948 frontal-view X-ray images of 32,717 unique patients with text-mined eight disease image labels (multi-label), later expanded to 14 labels; labels derived from radiological reports using natural language processing; collected at NIH Clinical Center.",
     "access_method": "open",
     "custodian": "NIH Clinical Center (NIHCC)",
-    "purpose": "Supporting weakly-supervised classification and localization of common thoracic diseases using deep learning.",
+    "purpose": "Weakly-supervised multi-label image classification and disease localization for common thoracic diseases.",
     "creators": [
       "Xiaosong Wang",
       "Yifan Peng",
@@ -24,12 +24,12 @@
       "Ronald M. Summers"
     ],
     "funders": [
-      "National Institutes of Health (NIH)"
+      "National Institutes of Health"
     ],
     "papers": [
       {
         "title": "ChestX-ray8 / NIH ChestX-ray14 — Hospital-scale Chest X-ray Database and Benchmarks on Weakly-Supervised Classification and Localization of Common Thorax Diseases",
-        "url": "https://openaccess.thecvf.com/content_cvpr_2017/html/Wang_ChestX-ray8_NIH_ChestX-ray14_Hospital-scale_CVPR_2017_paper.html",
+        "url": "https://openaccess.thecvf.com/content_cvpr_2017/html/Wang_ChestX-ray8_NIH_ChestX-ray14_CVPR_2017_paper.html",
         "year": 2017
       }
     ]
@@ -56,7 +56,7 @@
     "license": "CC0 / 公有领域",
     "commercial_use_allowed": true,
     "consent": "de-identified",
-    "privacy_measures": "Images de-identified prior to release; no protected health information (PHI) included."
+    "privacy_measures": "De-identification applied; no further details provided."
   },
   "extraction": {
     "method": "hybrid",
@@ -79,21 +79,20 @@
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Weakly-supervised labels lack spatial precision (no bounding boxes or segmentation masks).",
-      "Single-center origin limits generalizability across institutions, devices, and populations.",
-      "No demographic metadata (age, sex, ethnicity) reported; subgroup performance cannot be assessed.",
-      "Label noise due to NLP extraction from unstructured radiology reports."
+      "Weakly-supervised labels derived from NLP on radiology reports introduce label noise and incompleteness.",
+      "Single-center origin (NIH Clinical Center) limits geographic, demographic, and practice-setting diversity.",
+      "No reported age, sex, or ethnicity distribution; subgroup representativeness unknown.",
+      "Frontal-view only; lacks lateral or other projections."
     ],
-    "modifications": "Yes — labels generated computationally via NLP; original DICOM images may have been converted to PNG.",
     "bias_sources": [
-      "sampling_bias (single-center)",
-      "label_bias (NLP-derived, weak supervision)",
-      "missing_demographic_bias"
+      "label noise from NLP extraction",
+      "single-center sampling bias",
+      "lack of demographic reporting"
     ],
-    "representativeness_concerns": "90%+ from single U.S. federal hospital (NIHCC); no evidence of multi-institutional or international representation.",
-    "generalizability_statement": "Performance may degrade on images from different manufacturers, protocols, or patient demographics due to single-center, non-diverse origin.",
-    "subgroup_coverage": "No subgroup coverage data reported (e.g., age, sex, ethnicity, geography beyond NIHCC).",
-    "missing_data": "Demographic and clinical covariate data (e.g., age, sex, comorbidities) are not provided."
+    "representativeness_concerns": "90%+ from single U.S. academic medical center (NIHCC); no evidence of multi-institutional or international representation.",
+    "generalizability_statement": "Generalizability limited by single-center origin, weak supervision, and lack of demographic metadata.",
+    "subgroup_coverage": "No subgroup coverage data reported (e.g., age, sex, race, socioeconomic status).",
+    "missing_data": "Demographic attributes (age, sex, ethnicity) not reported; clinical metadata beyond report-derived labels not provided."
   },
   "tasks_and_use": {
     "intended_tasks": [
@@ -102,36 +101,30 @@
     ],
     "benchmarks": [
       "ChestX-ray14 benchmark"
-    ],
-    "excluded_tasks": "Pixel-level segmentation or precise lesion localization (due to absence of bounding boxes or masks)."
+    ]
   },
   "aliases": [
     "ChestX-ray8",
-    "NIH ChestX-ray8"
+    "NIH ChestX-ray"
   ],
-  "catalog_ref": "NIH ChestX-ray14",
   "data_origin": {
-    "origin_type": "clinical-care",
-    "selection_rationale": "X-ray images and associated radiological reports accumulated in NIH Clinical Center's PACS."
+    "origin_type": "clinical-care"
   },
   "population": {
-    "target_population": "Patients undergoing frontal-view chest X-ray at NIH Clinical Center.",
+    "target_population": "Patients undergoing chest X-ray at NIH Clinical Center",
     "sex": "not-reported",
-    "missing_groups": "Demographic subgroups (e.g., age, sex, ethnicity, geographic origin beyond NIHCC) are not reported; representativeness beyond the single U.S. federal hospital is unknown.",
     "attribute_recording": {
-      "method": "computed",
-      "recoding_modifications": "Disease labels text-mined from radiology reports via NLP; labels are weak (image-level, no bounding boxes or pixel-level ground truth)."
+      "method": "unknown"
     }
   },
   "annotation": {
     "annotation_type": "semi-automatic",
-    "annotation_method": "Natural language processing (NLP) applied to radiological reports to extract 8 (later 14) disease labels per image.",
+    "annotation_method": "Text-mined from radiological reports using natural language processing (NLP)",
     "annotators": {
       "type": "NLP"
     },
-    "labeling_provenance": "Labels derived from radiology reports via NLP; no manual expert verification reported.",
+    "labeling_provenance": "Labels derived from radiological reports via NLP; weakly supervised, multi-label, no manual verification stated.",
     "known_label_noise": true,
-    "label_noise_description": "Weak supervision: labels are image-level, multi-label, and subject to NLP extraction errors; no spatial localization ground truth provided.",
-    "annotation_guidelines_available": false
+    "label_noise_description": "Labels are text-mined and subject to NLP extraction errors; no ground-truth expert annotation provided."
   }
 }

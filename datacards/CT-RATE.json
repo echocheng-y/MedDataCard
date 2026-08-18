@@ -10,11 +10,27 @@
         "platform": "HuggingFace",
         "url": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE"
       }
+    ],
+    "summary": "CT-RATE provides 50,188 volumetric chest CT scans (25,692 unique scans) from 21,304 patients, each paired with a structured radiology report (2.7M impression statements). It includes multi-organ segmentation masks (CT-RATE-2) and a radiology report labeling pipeline.",
+    "persistent_identifier": "arXiv:2308.01023",
+    "version": "2023/2024",
+    "access_method": "open",
+    "custodian": "Istanbul Medipol University",
+    "purpose": "Multi-organ abnormality detection, report generation, vision-language modeling.",
+    "creators": [
+      "Hamamci et al."
+    ],
+    "papers": [
+      {
+        "title": "CT-RATE: A Multi-organ CT with 2.7M Radiology Text Reports and Lung Nodule Masks",
+        "url": "https://arxiv.org/abs/2308.01023",
+        "year": 2023
+      }
     ]
   },
   "medical_fields": [
     "影像学",
-    "临床医学"
+    "内科学"
   ],
   "modality": {
     "modalities": [
@@ -22,38 +38,95 @@
       "text"
     ],
     "sample_counts": {
-      "patients": 21304
-    }
+      "images": 50188,
+      "patients": 21304,
+      "studies": 25692
+    },
+    "scope": "chest, multi-organ",
+    "data_format": [
+      "DICOM",
+      "JSON",
+      "PNG"
+    ]
   },
   "ethics": {
     "license": "CC BY-NC-SA 4.0",
-    "commercial_use_allowed": false
+    "commercial_use_allowed": false,
+    "consent": "not-reported",
+    "data_use_agreement": false,
+    "privacy_measures": "De-identification assumed per clinical data release norms; not explicitly described."
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
     "pending_verification": [
-      "geography.countries 由局限文本启发式推断，待人工核实"
+      "geography.countries 由局限文本启发式推断，待人工核实",
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：source_type"
     ]
   },
   "geography": {
     "countries": [
       "Turkey"
-    ]
+    ],
+    "regions": [
+      "Asia"
+    ],
+    "data_collection_setting": "single-center",
+    "institution_count": 1
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "单中心(伊斯坦布尔 Medipol)",
-      "标签由 RadBERT 抽取(可能噪声)",
-      "含英/土翻译管线"
-    ]
+      "Single-center origin limits generalizability.",
+      "Report labels auto-extracted (RadBERT), introducing possible label noise.",
+      "Reports translated from Turkish to English, potentially losing nuance or introducing bias.",
+      "No external or multi-site diversity."
+    ],
+    "modifications": "Yes — labels extracted algorithmically from free text; reports translated.",
+    "bias_sources": [
+      "sampling",
+      "label extraction",
+      "language translation",
+      "geographic homogeneity"
+    ],
+    "representativeness_concerns": "Single-center (Istanbul Medipol University); no demographic or geographic diversity reported.",
+    "generalizability_statement": "Limited generalizability due to single-center, Turkish-origin, English-translated reports and RadBERT-derived labels.",
+    "subgroup_coverage": "No subgroup coverage details provided (e.g., age, sex, ethnicity, comorbidities).",
+    "missing_data": "No explicit description of missing data volume or patterns."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "detection",
-      "report-generation"
-    ]
+      "report-generation",
+      "classification"
+    ],
+    "excluded_tasks": "Commercial use prohibited per license."
+  },
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "Single-center clinical chest CTs with associated radiology reports.",
+    "sampling_strategy": "Not explicitly described; derived from consecutive clinical exams at Istanbul Medipol University."
+  },
+  "population": {
+    "target_population": "Adult chest CT patients",
+    "age_reported": false,
+    "sex": "not-reported",
+    "ethnicity_reported": false,
+    "missing_groups": "No external/site diversity; no pediatric, elderly, or critical-care subgroup specification provided.",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "annotation": {
+    "annotation_type": "semi-automatic",
+    "annotation_method": "Labels extracted from free-text radiology reports using RadBERT.",
+    "annotators": {
+      "type": "NLP"
+    },
+    "labeling_provenance": "Radiology reports originally written in English via Turkish-to-English translation pipeline; labels auto-extracted with RadBERT.",
+    "known_label_noise": true,
+    "label_noise_description": "RadBERT-based extraction introduces possible label noise; reports are English-translated from Turkish clinical practice.",
+    "annotation_guidelines_available": false
   }
 }

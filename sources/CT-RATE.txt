@@ -1,0 +1,16 @@
+TITLE: CT-RATE: A Multi-organ CT with 2.7M Radiology Text Reports and Lung Nodule Masks
+AUTHORS: Hamamci et al. (NYU Langone and Istanbul Medipol University); released 2023/2024
+VENUE: HuggingFace (ibrahimhamamci/CT-RATE); arXiv 2308.01023
+
+ABSTRACT:
+CT-RATE provides 50,188 volumetric chest CT scans (25,692 unique scans) from 21,304 patients, each paired with a structured radiology report (2.7M impression statements). It includes multi-organ segmentation masks (CT-RATE-2) and a radiology report labeling pipeline. Reports were originally written in English via a Turkish-to-English translation pipeline at a single institution, and labels were extracted from free text with RadBERT, introducing possible label noise.
+
+KEY FACTS:
+- Modality: CT (volumetric) + free-text radiology reports (text)
+- Scale: 50,188 volumes / 25,692 unique scans / 21,304 patients; 2.7M report impressions
+- Geography: single center — Istanbul Medipol University, Turkey
+- Access: HuggingFace, CC BY-NC-SA 4.0
+- Intended tasks: multi-organ abnormality detection, report generation, vision-language modeling
+- License: CC BY-NC-SA 4.0 (non-commercial)
+- Source type: clinical-care (single hospital)
+- Limitations: single-center; report labels auto-extracted (RadBERT, possible noise); English-translated reports; no external/site diversity.

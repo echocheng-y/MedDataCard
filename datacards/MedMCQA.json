@@ -3,12 +3,33 @@
   "dataset_id": "MedMCQA",
   "dataset_name": "MedMCQA",
   "metadata": {
-    "source_type": "repository",
-    "homepage": "https://github.com/medmcqa/medmcqa",
+    "source_type": "challenge",
+    "homepage": "https://github.com/MedMCQA/medmcqa",
     "repositories": [
       {
         "platform": "GitHub",
-        "url": "https://github.com/medmcqa/medmcqa"
+        "url": "https://github.com/MedMCQA/medmcqa"
+      },
+      {
+        "platform": "HuggingFace",
+        "url": "https://huggingface.co/datasets/medmcqa"
+      }
+    ],
+    "summary": "A large-scale multiple-choice QA dataset for medical education and entrance examination, containing 194,000 questions spanning 21 medical subjects drawn from Indian medical qualifying examinations (AIIMS/NEET-PG). Each question has four answer options and a single correct answer, covering pre-clinical, para-clinical, and clinical medicine.",
+    "access_method": "open",
+    "purpose": "Benchmarking medical knowledge of language models.",
+    "creators": [
+      "Pal et al."
+    ],
+    "funders": [
+      "AIIMS Delhi"
+    ],
+    "papers": [
+      {
+        "title": "MedMCQA: A Large-scale Multi-Subject Multi-Choice Dataset for Medical QA",
+        "url": "https://aclanthology.org/2022.acl-long.387/",
+        "year": 2022,
+        "doi": "10.18653/v1/2022.acl-long.387"
       }
     ]
   },
@@ -18,31 +39,68 @@
   "modality": {
     "modalities": [
       "text"
-    ]
+    ],
+    "scope": "21 medical subjects covering pre-clinical, para-clinical, and clinical medicine",
+    "data_format": [
+      "JSON",
+      "CSV"
+    ],
+    "sample_counts": {
+      "samples": 194000
+    }
   },
   "ethics": {
     "license": "MIT",
-    "commercial_use_allowed": true
+    "commercial_use_allowed": true,
+    "consent": "not-reported",
+    "data_use_agreement": false
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
     "pending_verification": [
-      "geography.countries 由局限文本启发式推断，待人工核实"
+      "geography.countries 由局限文本启发式推断，待人工核实",
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：medical_fields[list-items]"
     ]
   },
   "geography": {
     "countries": [
       "India"
-    ]
+    ],
+    "regions": [
+      "Asia"
+    ],
+    "data_collection_setting": "registry"
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "印度考试背景",
-      "单选择",
-      "无推理链标签"
-    ]
+      "Derived from entrance exams (not clinical practice)",
+      "Single-correct-answer format",
+      "No explicit reasoning-chain labels",
+      "India-centric curriculum"
+    ],
+    "representativeness_concerns": "Not representative of global medical curricula or clinical decision-making contexts.",
+    "subgroup_coverage": "Limited to Indian medical student cohort; no demographic subgroup reporting (e.g., age, gender, institution)."
+  },
+  "data_origin": {
+    "origin_type": "research-derived",
+    "selection_rationale": "Questions drawn from Indian medical qualifying examinations (AIIMS/NEET-PG) for medical education and entrance examination purposes."
+  },
+  "population": {
+    "target_population": "Indian medical students preparing for postgraduate entrance examinations (AIIMS/NEET-PG)",
+    "missing_groups": "Non-Indian medical trainees; practitioners in clinical practice; non-English-speaking or non-Indian curriculum contexts."
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "labeling_provenance": "Correct answers sourced from official AIIMS/NEET-PG exam answer keys.",
+    "known_label_noise": false
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "qa"
+    ],
+    "excluded_tasks": "Clinical decision support, real-time diagnosis, open-ended explanation generation (due to lack of reasoning-chain labels)."
   }
 }

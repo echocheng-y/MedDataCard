@@ -1,0 +1,16 @@
+TITLE: The Cancer Genome Atlas (TCGA)
+AUTHORS: National Cancer Institute (NCI) and National Human Genome Research Institute
+VENUE: portal.gdc.cancer.gov; cBioPortal; The Cancer Imaging Archive (TCIA)
+
+ABSTRACT:
+The Cancer Genome Atlas (TCGA) is a comprehensive, multi-omics characterization of human cancers across 33 cancer types and more than 11,000 patients, combining genomic, transcriptomic, epigenomic, and proteomic data with associated clinical and (for many cohorts) radiologic/pathology imaging via TCIA. It is a cornerstone resource for molecular subtyping, biomarker discovery, and imaging-genomics research. Data are broadly open for research use.
+
+KEY FACTS:
+- Modality: genomic / multi-omics + histopathology imaging (TCIA)
+- Scale: >11,000 patients across 33 cancer types; millions of assay datasets
+- Geography: United States–led, with international contributing sites; retrospective
+- Access: open (GDC / dbGaP); largely unrestricted for research
+- Intended tasks: molecular subtyping, prognosis, imaging-genomics
+- License: open access (data use certification; mostly unrestricted)
+- Source type: consortium / registry
+- Limitations: retrospective, US-dominated enrollment; limited paired imaging-genomics cohorts; cross-platform/batch heterogeneity; uneven subtype representation.

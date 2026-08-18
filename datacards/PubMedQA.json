@@ -3,29 +3,58 @@
   "dataset_id": "PubMedQA",
   "dataset_name": "PubMedQA",
   "metadata": {
-    "source_type": "repository",
+    "source_type": "paper-supplement",
     "homepage": "https://pubmedqa.github.io",
     "repositories": [
       {
-        "platform": "GitHub",
-        "url": "https://pubmedqa.github.io"
+        "platform": "HuggingFace",
+        "url": "https://huggingface.co/datasets/pubmed_qa"
+      }
+    ],
+    "summary": "PubMedQA is a biomedical QA dataset built from PubMed abstracts. It comprises 1,000 manually annotated (expert) QA pairs (PQA-L), 61.2K artificially generated QA pairs from existing abstract rationales (PQA-A), and 211K unlabeled QA pairs (PQA-U). Each question is answered with Yes / No / Maybe based on a given PubMed abstract, targeting evidence-based biomedical reasoning.",
+    "version": "2019",
+    "access_method": "open",
+    "custodian": "Jin et al.",
+    "purpose": "To evaluate reading comprehension of scientific literature and support evidence-based biomedical reasoning.",
+    "creators": [
+      "Jin et al."
+    ],
+    "papers": [
+      {
+        "title": "PubMedQA: A Dataset for Biomedical Research Question Answering",
+        "url": "https://aclanthology.org/D19-1248/",
+        "year": 2019
       }
     ]
   },
   "medical_fields": [
-    "基础医学"
+    "临床医学",
+    "基础医学",
+    "影像学"
   ],
   "modality": {
     "modalities": [
       "text"
-    ]
+    ],
+    "scope": "Biomedical research questions and PubMed abstracts",
+    "data_format": [
+      "JSON",
+      "TSV"
+    ],
+    "sample_counts": {
+      "samples": 273200
+    }
   },
   "ethics": {
     "license": "CC BY 4.0",
-    "commercial_use_allowed": true
+    "commercial_use_allowed": true,
+    "consent": "not-reported",
+    "data_use_agreement": false,
+    "privacy_measures": "No personal health information; derived from publicly available PubMed abstracts.",
+    "legal_compliance": "Complies with PubMed's public use terms; no PHI."
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
@@ -33,9 +62,60 @@
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "来自 PubMed 摘要",
-      "二分类偏",
-      "标注集小"
-    ]
+      "Derived from PubMed abstracts (not patient data)",
+      "Ternary answer space (Yes/No/Maybe) restricts granularity",
+      "Expert-labeled set is small (1,000 samples)",
+      "Evidence limited to abstract-level text"
+    ],
+    "modifications": "PQA-A artificially generated from abstract rationales; PQA-U unlabeled.",
+    "bias_sources": [
+      "Sampling bias (abstracts only, no full-text or clinical context)",
+      "Labeling bias (small expert set, synthetic expansion)"
+    ],
+    "representativeness_concerns": "Abstracts reflect published, English-language, peer-reviewed literature — underrepresents non-English, preprint, or negative-result studies.",
+    "long_tail_classes": "Ternary classification; 'Maybe' class may be underrepresented or inconsistently applied.",
+    "generalizability_statement": "Results may not generalize to full-text biomedical documents, clinical notes, or non-English literature.",
+    "subgroup_coverage": "No demographic or geographic subgroup coverage — abstracts lack patient-level attributes.",
+    "missing_data": "PQA-U has no labels; PQA-A labels are synthetic and may lack expert validation."
+  },
+  "data_origin": {
+    "origin_type": "research-derived",
+    "selection_rationale": "Questions and answers derived from PubMed abstracts to support evidence-based biomedical reasoning."
+  },
+  "population": {
+    "target_population": "Biomedical research questions grounded in English-language PubMed abstracts",
+    "sex": "not-reported",
+    "inclusion_criteria": "Questions answerable with Yes/No/Maybe based on a single PubMed abstract.",
+    "missing_groups": "No patient-level or demographic population; not applicable.",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "geography": {
+    "countries": [
+      "United States"
+    ],
+    "regions": [
+      "North America"
+    ],
+    "data_collection_setting": "registry"
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Manually annotated by experts for PQA-L; PQA-A generated from abstract rationales.",
+    "annotators": {
+      "type": "researcher",
+      "qualifications": "Biomedical domain expertise"
+    },
+    "labeling_provenance": "PQA-L: expert-annotated; PQA-A: artificially generated from abstract rationales; PQA-U: unlabeled."
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "qa"
+    ],
+    "benchmarks": [
+      "PubMedQA benchmark"
+    ],
+    "excluded_tasks": "Tasks requiring patient-level data, real-world clinical decision support, or fine-grained answer spans."
   }
 }

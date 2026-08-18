@@ -3,44 +3,108 @@
   "dataset_id": "BioASQ",
   "dataset_name": "BioASQ",
   "metadata": {
-    "source_type": "other",
-    "homepage": "https://bioasq.org",
+    "source_type": "challenge",
+    "homepage": "https://www.bioasq.org",
     "repositories": [
       {
         "platform": "other",
         "url": "https://bioasq.org"
       }
+    ],
+    "summary": "BioASQ is an annual large-scale community challenge on biomedical semantic question answering over the biomedical literature. It releases a growing corpus of biomedical semantic resources and a set of tasks: large-scale online MEDLINE indexing, document retrieval, passage retrieval, snippet extraction, semantic/reading-comprehension question answering, and a novel biomedical semantic QA task that combines retrieval and generation. Training/development data are drawn from PubMed abstracts and full-text biomedical articles in English.",
+    "access_method": "registration",
+    "purpose": "To advance biomedical semantic question answering, document/passage retrieval, snippet extraction, and literature-based summarization and QA.",
+    "avoided_uses": "Clinical prediction or patient-level decision support.",
+    "creators": [
+      "National Centre for Scientific Research \"Demokritos\" and collaborators"
+    ],
+    "papers": [
+      {
+        "title": "BioASQ: A large biomedical semantic QA challenge",
+        "url": "https://www.bioasq.org"
+      }
     ]
   },
   "medical_fields": [
-    "基础医学"
+    "基础医学",
+    "临床医学",
+    "影像学"
   ],
   "modality": {
     "modalities": [
       "text"
+    ],
+    "scope": "Biomedical literature (MEDLINE, PubMed, PMC)",
+    "data_format": [
+      "XML",
+      "JSON",
+      "TSV"
     ]
   },
   "ethics": {
     "license": "CC BY-NC-SA 4.0",
-    "commercial_use_allowed": false
+    "commercial_use_allowed": false,
+    "consent": "not-reported",
+    "data_use_agreement": true,
+    "legal_compliance": "Complies with copyright terms of PubMed/PMC content used under fair use and licensing; no PHI or human-subject clinical data included."
   },
   "extraction": {
-    "method": "manual",
+    "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
     "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
-    "pending_verification": []
+    "pending_verification": [
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：tasks_and_use/intended_tasks[list-items]"
+    ]
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "年度变化",
-      "需注册",
-      "偏检索式任务"
-    ]
+      "Corpus changes annually; not static.",
+      "English-only; no multilingual support.",
+      "Literature-based QA only; not designed for clinical prediction or patient-level inference.",
+      "Requires registration for access."
+    ],
+    "representativeness_concerns": "Biased toward English-language, peer-reviewed biomedical literature; excludes non-English, grey literature, and clinical EHR data.",
+    "generalizability_statement": "Results generalize to biomedical literature retrieval and QA tasks in English; limited generalizability to clinical settings, non-English languages, or real-time patient data."
   },
   "tasks_and_use": {
     "intended_tasks": [
-      "retrieval"
-    ]
+      "retrieval",
+      "qa"
+    ],
+    "excluded_tasks": "Clinical prediction, patient risk stratification, diagnostic classification from imaging or lab data."
+  },
+  "data_origin": {
+    "origin_type": "research-derived",
+    "selection_rationale": "Training/development data are drawn from PubMed abstracts and full-text biomedical articles in English.",
+    "sampling_strategy": "Annual release of curated biomedical literature (PubMed/PMC) and expert-constructed QA pairs; emphasis on semantic coverage and task diversity."
+  },
+  "population": {
+    "target_population": "Biomedical literature (PubMed/PMC abstracts and full-text articles in English)",
+    "sex": "not-reported",
+    "ethnicity_reported": false,
+    "attribute_recording": {
+      "method": "computed"
+    }
+  },
+  "geography": {
+    "regions": [
+      "Global"
+    ],
+    "data_collection_setting": "multi-country",
+    "collection_period": {
+      "start": "2012-01-01"
+    }
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Expert-curated question-answer pairs and relevance judgments based on biomedical literature.",
+    "annotators": {
+      "type": "radiologist",
+      "qualifications": "Biomedical domain experts and information retrieval specialists"
+    },
+    "labeling_provenance": "Manually constructed by domain experts; some tasks use NLP-assisted annotation (e.g., MEDLINE indexing).",
+    "known_label_noise": false,
+    "annotation_guidelines_available": false
   }
 }
