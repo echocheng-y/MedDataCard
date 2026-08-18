@@ -1,0 +1,138 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "TabulaSapiens",
+  "dataset_name": "Tabula Sapiens",
+  "metadata": {
+    "source_type": "paper-supplement",
+    "homepage": "https://tabula-sapiens-portal.ds.czbiohub.org/",
+    "repositories": [
+      {
+        "platform": "Zenodo",
+        "url": "https://zenodo.org/communities/tabula-sapiens/"
+      }
+    ],
+    "summary": "The Tabula Sapiens is a molecular atlas integrating single-cell transcriptomic data from 483,152 cells across 24 tissues and 15 donors, using a unified processing pipeline. It provides cell-type annotations spanning many human organs and serves as a reference for tissue mapping, cell-type identification, and cross-tissue comparative studies.",
+    "persistent_identifier": "10.1126/science.abl4896",
+    "version": "2022",
+    "access_method": "open",
+    "custodian": "The Tabula Sapiens Consortium",
+    "purpose": "To serve as a reference for tissue mapping, cell-type identification, and cross-tissue comparative studies.",
+    "creators": [
+      "The Tabula Sapiens Consortium"
+    ],
+    "papers": [
+      {
+        "title": "The Tabula Sapiens: A molecular atlas of diverse cell types across the human body",
+        "url": "https://www.science.org/doi/10.1126/science.abl4896",
+        "year": 2022,
+        "doi": "10.1126/science.abl4896"
+      }
+    ]
+  },
+  "medical_fields": [
+    "基础医学"
+  ],
+  "modality": {
+    "modalities": [
+      "genomic",
+      "single-cell"
+    ],
+    "scope": "24 human tissues",
+    "data_format": [
+      "H5AD",
+      "CSV",
+      "FASTQ"
+    ],
+    "sample_counts": {
+      "cells": 483152,
+      "patients": 15
+    }
+  },
+  "ethics": {
+    "license": "CC BY 4.0",
+    "commercial_use_allowed": true,
+    "consent": "informed",
+    "data_use_agreement": false,
+    "privacy_measures": "De-identified donor data; no protected health information retained."
+  },
+  "extraction": {
+    "method": "hybrid",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": [
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：medical_fields[list-items]"
+    ]
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "Limited to 15 healthy adult donors; lacks pediatric, geriatric, and diseased cohorts.",
+      "No representation of underrepresented racial/ethnic groups.",
+      "Tissue sampling bias: some tissues overrepresented (e.g., blood, lung), others scarce (e.g., esophagus, adrenal).",
+      "Single-cell RNA-seq captures only transcriptome; no protein, epigenetic, or spatial context."
+    ],
+    "modifications": "Data processed through unified bioinformatic pipeline (quality control, normalization, integration); no synthetic data generation reported.",
+    "bias_sources": [
+      "sampling_bias",
+      "demographic_underrepresentation",
+      "tissue_availability_bias"
+    ],
+    "representativeness_concerns": "Not representative of global population diversity; limited to healthy adults from North American institutions.",
+    "long_tail_classes": "Some rare cell types (e.g., thymic epithelial subtypes) have low cell counts (<100).",
+    "generalizability_statement": "Findings generalizable to healthy adult human tissues but not to disease states, developmental stages, or underrepresented populations.",
+    "subgroup_coverage": "Gender-balanced; age centered at ~51 years; no ethnic/racial subgroup coverage reported.",
+    "missing_data": "Some tissues had low cell yield or failed QC; missing data per donor/tissue not quantified in abstract/description."
+  },
+  "data_origin": {
+    "origin_type": "research-derived",
+    "selection_rationale": "Donors selected to represent diverse tissues and balanced gender; age range covered (mean 51 years).",
+    "sampling_strategy": "Single-cell RNA-seq performed on 24 tissues from 15 healthy adult donors; no explicit stratified or random sampling rationale stated beyond donor/tissue diversity.",
+    "aggregation_multisource": "Data aggregated across multiple institutions using a unified processing pipeline."
+  },
+  "population": {
+    "target_population": "Healthy adult donors",
+    "age_reported": true,
+    "age_range": {
+      "unit": "years"
+    },
+    "sex": "both",
+    "sex_distribution": {
+      "unit": "count"
+    },
+    "ethnicity_reported": false,
+    "inclusion_criteria": "Healthy adult donors; tissue availability.",
+    "comorbidities": [
+      "none (healthy donors)"
+    ],
+    "missing_groups": "Pediatric, geriatric (>75), pregnant, and underrepresented ethnic/racial groups not included; no explicit reporting of ethnicity.",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "geography": {
+    "regions": [
+      "North America"
+    ],
+    "data_collection_setting": "multi-center"
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Cell-type annotations assigned by expert curators using marker genes and cross-tissue consistency.",
+    "annotators": {
+      "type": "curator",
+      "qualifications": "Expert biologists and computational biologists"
+    },
+    "labeling_provenance": "Manually curated cell-type labels based on gene expression profiles and literature-supported markers.",
+    "annotation_guidelines_available": false
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "classification"
+    ],
+    "benchmarks": [
+      "CellxGene",
+      "scVI benchmarks"
+    ],
+    "excluded_tasks": "Disease diagnosis, clinical decision support, or therapeutic prediction."
+  }
+}

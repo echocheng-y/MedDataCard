@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "PMC-Patients",
+  "dataset_name": "PMC-Patients",
+  "metadata": {
+    "source_type": "repository",
+    "homepage": "https://pmc-patients.github.io/",
+    "repositories": [
+      {
+        "platform": "GitHub",
+        "url": "https://pmc-patients.github.io/"
+      }
+    ]
+  },
+  "medical_fields": [
+    "临床医学"
+  ],
+  "modality": {
+    "modalities": [
+      "text"
+    ]
+  },
+  "ethics": {
+    "license": "公开(Sci Data 2023)"
+  },
+  "extraction": {
+    "method": "manual",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": []
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "来自论文(非真实 EHR)",
+      "英文",
+      "无结构化标签"
+    ]
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "retrieval"
+    ]
+  }
+}

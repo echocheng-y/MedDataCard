@@ -1,0 +1,145 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "eICU-CRD",
+  "dataset_name": "eICU Collaborative Research Database",
+  "metadata": {
+    "source_type": "registry",
+    "homepage": "https://physionet.org/content/eicu-crd/",
+    "repositories": [
+      {
+        "platform": "PhysioNet",
+        "url": "https://physionet.org/content/eicu-crd/"
+      }
+    ],
+    "summary": "A multi-center intensive care unit database with records from 200,859 ICU admissions from 139,367 unique patients at 208 hospitals in the United States between 2014 and 2015. Includes vital signs, care plan documentation, medications, laboratory measurements, and severity of illness scores.",
+    "persistent_identifier": "10.1038/sdata.2018.178",
+    "version": "2018",
+    "access_method": "credentialed",
+    "custodian": "PhysioNet",
+    "purpose": "To support collaborative multi-center research, external validation, and federated learning of clinical models.",
+    "creators": [
+      "Pollard, T.J.",
+      "Johnson, A.E.W.",
+      "Raffa, J.D.",
+      "Celi, L.A.",
+      "Mark, R.G.",
+      "Badawi, O."
+    ],
+    "papers": [
+      {
+        "title": "eICU Collaborative Research Database, a freely available multi-center database for critical care research",
+        "url": "https://www.nature.com/articles/sdata2018178",
+        "year": 2018,
+        "doi": "10.1038/sdata.2018.178"
+      }
+    ]
+  },
+  "medical_fields": [
+    "临床医学",
+    "影像学",
+    "内科学",
+    "外科学"
+  ],
+  "modality": {
+    "modalities": [
+      "EHR"
+    ],
+    "sample_counts": {
+      "patients": 139367,
+      "studies": 200859
+    },
+    "scope": "Intensive care unit clinical data",
+    "data_format": [
+      "CSV"
+    ]
+  },
+  "ethics": {
+    "license": "PhysioNet Credentialed Data Use Agreement",
+    "commercial_use_allowed": false,
+    "consent": "waived",
+    "irb_approval": true,
+    "data_use_agreement": true,
+    "privacy_measures": "De-identification performed per HIPAA Safe Harbor standards; re-identification risk mitigated via aggregation and suppression.",
+    "legal_compliance": "Compliant with HIPAA and US federal human subjects regulations (45 CFR 46)."
+  },
+  "extraction": {
+    "method": "hybrid",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": [
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：annotation_type, tasks_and_use/intended_tasks[list-items]"
+    ]
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "Limited to US hospitals (208 centers), potentially limiting generalizability to non-US or resource-limited settings.",
+      "Data restricted to 2014–2015; may not reflect current ICU technologies, protocols, or patient demographics.",
+      "No explicit reporting of race/ethnicity, gender, or socioeconomic variables — limits bias auditing and subgroup analysis.",
+      "Potential selection bias: hospitals voluntarily joined the eICU program; may differ systematically from non-participating ICUs."
+    ],
+    "modifications": "Yes — data were de-identified, harmonized, and structured from heterogeneous source EHR systems.",
+    "bias_sources": [
+      "sampling_bias",
+      "geographic_bias",
+      "temporal_bias",
+      "missing_demographic_attributes"
+    ],
+    "representativeness_concerns": "US-only, 2014–2015, 208 participating hospitals — may not represent global, rural, or safety-net ICUs.",
+    "generalizability_statement": "Designed for multi-center generalization and external validation within US adult/pediatric ICU settings; generalizability to other regions, time periods, or care models is unassessed.",
+    "subgroup_coverage": "Subgroup coverage (e.g., by race, sex, age strata, hospital type) is not reported in the source data descriptor.",
+    "missing_data": "Missingness patterns not quantified in abstract; known to vary by variable (e.g., lab values more sparse than vitals)."
+  },
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "Records from ICU admissions across 208 US hospitals to enable multi-center critical care research.",
+    "sampling_strategy": "Consecutive ICU admissions from participating hospitals during 2014–2015; no explicit description of sampling beyond temporal and institutional inclusion.",
+    "aggregation_multisource": "Aggregated from 208 geographically distributed US hospitals; data harmonized and curated for consistency.",
+    "data_shifts_overtime": "Data collected only from 2014–2015; no longitudinal follow-up or multi-version release reported — potential temporal shift relative to current ICU practice or technology."
+  },
+  "population": {
+    "target_population": "Adult and pediatric ICU patients in US hospitals.",
+    "sex": "not-reported",
+    "inclusion_criteria": "ICU admission at a participating hospital during 2014–2015.",
+    "vulnerable_groups": [
+      "critical-care",
+      "pediatric",
+      "elderly"
+    ],
+    "missing_groups": "No explicit reporting on underrepresented subgroups (e.g., race/ethnicity, socioeconomic status, rural vs. urban); abstract states 'no explicit demographic subgroup statistics'.",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "geography": {
+    "countries": [
+      "United States"
+    ],
+    "regions": [
+      "North America"
+    ],
+    "data_collection_setting": "multi-center",
+    "collection_period": {
+      "start": "2014-01-01",
+      "end": "2015-12-31"
+    },
+    "institution_count": 208
+  },
+  "annotation": {
+    "annotation_method": "Clinically documented data extracted and structured from ICU EHR systems; severity scores (e.g., APACHE) computed from raw measurements.",
+    "annotators": {
+      "type": "clinician"
+    },
+    "labeling_provenance": "Derived from routine clinical documentation and automated scoring algorithms applied to EHR data."
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "classification"
+    ],
+    "benchmarks": [
+      "eICU Benchmark (MIMIC-III cross-validation)",
+      "Predicting ICU mortality/morbidity"
+    ],
+    "excluded_tasks": "Real-time clinical decision support; commercial deployment; use without credentialed access."
+  }
+}

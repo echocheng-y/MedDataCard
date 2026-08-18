@@ -1,0 +1,16 @@
+TITLE: The Tabula Sapiens: A molecular atlas of diverse cell types across the human body
+AUTHORS: The Tabula Sapiens Consortium
+VENUE: Science 376, 6594 (2022). DOI: 10.1126/science.abl4896
+
+ABSTRACT:
+The Tabula Sapiens is a framework for the human cell atlas that integrates single-cell transcriptomic data from 483,152 cells across 24 tissues and 15 donors, using a unified processing pipeline. The atlas provides cell-type annotations spanning many human organs and is intended to serve as a reference for tissue mapping, cell-type identification, and cross-tissue comparative studies. The dataset is released openly to accompany this publication as a community resource.
+
+KEY FACTS (from abstract + data descriptor):
+- Modality: single-cell transcriptomics (single-cell RNA-seq)
+- Scale: 483,152 cells / 24 tissues / 15 donors
+- Demographics: balanced gender; mean donor age 51 (stated in descriptor, not abstract)
+- Geography: multi-institution consortium (not a single country stated in abstract)
+- Access: Zenodo / project website; CC BY 4.0 (open, commercial-use allowed)
+- Intended tasks: cell-type annotation, tissue atlas reference (classification)
+- License: CC BY 4.0 (commercial use allowed)
+- Released openly as a data paper in Science (paper-supplement).

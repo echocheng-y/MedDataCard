@@ -1,0 +1,12 @@
+{
+  "dataset_id": "eICU-CRD",
+  "comparable": {
+    "modality.modalities": ["EHR"],
+    "modality.sample_counts": {"admissions": 200859, "patients": 139367, "hospitals": 208},
+    "geography.countries": ["United States"],
+    "tasks_and_use.intended_tasks": ["classification"],
+    "metadata.source_type": "repository",
+    "ethics.license": "PhysioNet Credentialed DUA",
+    "ethics.commercial_use_allowed": false
+  }
+}

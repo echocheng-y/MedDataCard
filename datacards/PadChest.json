@@ -1,0 +1,134 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "PadChest",
+  "dataset_name": "PadChest",
+  "metadata": {
+    "source_type": "repository",
+    "homepage": "http://bimcv.cipf.es/bimcv-projects/padchest/",
+    "repositories": [
+      {
+        "platform": "BIMCV",
+        "url": "http://bimcv.cipf.es/bimcv-projects/padchest/"
+      }
+    ],
+    "summary": "A labeled large-scale, high resolution chest x-ray dataset with >160,000 images from 67,000 patients, interpreted and reported by radiologists at Hospital San Juan (Spain) from 2009 to 2017; includes six position views, demographic metadata, and multi-label annotations derived from radiology reports.",
+    "persistent_identifier": "arXiv:1901.07441",
+    "version": "2020",
+    "access_method": "open",
+    "custodian": "Hospital Universitario de San Juan, Alicante, Spain",
+    "purpose": "Automated exploration of medical images along with their associated radiology reports; supporting development of AI models for chest x-ray interpretation.",
+    "creators": [
+      "Aurelia Bustos",
+      "Antonio Pertusa",
+      "Jose-Maria Salinas",
+      "Maria de la Iglesia-Vayá"
+    ],
+    "papers": [
+      {
+        "title": "PadChest — A large chest x-ray image dataset with multi-label annotated reports",
+        "url": "https://arxiv.org/abs/1901.07441",
+        "year": 2020
+      }
+    ]
+  },
+  "medical_fields": [
+    "影像学",
+    "内科学"
+  ],
+  "modality": {
+    "modalities": [
+      "X-ray"
+    ],
+    "sample_counts": {
+      "images": 168861,
+      "patients": 67000,
+      "studies": 109931
+    },
+    "scope": "chest",
+    "data_format": [
+      "DICOM",
+      "PNG"
+    ]
+  },
+  "ethics": {
+    "license": "CC BY-NC 4.0",
+    "commercial_use_allowed": false,
+    "consent": "de-identified",
+    "privacy_measures": "Data de-identified prior to release; no explicit details on anonymization methods (e.g., removal of DICOM tags, face blurring)."
+  },
+  "extraction": {
+    "method": "hybrid",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": [
+      "geography.countries 由局限文本启发式推断，待人工核实",
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：source_type"
+    ]
+  },
+  "geography": {
+    "countries": [
+      "Spain"
+    ],
+    "regions": [
+      "Europe"
+    ],
+    "data_collection_setting": "single-center",
+    "collection_period": {
+      "start": "2009-01-01",
+      "end": "2017-12-31"
+    },
+    "institution_count": 1
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "Single-center origin limits generalizability to other healthcare settings.",
+      "Reports in Spanish only; potential language barrier for non-Spanish-speaking researchers.",
+      "Labeling relies partly on automated methods with known residual error (Micro-F1 = 0.93).",
+      "No demographic breakdown (age, sex, ethnicity) reported; representativeness unknown."
+    ],
+    "modifications": "Yes — labels partially generated via RNN-based NLP model; original reports were processed to extract and map findings to UMLS taxonomy.",
+    "bias_sources": [
+      "sampling_bias (single-center, temporal span 2009–2017)",
+      "labeling_bias (semi-automatic annotation with model error)",
+      "language bias (Spanish-only reports)"
+    ],
+    "representativeness_concerns": "Single-center Spanish cohort; unknown demographic diversity; no evidence of intentional sampling for representativeness.",
+    "long_tail_classes": "Hierarchical taxonomy includes 174 findings, 19 diagnoses, 104 locations — likely long-tail distribution; not quantified in source text.",
+    "generalizability_statement": "Limited generalizability outside similar Spanish public hospital settings; no formal external validation reported.",
+    "subgroup_coverage": "No subgroup coverage data reported (e.g., age, sex, ethnicity, geography beyond Spain).",
+    "missing_data": "No explicit reporting of missing data rates in source text."
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "classification",
+      "detection"
+    ]
+  },
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "Images and reports were obtained from routine clinical practice at Hospital San Juan (Spain); no explicit rationale for patient or study selection beyond routine reporting.",
+    "sampling_strategy": "Consecutive clinical studies from 2009–2017; no explicit description of sampling strategy (e.g., random, stratified, or convenience).",
+    "data_shifts_overtime": "Data collected from 2009 to 2017; no explicit documentation of temporal shifts in equipment, protocols, or reporting practices."
+  },
+  "population": {
+    "target_population": "Patients undergoing chest x-ray imaging at Hospital Universitario de San Juan, Alicante, Spain.",
+    "sex": "not-reported",
+    "inclusion_criteria": "Chest x-ray examinations performed and reported at Hospital San Juan between 2009 and 2017.",
+    "missing_groups": "No information provided on underrepresented or missing groups.",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "annotation": {
+    "annotation_type": "semi-automatic",
+    "annotation_method": "27% manually annotated by trained physicians; remaining labels generated via supervised RNN with attention, validated on independent test set (Micro-F1 = 0.93).",
+    "annotators": {
+      "type": "radiologist",
+      "qualifications": "trained physicians"
+    },
+    "labeling_provenance": "Labels derived from Spanish-language radiology reports; mapped to UMLS terminology via hierarchical taxonomy.",
+    "known_label_noise": true,
+    "label_noise_description": "Automatically generated labels (73%) subject to model error; validation achieved Micro-F1 = 0.93, implying residual noise."
+  }
+}

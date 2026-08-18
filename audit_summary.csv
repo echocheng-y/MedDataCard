@@ -1,0 +1,27 @@
+dataset,medical_fields,modalities,license,countries,geography_single_center,st_completeness_pct,pending_count,schema_valid,method
+NIH ChestX-ray14,影像学/内科学,X-ray,CC0 / 公有领域,United States,Y,60.9,1,Y,hybrid
+CheXpert,影像学/内科学,X-ray,Stanford 研究许可,United States,N,55.1,1,Y,hybrid
+MIMIC-CXR,影像学/内科学,X-ray,PhysioNet DUA,United States,Y,66.7,0,Y,hybrid
+PadChest,影像学/内科学,X-ray,CC BY-NC 4.0,Spain,Y,68.1,2,Y,hybrid
+VinDr-CXR,影像学,X-ray,PhysioNet 开放,Vietnam,N,11.6,1,Y,manual
+BraTS 2024,影像学,MRI,Competition registration agreement (non-commercial research use only),,N,53.6,1,Y,hybrid
+ISIC 2024/历年,影像学/临床医学,dermoscopy,CC-BY-NC,,N,55.1,1,Y,hybrid
+HAM10000,影像学,dermoscopy,CC BY-NC 4.0,Austria,N,75.4,1,Y,hybrid
+MedMNIST,影像学,other,CC BY 4.0（DermaMNIST CC BY-NC）,,N,10.1,0,Y,manual
+TotalSegmentator,影像学,CT,CC BY 4.0,Switzerland,Y,56.5,0,Y,hybrid
+CT-RATE,影像学/临床医学,CT/text,CC BY-NC-SA 4.0,Turkey,Y,13.0,1,Y,manual
+NIH DeepLesion,影像学,CT,研究用途许可,,N,10.1,0,Y,manual
+UK Biobank,临床医学,EHR/genomic,申请制(学术免费),United Kingdom,N,10.1,1,Y,manual
+TCGA,基础医学/临床医学,genomic/single-cell,开放(DUC),United States,N,11.6,1,Y,manual
+ADNI,临床医学/影像学,MRI/genomic,申请制(DUA),United States,N,11.6,1,Y,manual
+Tabula Sapiens,基础医学,genomic/single-cell,CC BY 4.0,,N,71.0,1,Y,hybrid
+MIMIC-IV,临床医学,EHR,PhysioNet Credentialed Data Use Agreement,United States,Y,79.7,2,Y,hybrid
+eICU-CRD,临床医学/影像学/内科学/外科学,EHR,PhysioNet Credentialed Data Use Agreement,United States,N,69.6,1,Y,hybrid
+Sleep-EDF Expanded,临床医学,EEG,ODC-BY 1.0,,N,10.1,0,Y,manual
+CHB-MIT,临床医学,EEG,ODC-BY 1.0,,Y,10.1,0,Y,manual
+PhysioNet/CinC 2020,临床医学,ECG,公开(Challenge),,N,8.7,0,Y,manual
+PMC-Patients,临床医学,text,公开(Sci Data 2023),,N,8.7,0,Y,manual
+MedQA,临床医学/内科学/外科学/妇产科学/影像学/其他,text,CC BY 4.0,United States,N,39.1,0,Y,hybrid
+MedMCQA,临床医学,text,MIT,India,N,11.6,1,Y,manual
+PubMedQA,基础医学,text,CC BY 4.0,,N,10.1,0,Y,manual
+BioASQ,基础医学,text,CC BY-NC-SA 4.0,,N,10.1,0,Y,manual

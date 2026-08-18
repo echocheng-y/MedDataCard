@@ -1,0 +1,100 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "MedQA",
+  "dataset_name": "MedQA",
+  "metadata": {
+    "source_type": "repository",
+    "homepage": "https://huggingface.co/datasets/medqa",
+    "repositories": [
+      {
+        "platform": "HuggingFace",
+        "url": "https://huggingface.co/datasets/medqa"
+      },
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/jind11/MedQA"
+      }
+    ],
+    "summary": "A large-scale dataset for benchmarking medical question answering, sourced from professional medical board exam questions (USMLE-style), containing 12,723 question-answer pairs with explanations, covering multiple medical specialties and requiring multi-step clinical reasoning; includes a test split of 1,273 questions.",
+    "access_method": "open",
+    "purpose": "To advance research on medical knowledge question answering systems.",
+    "creators": [
+      "Jin, D.",
+      "Pan, E.",
+      "Oufattole, N.",
+      "Weng, W.H.",
+      "Fang, H.",
+      "Szolovits, P."
+    ]
+  },
+  "medical_fields": [
+    "临床医学",
+    "内科学",
+    "外科学",
+    "妇产科学",
+    "影像学",
+    "其他"
+  ],
+  "modality": {
+    "modalities": [
+      "text"
+    ],
+    "scope": "multiple medical specialties (e.g., internal medicine, pediatrics, surgery, psychiatry)",
+    "data_format": [
+      "JSON",
+      "CSV"
+    ],
+    "sample_counts": {
+      "samples": 12723
+    }
+  },
+  "ethics": {
+    "license": "CC BY 4.0",
+    "commercial_use_allowed": true,
+    "consent": "not-reported",
+    "privacy_measures": "De-identified; no protected health information (PHI) present — all content is publicly available exam material."
+  },
+  "extraction": {
+    "method": "hybrid",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": []
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "Source limited to USMLE-style exams, reflecting US-centric medical curriculum and practice norms.",
+      "No demographic metadata (age, sex, ethnicity) for examinees or question authors.",
+      "Lack of real-world clinical context — questions are decontextualized exam items.",
+      "Potential cultural and linguistic bias limiting generalizability to non-English or non-US settings."
+    ],
+    "representativeness_concerns": "USMLE exam takers are not representative of global clinicians or patients; overrepresents US-trained physicians.",
+    "subgroup_coverage": "No subgroup demographic data collected or reported."
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "qa"
+    ]
+  },
+  "data_origin": {
+    "origin_type": "clinical-trial"
+  },
+  "population": {
+    "target_population": "US medical licensing exam candidates (USMLE test-takers)",
+    "missing_groups": "Non-US medical trainees; non-English-speaking populations; underrepresented demographic groups in US medical education (not reported)"
+  },
+  "geography": {
+    "countries": [
+      "United States"
+    ],
+    "regions": [
+      "North America"
+    ],
+    "data_collection_setting": "registry"
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "labeling_provenance": "Questions and answers sourced directly from USMLE-style board exam materials; explanations provided by domain experts.",
+    "known_label_noise": false
+  }
+}

@@ -1,0 +1,15 @@
+TITLE: BraTS 2024: Diverse tasks for brain tumor segmentation, survival prediction, and molecular marker classification
+AUTHORS: Bakas, S., et al. (MICCAI Brain Tumor Segmentation Challenge)
+VENUE: MICCAI BraTS 2024 Challenge; hosted on Synapse
+
+ABSTRACT:
+The BraTS 2024 challenge provides multi-parametric MRI (mpMRI) scans with corresponding ground truth annotations for brain tumor tasks across several sub-challenges: post-treatment glioma (≈2,200 patients), pre-treatment glioma (≈1,250 training cases from the training set plus additional), pediatric tumors (≈2,490), meningioma (≈650), brain metastases (≈460), and an Africa subset (≈750). The challenge also includes an unseen test set of over 4,000 patients and a histopathology extension with 280,000 tiles. Data are collected from multiple international clinical sites and released under a competition registration agreement for the challenge.
+
+KEY FACTS (from challenge summary):
+- Modality: multi-parametric MRI (MRI)
+- Scale: training set includes 1,350 post-treatment glioma + 1,251 pre-treatment glioma cases (headline training numbers); additional sub-challenges (pediatric, meningioma, metastases, Africa) and 4,000+ unseen test patients
+- Geography: international / multi-site (not a single country)
+- Access: Synapse, competition registration (challenge data)
+- Intended tasks: glioma segmentation, survival prediction, molecular marker classification (segmentation)
+- License: competition registration data (research challenge, non-commercial terms)
+- Source type: MICCAI BraTS challenge.

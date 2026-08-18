@@ -1,0 +1,120 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "TotalSegmentator",
+  "dataset_name": "TotalSegmentator",
+  "metadata": {
+    "source_type": "repository",
+    "homepage": "https://github.com/wasserth/TotalSegmentator",
+    "repositories": [
+      {
+        "platform": "Zenodo",
+        "url": "https://zenodo.org/records/6802614"
+      },
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/wasserth/TotalSegmentator"
+      }
+    ],
+    "summary": "Dataset of 1,204 abdominal and thoracic CT images with manual segmentations of 104 anatomical structures, including organs, bones, muscles, and vessels, retrospectively collected at the University Hospital Basel.",
+    "persistent_identifier": "https://doi.org/10.5281/zenodo.6802614",
+    "version": "2022",
+    "access_method": "open",
+    "custodian": "University Hospital Basel",
+    "purpose": "Benchmark and pretraining resource for medical image segmentation.",
+    "creators": [
+      "Wasserthal, J.",
+      "Meyer, M.",
+      "Breit, H.C.",
+      "Cyriac, J.",
+      "Yang, S.",
+      "Segeroth, M."
+    ],
+    "papers": [
+      {
+        "title": "TotalSegmentator: Robust segmentation of 104 anatomical structures in CT images",
+        "url": "https://arxiv.org/abs/2208.05868",
+        "year": 2022,
+        "doi": "arXiv:2208.05868"
+      }
+    ]
+  },
+  "medical_fields": [
+    "影像学"
+  ],
+  "modality": {
+    "modalities": [
+      "CT"
+    ],
+    "scope": "abdominal and thoracic anatomy",
+    "data_format": [
+      "NIfTI"
+    ],
+    "sample_counts": {
+      "images": 1204,
+      "samples": 1204
+    }
+  },
+  "ethics": {
+    "license": "CC BY 4.0",
+    "commercial_use_allowed": true,
+    "consent": "de-identified",
+    "data_use_agreement": false,
+    "privacy_measures": "Data de-identified."
+  },
+  "extraction": {
+    "method": "hybrid",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": []
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "Single-center origin may limit generalizability.",
+      "No demographic metadata (age, sex, ethnicity) reported."
+    ],
+    "bias_sources": [
+      "Geographic bias (Switzerland only)",
+      "Clinical setting bias (retrospective, single-center)"
+    ],
+    "representativeness_concerns": "90%+ from single center in Switzerland; no demographic diversity information provided.",
+    "generalizability_statement": "Limited generalizability beyond Swiss abdominal/thoracic CT practice without validation.",
+    "subgroup_coverage": "No subgroup coverage data reported.",
+    "missing_data": "Demographic and clinical metadata largely missing."
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "segmentation"
+    ],
+    "benchmarks": [
+      "TotalSegmentator benchmark"
+    ]
+  },
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "Retrospectively collected abdominal and thoracic CT images."
+  },
+  "population": {
+    "target_population": "Patients undergoing abdominal and thoracic CT imaging.",
+    "sex": "not-reported"
+  },
+  "geography": {
+    "countries": [
+      "Switzerland"
+    ],
+    "regions": [
+      "Europe"
+    ],
+    "data_collection_setting": "single-center",
+    "institution_count": 1
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Manual segmentations by experts.",
+    "annotators": {
+      "type": "radiologist"
+    },
+    "labeling_provenance": "Manual expert segmentations.",
+    "known_label_noise": false
+  }
+}

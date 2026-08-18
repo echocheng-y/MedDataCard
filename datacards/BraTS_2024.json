@@ -1,0 +1,117 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "BraTS-2024",
+  "dataset_name": "BraTS 2024",
+  "metadata": {
+    "source_type": "challenge",
+    "homepage": "https://www.synapse.org/#!Synapse:syn57023213",
+    "repositories": [
+      {
+        "platform": "Synapse",
+        "url": "https://www.synapse.org/#!Synapse:syn57023213"
+      }
+    ],
+    "summary": "The BraTS 2024 challenge provides multi-parametric MRI (mpMRI) scans with corresponding ground truth annotations for brain tumor tasks across several sub-challenges: post-treatment glioma (≈2,200 patients), pre-treatment glioma (≈1,250 training cases from the training set plus additional), pediatric tumors (≈2,490), meningioma (≈650), brain metastases (≈460), and an Africa subset (≈750). The challenge also includes an unseen test set of over 4,000 patients and a histopathology extension with 280,000 tiles.",
+    "access_method": "competition registration",
+    "custodian": "MICCAI BraTS Challenge Organizers",
+    "purpose": "To support diverse tasks for brain tumor segmentation, survival prediction, and molecular marker classification.",
+    "papers": [
+      {
+        "title": "BraTS 2024: Diverse tasks for brain tumor segmentation, survival prediction, and molecular marker classification",
+        "url": "https://www.synapse.org/#!Synapse:syn57023213",
+        "year": 2024
+      }
+    ]
+  },
+  "medical_fields": [
+    "影像学"
+  ],
+  "modality": {
+    "modalities": [
+      "MRI"
+    ],
+    "scope": "brain tumors",
+    "data_format": [
+      "NIfTI"
+    ]
+  },
+  "ethics": {
+    "license": "Competition registration agreement (non-commercial research use only)",
+    "consent": "waived",
+    "data_use_agreement": true,
+    "commercial_use_allowed": false,
+    "legal_compliance": "Compliant with host institution IRB policies and Synapse data governance; specific jurisdictional compliance not detailed.",
+    "public_participation": "not-reported"
+  },
+  "extraction": {
+    "method": "hybrid",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": [
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：medical_fields[list-items], tasks_and_use/intended_tasks[list-items]"
+    ]
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "Data collected from multiple international sites but without standardized acquisition protocols or harmonization.",
+      "Subgroup definitions (e.g., 'Africa subset') lack granular demographic or clinical metadata.",
+      "No reported age, sex, or ethnicity distributions limit assessment of representativeness.",
+      "Test set is unseen and unannotated — performance generalizability depends on domain shift robustness."
+    ],
+    "bias_sources": [
+      "sampling",
+      "geographic aggregation",
+      "labeling variability across sites"
+    ],
+    "representativeness_concerns": "Over-representation of high-resource academic centers; Africa subset is small (≈750) and lacks detail on recruitment criteria or representativeness.",
+    "long_tail_classes": "Brain metastases (≈460) and meningioma (≈650) are substantially smaller than pediatric (≈2,490) and post-treatment glioma (≈2,200) subsets.",
+    "subgroup_coverage": "Coverage defined by tumor type and geography (e.g., Africa subset), not by demographic or clinical subgroups such as age bands or molecular subtypes beyond specified markers.",
+    "missing_data": "No information provided on extent or pattern of missing clinical or imaging data."
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "segmentation",
+      "classification"
+    ],
+    "benchmarks": [
+      "BraTS 2024 Challenge"
+    ]
+  },
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "Data selected to cover diverse brain tumor types and clinical settings including post-treatment glioma, pre-treatment glioma, pediatric tumors, meningioma, brain metastases, and an Africa subset.",
+    "sampling_strategy": "Multi-site clinical collection; stratified by tumor type and clinical context.",
+    "aggregation_multisource": "Aggregated from multiple international clinical sites; sub-challenges represent distinct clinical cohorts with independent curation."
+  },
+  "population": {
+    "target_population": "Patients with brain tumors including glioma (pre- and post-treatment), pediatric brain tumors, meningioma, brain metastases, and African-origin cases.",
+    "sex": "not-reported",
+    "vulnerable_groups": [
+      "pediatric",
+      "elderly"
+    ],
+    "missing_groups": "No explicit reporting on underrepresented demographic groups beyond geographic emphasis on Africa subset; no details on sex, age, or ethnicity distribution provided.",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "geography": {
+    "regions": [
+      "North America",
+      "Europe",
+      "Africa",
+      "Asia",
+      "South America"
+    ],
+    "data_collection_setting": "multi-country"
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotators": {
+      "type": "radiologist",
+      "qualifications": "Expert neuroradiologists and neuro-oncologists"
+    },
+    "labeling_provenance": "Manual expert annotation of tumor sub-regions (e.g., enhancing tumor, necrotic core, peritumoral edema) on mpMRI scans."
+  }
+}

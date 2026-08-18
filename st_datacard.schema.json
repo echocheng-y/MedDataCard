@@ -1,0 +1,351 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meddatacard.dev/schemas/st-datacard-v0.2.schema.json",
+  "title": "ST Data Card (STANDING Together Compliance Data Card)",
+  "description": "机器可读的医学 AI 数据集数据卡 schema，对齐 STANDING Together 共识（The Lancet Digital Health + NEJM AI, 2024-12-18, DOI:10.1016/S2589-7500(24)00224-3）的『健康数据集文档记录推荐』（18 条，1.1a–1.4c）。分组直接映射四大支柱：① 数据集描述与访问（metadata + data_origin）② 群体构成与属性（population）③ 偏倚/误差/局限（bias_and_limitations）④ 伦理治理与公众参与（ethics）。附加 medical_fields 学科分类维度（非 ST 维度，用于横向归类）。所有『不可用信息』应显式写入对应字段或 extraction.pending_verification，禁止编造。",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "dataset_name",
+    "extraction"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "数据卡 schema 版本，当前固定为 '0.2'（已对齐 ST 1.1–1.4）。",
+      "examples": ["0.2"]
+    },
+    "dataset_id": {
+      "type": "string",
+      "description": "数据集唯一标识，建议用目录中的数据集名（与 dataset_catalog.xlsx 对齐）。",
+      "examples": ["NIH ChestX-ray14"]
+    },
+    "dataset_name": {
+      "type": "string",
+      "description": "数据集全称。",
+      "examples": ["NIH ChestX-ray14"]
+    },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "别名 / 简称。"
+    },
+    "catalog_ref": {
+      "type": "string",
+      "description": "在 dataset_catalog.xlsx 中的条目序号或名称，用于溯源。",
+      "examples": ["#1"]
+    },
+
+    "metadata": {
+      "type": "object",
+      "description": "支柱①：数据集描述与访问（ST 1.1a–1.1c，身份/访问/目的）。",
+      "additionalProperties": false,
+      "properties": {
+        "summary": { "type": "string", "description": "数据集摘要（起源、用途、内容、收集时段、代表个体数），ST 1.1a。" },
+        "persistent_identifier": { "type": "string", "description": "持久标识符（DOI / accession），ST 1.1b。" },
+        "version": { "type": "string", "description": "版本 / 发布日期，ST 1.1b。" },
+        "access_method": { "type": "string", "description": "访问方式（开放 / 注册 / DUA），ST 1.1b。" },
+        "custodian": { "type": "string", "description": "数据保管人 / 机构，ST 1.1b。" },
+        "fair_compliant": { "type": "boolean", "description": "是否遵循 FAIR 原则，ST 1.1b。" },
+        "purpose": { "type": "string", "description": "创建动因与预期收益，ST 1.1c。" },
+        "avoided_uses": { "type": "string", "description": "应避免的使用场景，ST 1.1c。" },
+        "creators": { "type": "array", "items": { "type": "string" }, "description": "创建者，ST 1.1c。" },
+        "funders": { "type": "array", "items": { "type": "string" }, "description": "资助方，ST 1.1c。" },
+        "conflicts_of_interest": { "type": "string", "description": "利益冲突声明，ST 1.1c。" },
+        "source_type": {
+          "type": "string",
+          "enum": ["challenge", "repository", "paper-supplement", "registry", "commercial", "other"],
+          "description": "数据来源类型（技术性归类，区别于 data_origin.origin_type）。"
+        },
+        "homepage": { "type": "string", "format": "uri", "description": "数据集主页 / 下载页。" },
+        "papers": {
+          "type": "array",
+          "description": "相关论文。",
+          "items": {
+            "type": "object",
+            "required": ["title", "url"],
+            "properties": {
+              "title": { "type": "string" },
+              "url": { "type": "string", "format": "uri" },
+              "year": { "type": "integer" },
+              "doi": { "type": "string" }
+            }
+          }
+        },
+        "repositories": {
+          "type": "array",
+          "description": "代码 / 数据仓库。",
+          "items": {
+            "type": "object",
+            "required": ["platform", "url"],
+            "properties": {
+              "platform": { "type": "string", "examples": ["GitHub", "HuggingFace", "Zenodo", "PhysioNet"] },
+              "url": { "type": "string", "format": "uri" }
+            }
+          }
+        }
+      }
+    },
+
+    "data_origin": {
+      "type": "object",
+      "description": "支柱①：数据起源、抽样与随时间变化（ST 1.1d–1.1f）。",
+      "additionalProperties": false,
+      "properties": {
+        "origin_type": {
+          "type": "string",
+          "enum": ["clinical-care", "clinical-trial", "registry", "surveillance", "wearable", "research-derived", "synthetic", "other"],
+          "description": "数据起源类型（诊疗 / 试验 / 登记库 / 监测 / 穿戴 / 研究衍生 / 合成），ST 1.1d。"
+        },
+        "selection_rationale": { "type": "string", "description": "个体 / 源数据集的选择原因，ST 1.1d。" },
+        "sampling_strategy": { "type": "string", "description": "抽样策略及理由；多源聚合时人群分组与人口学编码修改说明，ST 1.1e。" },
+        "aggregation_multisource": { "type": "string", "description": "多源聚合方法及其对组成的影响，ST 1.1e。" },
+        "data_shifts_overtime": { "type": "string", "description": "纵向 / 多版数据集已知或预期的人群、实践、设备 / 软件分布偏移，ST 1.1f。" }
+      }
+    },
+
+    "population": {
+      "type": "object",
+      "description": "支柱②：组内构成与个体属性（ST 1.2a–1.2c）。",
+      "additionalProperties": false,
+      "properties": {
+        "target_population": { "type": "string", "description": "目标人群描述（如「成人胸片患者」）。" },
+        "age_reported": { "type": "boolean", "description": "是否报告了年龄分布。" },
+        "age_range": {
+          "type": "object",
+          "description": "年龄范围。",
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" },
+            "unit": { "type": "string", "examples": ["years"] }
+          }
+        },
+        "sex": {
+          "type": "string",
+          "enum": ["male", "female", "both", "not-reported", "other"],
+          "description": "性别覆盖情况。"
+        },
+        "sex_distribution": {
+          "type": "object",
+          "description": "性别分布（计数或百分比，二者择一填写）。",
+          "properties": {
+            "male": { "type": "number" },
+            "female": { "type": "number" },
+            "other": { "type": "number" },
+            "unspecified": { "type": "number" },
+            "unit": { "type": "string", "enum": ["count", "percent"] }
+          }
+        },
+        "ethnicity_reported": { "type": "boolean", "description": "是否报告了种族 / 民族分布。" },
+        "ethnicity_distribution": { "type": "string", "description": "种族 / 民族分布（自由文本或键值对）。" },
+        "inclusion_criteria": { "type": "string" },
+        "exclusion_criteria": { "type": "string" },
+        "comorbidities": { "type": "array", "items": { "type": "string" } },
+        "vulnerable_groups": {
+          "type": "array",
+          "items": { "type": "string", "examples": ["pediatric", "pregnancy", "elderly", "critical-care"] },
+          "description": "涉及的特殊 / 脆弱人群。"
+        },
+        "missing_groups": { "type": "string", "description": "已知缺失 / 代表不足的群体及原因，ST 1.2a。" },
+        "attribute_recording": {
+          "type": "object",
+          "description": "属性记录方式（ST 1.2b）。",
+          "additionalProperties": false,
+          "properties": {
+            "method": { "type": "string", "enum": ["self-reported", "proxy-reported", "computed", "unknown"] },
+            "unknown_proportion": { "type": "string", "description": "「未知 / 其他 / 拒答」比例及原因。" },
+            "recoding_modifications": { "type": "string", "description": "编码 / 浓缩 / 衍生修改说明。" }
+          }
+        },
+        "subgroups_disparate_outcomes": {
+          "type": "string",
+          "description": "结构性 / 社会性导致差异结局的风险群体标注（普适与地点特异性），ST 1.2c。"
+        }
+      }
+    },
+
+    "geography": {
+      "type": "object",
+      "description": "支柱②补充：地理与采集设置维度。",
+      "additionalProperties": false,
+      "properties": {
+        "countries": { "type": "array", "items": { "type": "string" }, "description": "数据来源国家（ISO 或名称）。" },
+        "regions": { "type": "array", "items": { "type": "string" }, "description": "大区（如 North America / Europe / Asia）。" },
+        "data_collection_setting": {
+          "type": "string",
+          "enum": ["single-center", "multi-center", "multi-country", "registry", "unknown"],
+          "description": "采集设置（单中心 / 多中心 / 跨国 / 登记库）。"
+        },
+        "collection_period": {
+          "type": "object",
+          "description": "采集时间段。",
+          "properties": {
+            "start": { "type": "string", "format": "date" },
+            "end": { "type": "string", "format": "date" }
+          }
+        },
+        "institution_count": { "type": "integer", "description": "参与机构数量。" }
+      }
+    },
+
+    "modality": {
+      "type": "object",
+      "description": "数据模态维度。",
+      "required": ["modalities"],
+      "additionalProperties": false,
+      "properties": {
+        "modalities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "X-ray", "CT", "MRI", "pathology-WSI", "dermoscopy",
+              "ultrasound", "fundus", "EEG", "ECG", "EHR",
+              "genomic", "single-cell", "text", "other"
+            ]
+          },
+          "description": "数据模态列表。"
+        },
+        "scope": { "type": "string", "description": "解剖 / 疾病范围（如「胸部」「脑部胶质瘤」）。" },
+        "acquisition_device": { "type": "string", "description": "采集设备（如「GE Discovery CT」）。" },
+        "data_format": { "type": "array", "items": { "type": "string" }, "description": "数据格式（如 DICOM / PNG / CSV）。" },
+        "sample_counts": {
+          "type": "object",
+          "description": "样本量统计。",
+          "properties": {
+            "images": { "type": "integer" },
+            "patients": { "type": "integer" },
+            "studies": { "type": "integer" },
+            "samples": { "type": "integer" }
+          }
+        }
+      }
+    },
+
+    "annotation": {
+      "type": "object",
+      "description": "标注维度。",
+      "additionalProperties": false,
+      "properties": {
+        "annotation_type": {
+          "type": "string",
+          "enum": ["automatic", "semi-automatic", "expert", "consensus", "patient-derived", "unknown"],
+          "description": "标注生成方式。"
+        },
+        "annotation_method": { "type": "string", "description": "标注方法细节（如「NLP 从放射报告抽取」）。" },
+        "annotators": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "examples": ["radiologist", "pathologist", "NLP", "crowd"] },
+            "count": { "type": "integer" },
+            "qualifications": { "type": "string" }
+          }
+        },
+        "labeling_provenance": { "type": "string", "description": "标签来源（如「报告 NLP 抽取，存在噪声」）。" },
+        "known_label_noise": { "type": "boolean", "description": "是否存在已知标签噪声。" },
+        "label_noise_description": { "type": "string" },
+        "annotation_guidelines_available": { "type": "boolean", "description": "是否有公开标注指南。" }
+      }
+    },
+
+    "ethics": {
+      "type": "object",
+      "description": "支柱④：伦理、治理与公众参与（ST 1.4a–1.4c）。",
+      "required": ["license"],
+      "additionalProperties": false,
+      "properties": {
+        "consent": {
+          "type": "string",
+          "enum": ["informed", "waived", "de-identified", "not-reported", "unknown"],
+          "description": "知情同意情况。"
+        },
+        "irb_approval": { "type": "boolean", "description": "是否通过伦理委员会审批。" },
+        "license": {
+          "type": "string",
+          "description": "许可证（如 CC0 / CC BY-NC 4.0 / PhysioNet DUA / Stanford 研究许可）。必填。"
+        },
+        "data_use_agreement": { "type": "boolean", "description": "是否需要 DUA（数据使用协议）。" },
+        "privacy_measures": { "type": "string", "description": "隐私保护措施。" },
+        "commercial_use_allowed": { "type": "boolean", "description": "是否允许商业使用。" },
+        "legal_compliance": { "type": "string", "description": "法律合规说明，ST 1.4a。" },
+        "data_protection_impact_assessment": { "type": "boolean", "description": "是否做过数据保护影响评估（DPIA），ST 1.4a。" },
+        "public_participation": { "type": "string", "description": "患者与公众参与（PPIE）过程记录，ST 1.4b。" },
+        "bias_impact_assessment": { "type": "string", "description": "偏见评估与潜在危害影响评估，ST 1.4c。" }
+      }
+    },
+
+    "bias_and_limitations": {
+      "type": "object",
+      "description": "支柱③：偏倚、误差与局限来源（ST 1.3a–1.3f）。",
+      "additionalProperties": false,
+      "properties": {
+        "known_limitations": { "type": "array", "items": { "type": "string" }, "description": "已知 / 预期偏倚、误差、影响泛化性因素，ST 1.3a。" },
+        "modifications": { "type": "string", "description": "是否改动源数据或使用合成数据及方法，ST 1.3b。" },
+        "bias_sources": { "type": "array", "items": { "type": "string" }, "description": "已知偏倚来源（抽样 / 聚合 / 缺失 / 标签等），ST 1.3c–1.3f。" },
+        "representativeness_concerns": { "type": "string", "description": "代表性问题（如「90%+ 美欧单中心」）。" },
+        "long_tail_classes": { "type": "string", "description": "长尾类别情况。" },
+        "generalizability_statement": { "type": "string", "description": "可泛化性声明（含时间偏移 ST 1.1f）。" },
+        "subgroup_coverage": { "type": "string", "description": "亚组覆盖情况（如肤色、中心、年份）。" },
+        "missing_data": { "type": "string", "description": "缺失数据情况。" }
+      }
+    },
+
+    "tasks_and_use": {
+      "type": "object",
+      "description": "任务与用途维度。",
+      "additionalProperties": false,
+      "properties": {
+        "intended_tasks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["classification", "detection", "segmentation", "report-generation", "qa", "retrieval", "causal", "other"]
+          }
+        },
+        "benchmarks": { "type": "array", "items": { "type": "string" }, "description": "常用 Benchmark / 竞赛。" },
+        "excluded_tasks": { "type": "string", "description": "不适用或被警告的任务。" }
+      }
+    },
+
+    "medical_fields": {
+      "type": "array",
+      "description": "医学研究领域划分（可多选）：用于跨数据集按学科横向归类与审计。此维度为分类标签，独立于 ST 四大支柱。",
+      "items": {
+        "type": "string",
+        "enum": [
+          "基础医学", "临床医学", "中医学", "中药学",
+          "妇产科学", "影像学", "内科学", "外科学", "其他"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+
+    "extraction": {
+      "type": "object",
+      "description": "抽取元数据（审计溯源，非数据集本身属性）。",
+      "additionalProperties": false,
+      "required": ["method", "human_reviewed", "last_updated"],
+      "properties": {
+        "method": { "type": "string", "enum": ["llm-auto", "manual", "hybrid"], "description": "字段抽取方式。" },
+        "extraction_confidence": {
+          "type": "object",
+          "description": "各字段抽取置信度（0-1），键为字段路径。",
+          "additionalProperties": { "type": "number" }
+        },
+        "human_reviewed": { "type": "boolean", "description": "是否经过人工复核。" },
+        "review_kappa": { "type": "number", "description": "人工复核 Cohen's κ（若有）。" },
+        "last_updated": { "type": "string", "format": "date" },
+        "notes": { "type": "string" },
+        "pending_verification": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "标注【待核实】的字段 / 事实，禁止编造，需人工确认。"
+        }
+      }
+    }
+  }
+}

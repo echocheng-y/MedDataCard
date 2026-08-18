@@ -1,0 +1,57 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "TCGA",
+  "dataset_name": "TCGA",
+  "metadata": {
+    "source_type": "registry",
+    "homepage": "https://portal.gdc.cancer.gov",
+    "repositories": [
+      {
+        "platform": "other",
+        "url": "https://portal.gdc.cancer.gov"
+      }
+    ]
+  },
+  "medical_fields": [
+    "基础医学",
+    "临床医学"
+  ],
+  "modality": {
+    "modalities": [
+      "genomic",
+      "single-cell"
+    ],
+    "sample_counts": {
+      "patients": 11000
+    }
+  },
+  "ethics": {
+    "license": "开放(DUC)"
+  },
+  "extraction": {
+    "method": "manual",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": [
+      "geography.countries 由局限文本启发式推断，待人工核实"
+    ]
+  },
+  "geography": {
+    "countries": [
+      "United States"
+    ]
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "回顾性、美国主导",
+      "影像-组学配对有限",
+      "缺纵向"
+    ]
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "classification"
+    ]
+  }
+}

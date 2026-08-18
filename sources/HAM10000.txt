@@ -1,0 +1,16 @@
+TITLE: The HAM10000 dataset, a large collection of multi-source dermatoscopic images of common pigmented skin lesions
+AUTHORS: Tschandl, P., Rosendahl, C., Kittler, H.
+VENUE: Scientific Data 5, 180161 (2018). arXiv:1803.10417
+
+ABSTRACT:
+We present a dataset of 10,015 dermatoscopic images of pigmented skin lesions collected from two sources: a hospital-centered archive of the Department of Dermatology at the Medical University of Vienna, and a smaller public repository of the ISIC Archive. The dataset is annotated with 7 diagnostic categories and is intended as a training and benchmarking set for machine learning models for automated skin lesion classification. To meet the need for a publicly available standard benchmark, the dataset is released as a data descriptor accompanying this publication.
+
+KEY FACTS (from abstract + data descriptor):
+- Modality: dermatoscopic images (dermoscopy)
+- Scale: 10,015 images across 7 diagnostic categories
+- Geography: primarily Austria (Medical University of Vienna) + ISIC public archive (international)
+- Access: Harvard Dataverse / ISIC Archive; CC BY-NC 4.0 (non-commercial)
+- Intended tasks: skin lesion classification (single-label classification)
+- License: CC BY-NC 4.0 (non-commercial use only)
+- Released as a data descriptor accompanying a Scientific Data paper (paper-supplement).
+- No explicit demographic subgroup statistics stated in the abstract.

@@ -1,0 +1,12 @@
+{
+  "dataset_id": "MIMIC-CXR",
+  "comparable": {
+    "modality.modalities": ["X-ray"],
+    "modality.sample_counts": {"images": 377110, "studies": 227827},
+    "geography.countries": ["United States"],
+    "tasks_and_use.intended_tasks": ["classification"],
+    "metadata.source_type": "repository",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

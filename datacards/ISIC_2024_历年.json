@@ -1,0 +1,122 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "ISIC-2024-Historical",
+  "dataset_name": "ISIC 2024 / Historical: The International Skin Imaging Collaboration skin lesion analysis challenges",
+  "metadata": {
+    "source_type": "challenge",
+    "homepage": "https://www.isic-archive.com/",
+    "repositories": [
+      {
+        "platform": "ISIC Archive",
+        "url": "https://www.isic-archive.com/"
+      }
+    ],
+    "summary": "The ISIC Archive and its annual challenges provide the largest publicly available collection of dermoscopic images of skin lesions for skin cancer analysis. ISIC 2024 (SLICE-3D) released 401,059 training images (crops from 3D total-body photography) from 1,042 patients for melanoma classification. Historical challenges (e.g., 2020) contributed 33,126 DICOM images and incorporated prior datasets including HAM10000.",
+    "access_method": "open",
+    "custodian": "International Skin Imaging Collaboration (ISIC)",
+    "purpose": "Skin cancer classification and segmentation for academic challenge participation.",
+    "avoided_uses": "Commercial use.",
+    "creators": [
+      "International Skin Imaging Collaboration (ISIC)"
+    ]
+  },
+  "medical_fields": [
+    "影像学",
+    "临床医学"
+  ],
+  "modality": {
+    "modalities": [
+      "dermoscopy"
+    ],
+    "scope": "skin lesions",
+    "data_format": [
+      "DICOM",
+      "JPEG",
+      "PNG"
+    ],
+    "sample_counts": {
+      "images": 401059,
+      "patients": 1042
+    }
+  },
+  "ethics": {
+    "license": "CC-BY-NC",
+    "commercial_use_allowed": false,
+    "consent": "informed",
+    "data_use_agreement": false,
+    "privacy_measures": "De-identification performed per HIPAA Safe Harbor; removal of all protected health information and facial features.",
+    "legal_compliance": "Compliant with GDPR and HIPAA de-identification standards where applicable."
+  },
+  "extraction": {
+    "method": "hybrid",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": [
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：medical_fields[list-items]"
+    ]
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "Underrepresentation of rare skin lesion subtypes and non-Caucasian skin tones.",
+      "Geographic bias toward high-resource dermatology centers.",
+      "Temporal bias: older subsets (e.g., HAM10000) reflect earlier imaging protocols and annotation practices."
+    ],
+    "bias_sources": [
+      "sampling",
+      "geographic",
+      "temporal",
+      "labeling"
+    ],
+    "representativeness_concerns": "Predominantly light-skin-tone and Western-center derived; limited representation of Fitzpatrick skin types V–VI and low-resource settings.",
+    "long_tail_classes": "Yes — melanoma, nevus, and basal cell carcinoma dominate; rarer classes (e.g., dermatofibroma, vascular lesions) are underrepresented.",
+    "missing_data": "Missing demographic metadata (age, sex, ethnicity) for majority of samples."
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "classification",
+      "segmentation"
+    ],
+    "excluded_tasks": "Commercial deployment without explicit permission; real-time clinical decision support without regulatory validation."
+  },
+  "aliases": [
+    "ISIC Archive",
+    "ISIC Challenge Series"
+  ],
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "Images selected from international multi-site contributors for skin cancer analysis challenges.",
+    "sampling_strategy": "Multi-site aggregation; images derived from 3D total-body photography (2024) and prior dermoscopic collections (e.g., HAM10000, 2020 challenge)."
+  },
+  "population": {
+    "target_population": "Patients with skin lesions undergoing dermoscopic or 3D total-body imaging.",
+    "sex": "not-reported",
+    "vulnerable_groups": [
+      "dermatology-patients"
+    ],
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "geography": {
+    "regions": [
+      "North America",
+      "Europe",
+      "Asia",
+      "Oceania",
+      "South America",
+      "Africa"
+    ],
+    "data_collection_setting": "multi-country"
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotators": {
+      "type": "dermatologist",
+      "qualifications": "board-certified dermatologists and/or dermatopathologists"
+    },
+    "labeling_provenance": "Expert-labeled clinical ground truth; labels derived from histopathology or expert consensus diagnosis.",
+    "known_label_noise": true,
+    "label_noise_description": "Label noise exists due to inter-observer variability and diagnostic uncertainty in borderline cases."
+  }
+}

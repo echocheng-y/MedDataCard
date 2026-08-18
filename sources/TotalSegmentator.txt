@@ -1,0 +1,15 @@
+TITLE: TotalSegmentator: Robust segmentation of 104 anatomical structures in CT images
+AUTHORS: Wasserthal, J., Meyer, M., Breit, H.C., Cyriac, J., Yang, S., Segeroth, M.
+VENUE: arXiv:2208.05868 (2022); Zenodo record 6802614
+
+ABSTRACT:
+We present a dataset of 1,204 abdominal and thoracic CT images with manual segmentations of 104 anatomical structures, including organs, bones, muscles, and vessels, retrospectively collected at the University Hospital Basel. The dataset is accompanied by a deep learning model for automatic multi-structure segmentation and is intended as a benchmark and pretraining resource for medical image segmentation. The data are hosted on Zenodo and released under a Creative Commons license.
+
+KEY FACTS (from abstract + repository):
+- Modality: computed tomography (CT)
+- Scale: 1,204 CT images / 104 segmented anatomical structures
+- Geography: Switzerland (University Hospital Basel)
+- Access: Zenodo repository; data CC BY 4.0, code MIT (open, commercial-use allowed)
+- Intended tasks: multi-organ / bone / muscle / vessel segmentation (segmentation)
+- License: data CC BY 4.0 (commercial use allowed)
+- Source type: hosted on Zenodo repository.

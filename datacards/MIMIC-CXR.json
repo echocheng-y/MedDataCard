@@ -1,0 +1,135 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "MIMIC-CXR",
+  "dataset_name": "MIMIC-CXR-JPG",
+  "metadata": {
+    "source_type": "repository",
+    "homepage": "https://physionet.org/content/mimic-cxr-jpg/",
+    "repositories": [
+      {
+        "platform": "PhysioNet",
+        "url": "https://physionet.org/content/mimic-cxr-jpg/"
+      }
+    ],
+    "summary": "A large dataset of 377,110 chest x-rays associated with 227,827 imaging studies sourced from the Beth Israel Deaconess Medical Center between 2011 and 2016. Images are provided with 14 labels derived from two natural language processing tools applied to the corresponding free-text radiology reports. Derived entirely from the MIMIC-CXR database to provide a convenient processed version and standard reference for data splits and image labels.",
+    "persistent_identifier": "arXiv:1901.07042",
+    "version": "v2.0.0",
+    "access_method": "credentialed",
+    "custodian": "Beth Israel Deaconess Medical Center (BIDMC), MIT Lab for Computational Physiology",
+    "purpose": "To facilitate and encourage a wide range of research in medical computer vision by providing a convenient processed version of MIMIC-CXR and a standard reference for data splits and image labels.",
+    "creators": [
+      "Alistair E. W. Johnson",
+      "Tom J. Pollard",
+      "Nathaniel R. Greenbaum",
+      "Matthew P. Lungren"
+    ],
+    "papers": [
+      {
+        "title": "MIMIC-CXR-JPG, a large publicly available database of labeled chest radiographs",
+        "url": "https://arxiv.org/abs/1901.07042",
+        "year": 2019
+      }
+    ]
+  },
+  "medical_fields": [
+    "影像学",
+    "内科学"
+  ],
+  "modality": {
+    "modalities": [
+      "X-ray"
+    ],
+    "sample_counts": {
+      "images": 377110,
+      "studies": 227827,
+      "samples": 377110
+    },
+    "scope": "chest",
+    "data_format": [
+      "JPEG"
+    ]
+  },
+  "ethics": {
+    "license": "PhysioNet DUA",
+    "commercial_use_allowed": false,
+    "consent": "waived",
+    "irb_approval": true,
+    "data_use_agreement": true,
+    "privacy_measures": "All images have been de-identified to protect patient privacy.",
+    "legal_compliance": "Complies with HIPAA Safe Harbor de-identification; distributed under PhysioNet Data Use Agreement."
+  },
+  "extraction": {
+    "method": "hybrid",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": []
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "Labels derived automatically from NLP of radiology reports, introducing potential label noise and incompleteness.",
+      "Single-center origin limits geographic and practice diversity.",
+      "No demographic statistics reported (e.g., age, sex, ethnicity), limiting bias analysis."
+    ],
+    "modifications": "Yes — JPEG conversion and label derivation via NLP from original DICOM and report data in MIMIC-CXR.",
+    "bias_sources": [
+      "label-noise",
+      "sampling",
+      "geographic"
+    ],
+    "representativeness_concerns": "90%+ single-center (BIDMC, Boston, USA); no demographic breakdown provided.",
+    "generalizability_statement": "Generalizability may be limited due to single-center origin and lack of demographic reporting; temporal scope (2011–2016) may not reflect current imaging practices or disease prevalence.",
+    "subgroup_coverage": "No subgroup coverage information reported.",
+    "missing_data": "No explicit description of missing images, reports, or labels in source text."
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "classification",
+      "detection"
+    ],
+    "benchmarks": [
+      "MIMIC-CXR Benchmark"
+    ]
+  },
+  "aliases": [
+    "MIMIC-CXR-JPG",
+    "MIMIC-CXR-JPG v2.0.0"
+  ],
+  "catalog_ref": "MIMIC-CXR",
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "Derived entirely from the MIMIC-CXR database; aims to provide a convenient processed version and standard reference for data splits and image labels.",
+    "data_shifts_overtime": "Data collected 2011–2016; no explicit statement of longitudinal shifts or multi-version comparisons in source text."
+  },
+  "population": {
+    "target_population": "Adult patients undergoing chest radiography at Beth Israel Deaconess Medical Center",
+    "sex": "not-reported",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "geography": {
+    "countries": [
+      "United States"
+    ],
+    "regions": [
+      "North America"
+    ],
+    "data_collection_setting": "single-center",
+    "collection_period": {
+      "start": "2011-01-01",
+      "end": "2016-12-31"
+    },
+    "institution_count": 1
+  },
+  "annotation": {
+    "annotation_type": "semi-automatic",
+    "annotation_method": "14 labels derived via two natural language processing tools applied to free-text radiology reports",
+    "annotators": {
+      "type": "NLP"
+    },
+    "labeling_provenance": "Labels derived from NLP parsing of radiology reports; no manual verification stated in abstract.",
+    "known_label_noise": true,
+    "label_noise_description": "Labels derived from NLP of free-text reports; expected noise due to imperfect extraction and report variability."
+  }
+}

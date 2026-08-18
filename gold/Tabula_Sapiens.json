@@ -1,0 +1,12 @@
+{
+  "dataset_id": "Tabula Sapiens",
+  "comparable": {
+    "modality.modalities": ["single-cell"],
+    "modality.sample_counts": {"cells": 483152},
+    "geography.countries": [],
+    "tasks_and_use.intended_tasks": ["classification"],
+    "metadata.source_type": "paper-supplement",
+    "ethics.license": "CC BY 4.0",
+    "ethics.commercial_use_allowed": true
+  }
+}

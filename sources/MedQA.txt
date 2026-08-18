@@ -1,0 +1,15 @@
+TITLE: What Disease Does This Patient Have? A Large-Scale Open Domain Question Answering Dataset from Medical Exams
+AUTHORS: Jin, D., Pan, E., Oufattole, N., Weng, W.H., Fang, H., Szolovits, P.
+VENUE: Applied Sciences 11, 6421 (2021); dataset released on HuggingFace / GitHub
+
+ABSTRACT:
+We construct MedQA, a large-scale dataset for benchmarking medical question answering, sourced from professional medical board exam questions (USMLE-style). The dataset contains 12,723 question-answer pairs with explanations, covering multiple medical specialties and requiring multi-step clinical reasoning. A test split of 1,273 questions is provided for standardized evaluation. The dataset is released publicly to advance research on medical knowledge question answering systems.
+
+KEY FACTS (from abstract + repository):
+- Modality: text — multiple-choice medical exam questions (QA)
+- Scale: 12,723 questions (1,273-question test split)
+- Geography: United States (USMLE licensing exam source)
+- Access: HuggingFace / GitHub; CC BY 4.0 (open, commercial-use allowed)
+- Intended tasks: medical knowledge question answering (qa)
+- License: CC BY 4.0 (commercial use allowed)
+- Source type: hosted on HuggingFace / GitHub repository.

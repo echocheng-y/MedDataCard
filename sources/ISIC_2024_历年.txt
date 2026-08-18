@@ -1,0 +1,15 @@
+TITLE: ISIC 2024 / Historical: The International Skin Imaging Collaboration skin lesion analysis challenges
+AUTHORS: International Skin Imaging Collaboration (ISIC)
+VENUE: ISIC Archive; annual challenges (2020, 2024 highlighted)
+
+ABSTRACT:
+The ISIC Archive and its annual challenges provide the largest publicly available collection of dermoscopic images of skin lesions for skin cancer analysis. The ISIC 2024 challenge (SLICE-3D) released 401,059 training images (crops from 3D total-body photography) from 1,042 patients for melanoma classification. Historical ISIC challenges (e.g., 2020) contributed 33,126 DICOM images and incorporated prior datasets including HAM10000. The archive is built from international multi-site contributors and is released under Creative Commons licenses for academic challenge participation.
+
+KEY FACTS (from challenge summary):
+- Modality: dermoscopy (skin lesion images)
+- Scale: 2024 = 401,059 training images from 1,042 patients; 2020 = 33,126 DICOM images; historically includes HAM10000
+- Geography: international / multi-site
+- Access: ISIC Archive; CC-BY-NC (partially CC0) — non-commercial
+- Intended tasks: skin cancer classification and segmentation (classification / segmentation)
+- License: CC-BY-NC (partial CC0); non-commercial
+- Source type: ISIC annual challenge series (challenge).

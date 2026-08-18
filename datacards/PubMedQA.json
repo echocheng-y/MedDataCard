@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "PubMedQA",
+  "dataset_name": "PubMedQA",
+  "metadata": {
+    "source_type": "repository",
+    "homepage": "https://pubmedqa.github.io",
+    "repositories": [
+      {
+        "platform": "GitHub",
+        "url": "https://pubmedqa.github.io"
+      }
+    ]
+  },
+  "medical_fields": [
+    "基础医学"
+  ],
+  "modality": {
+    "modalities": [
+      "text"
+    ]
+  },
+  "ethics": {
+    "license": "CC BY 4.0",
+    "commercial_use_allowed": true
+  },
+  "extraction": {
+    "method": "manual",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": []
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "来自 PubMed 摘要",
+      "二分类偏",
+      "标注集小"
+    ]
+  }
+}

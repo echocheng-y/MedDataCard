@@ -1,0 +1,14 @@
+TITLE: MIMIC-CXR-JPG, a large publicly available database of labeled chest radiographs
+AUTHORS: Alistair E. W. Johnson, Tom J. Pollard, Nathaniel R. Greenbaum, Matthew P. Lungren, et al.
+VENUE: arXiv 1901.07042 (Scientific Data 2020)
+
+ABSTRACT:
+Chest radiography is a powerful imaging modality. Here we describe MIMIC-CXR-JPG v2.0.0, a large dataset of 377,110 chest x-rays associated with 227,827 imaging studies sourced from the Beth Israel Deaconess Medical Center between 2011 - 2016. Images are provided with 14 labels derived from two natural language processing tools applied to the corresponding free-text radiology reports. MIMIC-CXR-JPG is derived entirely from the MIMIC-CXR database, and aims to provide a convenient processed version of MIMIC-CXR, as well as to provide a standard reference for data splits and image labels. All images have been de-identified to protect patient privacy. The dataset is made freely available to facilitate and encourage a wide range of research in medical computer vision.
+
+KEY FACTS (from abstract):
+- Modality: chest x-ray
+- Scale: 377,110 chest x-rays, 227,827 imaging studies
+- Source institution: Beth Israel Deaconess Medical Center (BIDMC), Boston, United States, 2011-2016
+- Labels: 14 labels derived via NLP from free-text radiology reports
+- Access: freely available (distributed via PhysioNet, credentialed access)
+- De-identified; no explicit statement of license text, commercial-use terms, or demographic subgroup statistics in the abstract.

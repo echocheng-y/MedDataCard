@@ -1,0 +1,12 @@
+{
+  "dataset_id": "MIMIC-IV",
+  "comparable": {
+    "modality.modalities": ["EHR"],
+    "modality.sample_counts": {"patients": 299712, "admissions": 431231, "icu_stays": 73181},
+    "geography.countries": ["United States"],
+    "tasks_and_use.intended_tasks": ["classification", "causal"],
+    "metadata.source_type": "repository",
+    "ethics.license": "PhysioNet Credentialed DUA",
+    "ethics.commercial_use_allowed": false
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "dataset_id": "NIH ChestX-ray14",
+  "comparable": {
+    "modality.modalities": ["X-ray"],
+    "modality.sample_counts": {"images": 108948, "patients": 32717},
+    "geography.countries": ["United States"],
+    "tasks_and_use.intended_tasks": ["classification"],
+    "metadata.source_type": "other",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

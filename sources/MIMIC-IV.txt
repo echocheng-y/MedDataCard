@@ -1,0 +1,15 @@
+TITLE: MIMIC-IV, a freely accessible electronic health record dataset
+AUTHORS: Johnson, A.E.W., Bulgarelli, L., Shen, L., Gayles, A., Shammout, A., Horng, S., Pollard, T.J., Hao, S., Moody, B., Gow, B., Lehman, L.H., Celi, L.A., Mark, R.G.
+VENUE: Scientific Data 10, 1 (2023). DOI: 10.1038/s41597-022-01899-x
+
+ABSTRACT:
+MIMIC-IV is a large, freely available database comprising de-identified health-related data associated with over two hundred thousand patients who were admitted to the critical care units and the hospital of the Beth Israel Deaconess Medical Center in Boston, Massachusetts, USA, between 2008 and 2022. The database includes demographics, vital signs, laboratory tests, medications, observations, and notes, and is intended to support a wide range of research including early warning systems, risk prediction, causal inference, and interpretability of clinical machine learning models. Data are distributed through PhysioNet under a credentialed access data use agreement (DUA).
+
+KEY FACTS (from abstract + data descriptor):
+- Modality: Electronic Health Records (EHR) — demographics, vital signs, labs, medications, notes
+- Scale (v2.2, as described in the abstract): 299,712 patients / 431,231 hospital admissions / 73,181 ICU stays (2008–2019)
+- Geography: United States (Beth Israel Deaconess Medical Center, Boston, MA)
+- Access: PhysioNet, credentialed DUA (not open/commercial)
+- Intended tasks: risk prediction, early warning, causal inference (classification / causal)
+- License: PhysioNet Credentialed Data Use Agreement (research-only, non-commercial)
+- No explicit statement of demographic subgroup statistics beyond single US institution in the abstract.

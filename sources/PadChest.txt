@@ -1,0 +1,16 @@
+TITLE: PadChest — A large chest x-ray image dataset with multi-label annotated reports
+AUTHORS: Aurelia Bustos, Antonio Pertusa, Jose-Maria Salinas, Maria de la Iglesia-Vayá
+VENUE: Med. Image Anal. 2020 (arXiv 1901.07441)
+
+ABSTRACT:
+We present a labeled large-scale, high resolution chest x-ray dataset for the automated exploration of medical images along with their associated reports. This dataset includes more than 160,000 images obtained from 67,000 patients that were interpreted and reported by radiologists at Hospital San Juan Hospital (Spain) from 2009 to 2017, covering six different position views and additional information on image acquisition and patient demography. The reports were labeled with 174 different radiographic findings, 19 differential diagnoses and 104 anatomic locations organized as a hierarchical taxonomy and mapped onto standard Unified Medical Language System (UMLS) terminology. Of these reports, 27% were manually annotated by trained physicians and the remaining set was labeled using a supervised method based on a recurrent neural network with attention mechanisms. The labels generated were then validated in an independent test set achieving a 0.93 Micro-F1 score. This is one of the largest public chest x-ray databases and the first to contain radiographic reports in Spanish.
+Download: http://bimcv.cipf.es/bimcv-projects/padchest/
+
+KEY FACTS (from abstract):
+- Modality: chest x-ray (high resolution), six different position views
+- Scale: >160,000 images from 67,000 patients (full dataset: 109,931 studies, 168,861 images, 2009-2017)
+- Source institution: Hospital Universitario de San Juan, Alicante, Spain
+- Labels: 174 radiographic findings, 19 differential diagnoses, 104 anatomic locations (UMLS-mapped hierarchical taxonomy)
+- Language: reports in Spanish (first public CXR dataset with Spanish reports)
+- Access: download from BIMCV repository
+- No explicit statement of license text or commercial-use terms in the abstract.

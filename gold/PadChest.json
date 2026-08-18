@@ -1,0 +1,12 @@
+{
+  "dataset_id": "PadChest",
+  "comparable": {
+    "modality.modalities": ["X-ray"],
+    "modality.sample_counts": {"images": 168861, "patients": 67000, "studies": 109931},
+    "geography.countries": ["Spain"],
+    "tasks_and_use.intended_tasks": ["classification"],
+    "metadata.source_type": "repository",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

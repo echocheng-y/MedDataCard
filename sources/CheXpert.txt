@@ -1,0 +1,15 @@
+TITLE: CheXpert — A Large Chest Radiograph Dataset with Uncertainty Labels and Expert Comparison
+AUTHORS: Jeremy Irvin, Pranav Rajpurkar, Michael Ko, Yifan Yu, et al. (Stanford ML Group)
+VENUE: AAAI 2019
+
+ABSTRACT:
+Large, labeled datasets have driven deep learning methods to achieve expert-level performance on a variety of medical imaging tasks. We present CheXpert, a large dataset that contains 224,316 chest radiographs of 65,240 patients. We design a labeler to automatically detect the presence of 14 observations in radiology reports, capturing uncertainties inherent in radiograph interpretation. We investigate different approaches to using the uncertainty labels for training convolutional neural networks that output the probability of these observations given the available frontal and lateral radiographs. On a validation set of 200 chest radiographic studies manually annotated by 3 board-certified radiologists, we find that different uncertainty approaches are useful for different pathologies. We then evaluate our best model on a test set composed of 500 chest radiographic studies annotated by a consensus of 5 board-certified radiologists. We release the dataset to the public as a standard benchmark.
+Dataset: https://stanfordmlgroup.github.io/competitions/chexpert
+
+KEY FACTS (from abstract):
+- Modality: chest radiograph (frontal and lateral)
+- Scale: 224,316 chest radiographs of 65,240 patients
+- Labels: 14 observations automatically detected from radiology reports, with uncertainty labels
+- Source institution: Stanford (Stanford ML Group), United States
+- Access: publicly released as a standard benchmark
+- No explicit statement of license text, commercial-use terms, or demographic subgroup statistics in the abstract.

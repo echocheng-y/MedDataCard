@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "CT-RATE",
+  "dataset_name": "CT-RATE",
+  "metadata": {
+    "source_type": "repository",
+    "homepage": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
+    "repositories": [
+      {
+        "platform": "HuggingFace",
+        "url": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE"
+      }
+    ]
+  },
+  "medical_fields": [
+    "影像学",
+    "临床医学"
+  ],
+  "modality": {
+    "modalities": [
+      "CT",
+      "text"
+    ],
+    "sample_counts": {
+      "patients": 21304
+    }
+  },
+  "ethics": {
+    "license": "CC BY-NC-SA 4.0",
+    "commercial_use_allowed": false
+  },
+  "extraction": {
+    "method": "manual",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": [
+      "geography.countries 由局限文本启发式推断，待人工核实"
+    ]
+  },
+  "geography": {
+    "countries": [
+      "Turkey"
+    ]
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "单中心(伊斯坦布尔 Medipol)",
+      "标签由 RadBERT 抽取(可能噪声)",
+      "含英/土翻译管线"
+    ]
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "detection",
+      "report-generation"
+    ]
+  }
+}

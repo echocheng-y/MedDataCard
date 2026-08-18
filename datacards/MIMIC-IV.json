@@ -1,0 +1,158 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "MIMIC-IV",
+  "dataset_name": "MIMIC-IV",
+  "metadata": {
+    "source_type": "registry",
+    "homepage": "https://mimic.mit.edu/",
+    "repositories": [
+      {
+        "platform": "PhysioNet",
+        "url": "https://physionet.org/content/mimiciv/2.2/"
+      }
+    ],
+    "summary": "MIMIC-IV is a large, freely available database comprising de-identified health-related data associated with over two hundred thousand patients who were admitted to the critical care units and the hospital of the Beth Israel Deaconess Medical Center in Boston, Massachusetts, USA, between 2008 and 2022. The database includes demographics, vital signs, laboratory tests, medications, observations, and notes.",
+    "persistent_identifier": "10.1038/s41597-022-01899-x",
+    "version": "2.2",
+    "access_method": "credentialed",
+    "custodian": "Beth Israel Deaconess Medical Center",
+    "purpose": "To support a wide range of research including early warning systems, risk prediction, causal inference, and interpretability of clinical machine learning models.",
+    "creators": [
+      "Johnson, A.E.W.",
+      "Bulgarelli, L.",
+      "Shen, L.",
+      "Gayles, A.",
+      "Shammout, A.",
+      "Horng, S.",
+      "Pollard, T.J.",
+      "Hao, S.",
+      "Moody, B.",
+      "Gow, B.",
+      "Lehman, L.H.",
+      "Celi, L.A.",
+      "Mark, R.G."
+    ],
+    "funders": [
+      "National Institute of Biomedical Imaging and Bioengineering (NIBIB)",
+      "National Institute of General Medical Sciences (NIGMS)"
+    ],
+    "papers": [
+      {
+        "title": "MIMIC-IV, a freely accessible electronic health record dataset",
+        "url": "https://www.nature.com/articles/s41597-022-01899-x",
+        "year": 2023,
+        "doi": "10.1038/s41597-022-01899-x"
+      }
+    ]
+  },
+  "medical_fields": [
+    "临床医学"
+  ],
+  "modality": {
+    "modalities": [
+      "EHR"
+    ],
+    "scope": "Hospital and ICU admissions, including demographics, vital signs, laboratory tests, medications, observations, and clinical notes.",
+    "data_format": [
+      "CSV"
+    ],
+    "sample_counts": {
+      "patients": 299712,
+      "studies": 431231,
+      "samples": 73181
+    }
+  },
+  "ethics": {
+    "license": "PhysioNet Credentialed Data Use Agreement",
+    "commercial_use_allowed": false,
+    "consent": "waived",
+    "irb_approval": true,
+    "data_use_agreement": true,
+    "privacy_measures": "De-identification performed per HIPAA Safe Harbor method; protected health information removed or generalized.",
+    "legal_compliance": "Compliant with HIPAA and MIT Institutional Review Board requirements."
+  },
+  "extraction": {
+    "method": "hybrid",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": [
+      "geography.countries 由局限文本启发式推断，待人工核实",
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：medical_fields[list-items]"
+    ]
+  },
+  "geography": {
+    "countries": [
+      "United States"
+    ],
+    "regions": [
+      "North America"
+    ],
+    "data_collection_setting": "single-center",
+    "collection_period": {
+      "start": "2008-01-01",
+      "end": "2022-12-31"
+    },
+    "institution_count": 1
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "Single-center origin limits generalizability to other healthcare settings.",
+      "Temporal shifts in coding practices and EHR systems across 2008–2022 may introduce inconsistencies.",
+      "Underrepresentation of non-US, rural, uninsured, and socioeconomically diverse populations.",
+      "EHR data subject to documentation and coding biases, missingness, and variable completeness."
+    ],
+    "modifications": "De-identification applied; no synthetic data generation reported.",
+    "bias_sources": [
+      "sampling",
+      "missing_data",
+      "label_noise"
+    ],
+    "representativeness_concerns": "Single US academic medical center; not representative of global or even national US population diversity.",
+    "long_tail_classes": "Clinical concepts exhibit long-tail distributions (e.g., rare diagnoses, procedures); not quantified in source.",
+    "generalizability_statement": "Results trained on MIMIC-IV may not generalize to non-tertiary, non-academic, or non-US healthcare settings.",
+    "subgroup_coverage": "No subgroup statistics provided beyond institutional location; age, sex, race/ethnicity, and socioeconomic variables are present but not summarized in abstract.",
+    "missing_data": "Known incompleteness in clinical notes, labs, and vitals due to workflow variation and monitoring intensity."
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "classification",
+      "causal"
+    ],
+    "benchmarks": [
+      "MIMIC-IV Benchmark (e.g., mortality prediction, length-of-stay forecasting)"
+    ],
+    "excluded_tasks": "Commercial deployment without additional validation; real-time clinical decision support without regulatory approval."
+  },
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "Patients admitted to the critical care units and the hospital of the Beth Israel Deaconess Medical Center.",
+    "sampling_strategy": "All admissions meeting inclusion criteria at the institution during the collection period; no random sampling described.",
+    "aggregation_multisource": "Single-source institutional EHR data; no multi-source aggregation reported.",
+    "data_shifts_overtime": "Data collected from 2008 to 2022; known temporal shifts in clinical practice, coding standards (e.g., ICD-9 to ICD-10), and EHR system upgrades are expected but not quantified in source text."
+  },
+  "population": {
+    "target_population": "Adult patients admitted to the hospital and/or ICU at Beth Israel Deaconess Medical Center.",
+    "sex": "not-reported",
+    "inclusion_criteria": "Hospital admissions at Beth Israel Deaconess Medical Center.",
+    "exclusion_criteria": "None explicitly stated in abstract.",
+    "vulnerable_groups": [
+      "critical-care"
+    ],
+    "missing_groups": "No explicit statement on underrepresented groups; single US academic medical center implies limited geographic, socioeconomic, and racial/ethnic diversity.",
+    "attribute_recording": {
+      "method": "computed"
+    }
+  },
+  "annotation": {
+    "annotation_type": "automatic",
+    "annotation_method": "Derived from structured and unstructured EHR fields; clinical notes processed via NLP for concept extraction in some downstream uses, but base dataset annotations are system-generated.",
+    "annotators": {
+      "type": "NLP"
+    },
+    "labeling_provenance": "Labels derived from EHR event logs and coded entries (e.g., ICD diagnoses, CPT procedures); no human annotation layer described in source.",
+    "known_label_noise": true,
+    "label_noise_description": "EHR-derived labels subject to documentation bias, coding errors, and incomplete capture of clinical reality.",
+    "annotation_guidelines_available": false
+  }
+}

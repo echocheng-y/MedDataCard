@@ -1,0 +1,138 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "HAM10000",
+  "dataset_name": "HAM10000",
+  "metadata": {
+    "source_type": "paper-supplement",
+    "homepage": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T",
+    "repositories": [
+      {
+        "platform": "Harvard Dataverse",
+        "url": "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T"
+      },
+      {
+        "platform": "ISIC Archive",
+        "url": "https://www.isic-archive.com/"
+      }
+    ],
+    "summary": "A dataset of 10,015 dermatoscopic images of pigmented skin lesions collected from two sources: a hospital-centered archive of the Department of Dermatology at the Medical University of Vienna, and a smaller public repository of the ISIC Archive. Annotated with 7 diagnostic categories for training and benchmarking machine learning models for automated skin lesion classification.",
+    "persistent_identifier": "https://doi.org/10.1038/sdata.2018.161",
+    "version": "2018",
+    "access_method": "open",
+    "custodian": "Medical University of Vienna; ISIC Archive",
+    "purpose": "Training and benchmarking machine learning models for automated skin lesion classification.",
+    "avoided_uses": "Commercial use (prohibited by license).",
+    "creators": [
+      "Tschandl P",
+      "Rosendahl C",
+      "Kittler H"
+    ],
+    "papers": [
+      {
+        "title": "The HAM10000 dataset, a large collection of multi-source dermatoscopic images of common pigmented skin lesions",
+        "url": "https://www.nature.com/articles/sdata2018161",
+        "year": 2018,
+        "doi": "10.1038/sdata.2018.161"
+      }
+    ]
+  },
+  "medical_fields": [
+    "影像学"
+  ],
+  "modality": {
+    "modalities": [
+      "dermoscopy"
+    ],
+    "sample_counts": {
+      "images": 10015
+    },
+    "scope": "pigmented skin lesions",
+    "data_format": [
+      "JPEG"
+    ]
+  },
+  "ethics": {
+    "license": "CC BY-NC 4.0",
+    "commercial_use_allowed": false,
+    "consent": "de-identified",
+    "irb_approval": true,
+    "data_use_agreement": false,
+    "privacy_measures": "Images were de-identified prior to release; no patient identifiers retained.",
+    "legal_compliance": "Compliant with Austrian data protection law and ISIC Archive policies."
+  },
+  "extraction": {
+    "method": "hybrid",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": [
+      "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实：data_collection_setting, medical_fields[list-items]"
+    ]
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "Predominantly Austrian (Caucasian) population limits generalizability to darker skin tones.",
+      "Convenience sampling from clinical archives introduces selection bias toward more common or clinically suspicious lesions.",
+      "Lack of standardized acquisition protocol across sources (hospital vs. ISIC).",
+      "Label noise due to reliance on clinical vs. histopathological confirmation."
+    ],
+    "modifications": "No synthetic data; minor preprocessing (cropping, resizing) applied for uniformity.",
+    "bias_sources": [
+      "sampling",
+      "geographic",
+      "labeling"
+    ],
+    "representativeness_concerns": "Overwhelmingly Caucasian population; limited representation of Fitzpatrick skin types IV–VI.",
+    "long_tail_classes": "Yes — some diagnostic categories (e.g., vascular lesions) are underrepresented.",
+    "generalizability_statement": "Limited generalizability to non-Caucasian populations and non-dermatology-clinic settings.",
+    "subgroup_coverage": "No subgroup coverage statistics reported.",
+    "missing_data": "No explicit reporting of missing clinical or demographic metadata."
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "classification"
+    ],
+    "benchmarks": [
+      "ISIC Challenge"
+    ],
+    "excluded_tasks": "Detection and segmentation are not supported by current annotation format (single-label image-level only)."
+  },
+  "data_origin": {
+    "origin_type": "clinical-care",
+    "selection_rationale": "To meet the need for a publicly available standard benchmark for skin lesion classification.",
+    "sampling_strategy": "Convenience sampling from two sources: hospital archive (majority) and public ISIC repository (minority).",
+    "aggregation_multisource": "Aggregated from two sources: hospital-centered archive (Medical University of Vienna) and ISIC public repository; no description of harmonization or recoding."
+  },
+  "population": {
+    "target_population": "Patients with pigmented skin lesions undergoing dermatologic evaluation.",
+    "age_reported": false,
+    "sex": "not-reported",
+    "ethnicity_reported": false,
+    "inclusion_criteria": "Pigmented skin lesions imaged dermoscopically and diagnosed by dermatologists.",
+    "missing_groups": "No explicit demographic subgroup statistics stated in the abstract; underrepresentation of non-Caucasian skin types is a known concern in dermoscopy datasets but not quantified here.",
+    "attribute_recording": {
+      "method": "unknown"
+    }
+  },
+  "geography": {
+    "countries": [
+      "Austria"
+    ],
+    "regions": [
+      "Europe"
+    ],
+    "institution_count": 2
+  },
+  "annotation": {
+    "annotation_type": "expert",
+    "annotation_method": "Diagnoses assigned by board-certified dermatologists; labels derived from clinical diagnosis and histopathology where available.",
+    "annotators": {
+      "type": "radiologist",
+      "qualifications": "board-certified dermatologists"
+    },
+    "labeling_provenance": "Clinical diagnosis and histopathology where available.",
+    "known_label_noise": true,
+    "label_noise_description": "Some labels may reflect clinical (not histopathological) diagnosis; inter-observer variability acknowledged in source paper.",
+    "annotation_guidelines_available": false
+  }
+}

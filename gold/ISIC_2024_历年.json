@@ -1,0 +1,12 @@
+{
+  "dataset_id": "ISIC 2024/历年",
+  "comparable": {
+    "modality.modalities": ["dermoscopy"],
+    "modality.sample_counts": {"training_images": 401059, "patients": 1042},
+    "geography.countries": [],
+    "tasks_and_use.intended_tasks": ["classification", "segmentation"],
+    "metadata.source_type": "challenge",
+    "ethics.license": "CC-BY-NC (partial CC0)",
+    "ethics.commercial_use_allowed": false
+  }
+}

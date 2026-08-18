@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.2",
+  "dataset_id": "PhysioNet/CinC 2020",
+  "dataset_name": "PhysioNet/CinC 2020",
+  "metadata": {
+    "source_type": "challenge",
+    "homepage": "https://physionet.org/content/challenge-2020/1.0.2/",
+    "repositories": [
+      {
+        "platform": "PhysioNet",
+        "url": "https://physionet.org/content/challenge-2020/1.0.2/"
+      }
+    ]
+  },
+  "medical_fields": [
+    "临床医学"
+  ],
+  "modality": {
+    "modalities": [
+      "ECG"
+    ]
+  },
+  "ethics": {
+    "license": "公开(Challenge)"
+  },
+  "extraction": {
+    "method": "manual",
+    "human_reviewed": false,
+    "last_updated": "2026-08-18",
+    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "pending_verification": []
+  },
+  "bias_and_limitations": {
+    "known_limitations": [
+      "标签噪声",
+      "多源异质",
+      "采样率不一"
+    ]
+  },
+  "tasks_and_use": {
+    "intended_tasks": [
+      "classification"
+    ]
+  }
+}

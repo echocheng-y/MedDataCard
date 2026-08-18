@@ -1,0 +1,18 @@
+# 密钥（绝不提交）
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# M4 验证产物（可由 evaluate_m4.py 重新生成）
+m4_output/
+m4_report.json
+
+# 空目录占位
+examples/
+
+# 内部交付物（Word 编译版规划文档，保留 .md 源）
+*.docx

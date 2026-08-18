@@ -1,0 +1,12 @@
+{
+  "dataset_id": "MedQA",
+  "comparable": {
+    "modality.modalities": ["text"],
+    "modality.sample_counts": {"questions": 12723},
+    "geography.countries": ["United States"],
+    "tasks_and_use.intended_tasks": ["qa"],
+    "metadata.source_type": "repository",
+    "ethics.license": "CC BY 4.0",
+    "ethics.commercial_use_allowed": true
+  }
+}
