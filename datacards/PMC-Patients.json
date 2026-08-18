@@ -12,16 +12,16 @@
       },
       {
         "platform": "HuggingFace",
-        "url": "https://huggingface.co/datasets/Georgetown-IR-Lab/PMC-Patients"
+        "url": "https://huggingface.co/datasets/georgetown/PMC-Patients"
       }
     ],
-    "summary": "A large-scale dataset of 167,000 patient summaries automatically extracted from PubMed Central (PMC) full-text articles. Each record corresponds to a patient described in case reports / studies, with structured fields (demographics, conditions, procedures, etc.) and links to the source article.",
+    "summary": "PMC-Patients is a large-scale dataset of 167,000 patient summaries automatically extracted from PubMed Central (PMC) full-text articles. Each record corresponds to a patient described in case reports / studies, with structured fields (demographics, conditions, procedures, etc.) and links to the source article.",
     "persistent_identifier": "https://doi.org/10.1038/s41597-023-02122-5",
     "version": "2023",
     "access_method": "open",
     "custodian": "Li et al. / Scientific Data",
     "purpose": "Supports patient-level retrieval, patient QA, and clinical NLP.",
-    "avoided_uses": "Not intended for real-time clinical decision support; not derived from live EHR systems.",
+    "avoided_uses": "Not intended for real-time clinical decision support or direct EHR integration; not representative of real-world clinical practice due to publication bias and lack of outcomes.",
     "creators": [
       "Li et al."
     ],
@@ -35,57 +35,59 @@
     ]
   },
   "medical_fields": [
-    "Clinical Medicine"
+    "Clinical Medicine",
+    "Imaging",
+    "Internal Medicine",
+    "Surgery"
   ],
   "modality": {
     "modalities": [
       "text"
     ],
-    "scope": "Patient-level clinical narratives (demographics, conditions, procedures)",
+    "scope": "General clinical patient narratives (demographics, conditions, procedures)",
     "data_format": [
       "JSON",
       "TSV"
     ],
     "sample_counts": {
-      "samples": 167000
+      "patients": 167000
     }
   },
   "ethics": {
-    "license": "CC BY 4.0 (per Scientific Data article); individual PMC articles retain original copyright and licensing terms.",
-    "consent": "de-identified",
+    "license": "CC BY 4.0 (per Scientific Data article); individual PMC articles subject to their own copyright/licensing terms.",
+    "consent": "not-reported",
     "data_use_agreement": false,
-    "privacy_measures": "All patient data is de-identified per PMC publishing standards; no direct identifiers retained.",
+    "privacy_measures": "De-identification performed during extraction; however, re-identification risk remains due to rich clinical narrative and source article linkage.",
     "commercial_use_allowed": true,
-    "legal_compliance": "Complies with PMC open-access policies and NIH public access requirements."
+    "legal_compliance": "Complies with PMC open-access policy; no explicit GDPR/HIPAA applicability as data is literature-derived and de-identified.",
+    "bias_impact_assessment": "Publication bias acknowledged as key limitation; no formal bias impact assessment reported."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
-    "pending_verification": [
-      "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: medical_fields[list-items]"
-    ]
+    "pending_verification": []
   },
   "bias_and_limitations": {
     "known_limitations": [
       "Extracted from publications, not live EHR systems",
       "English-only",
       "Lacks structured clinical labels and outcomes",
-      "Selection reflects publishability bias (e.g., rare cases over common presentations)"
+      "Selection reflects what is publishable (e.g., rare cases, positive results, institutional biases)"
     ],
-    "modifications": "Yes — automated extraction, normalization, and structuring of free-text patient descriptions.",
+    "modifications": "Yes — automated extraction, structuring, and normalization from unstructured PMC text.",
     "bias_sources": [
       "publication bias",
       "language bias",
-      "geographic bias (PMC overrepresents high-income countries)",
+      "geographic bias (underrepresentation of non-English/non-Western literature)",
       "label noise from NLP extraction"
     ],
-    "representativeness_concerns": "Overrepresents rare diseases and atypical presentations due to case report publication norms; underrepresents routine care and diverse sociodemographic groups.",
-    "long_tail_classes": "Highly skewed distribution: many rare conditions appear only once or few times.",
-    "generalizability_statement": "Limited generalizability to real-world EHR populations and non-English clinical settings.",
-    "subgroup_coverage": "No explicit subgroup coverage reporting; likely poor coverage of non-English, non-North American/European, and underserved populations.",
-    "missing_data": "Missing structured outcome data, longitudinal follow-up, and granular demographic variables (e.g., race, ethnicity, socioeconomic status)."
+    "representativeness_concerns": "Not representative of general patient populations or real-world clinical practice; skewed toward publishable cases.",
+    "long_tail_classes": "Highly skewed class distribution reflecting rarity and reporting bias in case literature.",
+    "generalizability_statement": "Limited generalizability to real-world clinical settings due to literature origin, language restriction, and absence of longitudinal or outcome data.",
+    "subgroup_coverage": "Poor coverage of non-English-speaking, low-income, and underrepresented racial/ethnic groups in source literature.",
+    "missing_data": "Widespread missingness in structured fields (e.g., age, sex, ethnicity) due to inconsistent reporting in source articles."
   },
   "tasks_and_use": {
     "intended_tasks": [
@@ -96,27 +98,28 @@
     "benchmarks": [
       "PMC-Patients Benchmark (as defined in original paper)"
     ],
-    "excluded_tasks": "Real-time clinical decision support, predictive modeling requiring outcomes or longitudinal data."
+    "excluded_tasks": "Real-time clinical decision support, prognostic modeling, or regulatory use."
   },
   "data_origin": {
     "origin_type": "research-derived",
-    "selection_rationale": "Patients described in case reports and studies published in PubMed Central.",
-    "sampling_strategy": "Automated extraction from PMC full-text articles containing patient descriptions; no explicit sampling strategy beyond article availability and structural eligibility."
+    "selection_rationale": "Patients described in case reports and clinical studies published in PubMed Central.",
+    "sampling_strategy": "Automated extraction from PMC full-text articles containing patient descriptions; no explicit sampling strategy reported beyond inclusion of all identifiable patient summaries meeting structural criteria.",
+    "aggregation_multisource": "Aggregated from heterogeneous PMC articles; no harmonization of demographic or clinical coding reported.",
+    "data_shifts_overtime": "Cohort reflects temporal distribution of PMC publications; potential shifts due to evolving reporting standards, journal policies, and disease prevalence in literature."
   },
   "population": {
-    "target_population": "Patients described in published biomedical case reports and studies.",
-    "age_reported": false,
+    "target_population": "Patients described in published biomedical case reports and clinical studies.",
     "sex": "not-reported",
-    "ethnicity_reported": false,
-    "inclusion_criteria": "Presence of structured patient description in PMC full-text article.",
-    "exclusion_criteria": "Articles without explicit patient-level narrative or structured summary.",
+    "inclusion_criteria": "Patients explicitly described in PMC full-text articles with sufficient demographic/clinical detail for structured extraction.",
+    "exclusion_criteria": "Articles without identifiable patient-level narrative or insufficient structured information.",
     "vulnerable_groups": [
       "pediatric",
       "elderly"
     ],
-    "missing_groups": "Underrepresentation of non-English-speaking populations and patients from low-resource settings due to PMC's English-language and publication bias.",
+    "missing_groups": "Underrepresentation of non-English-language populations, low-resource settings, and patients from regions with low publication output.",
     "attribute_recording": {
-      "method": "computed"
+      "method": "computed",
+      "unknown_proportion": "Proportion of missing/unreported demographics and comorbidities not quantified in source."
     }
   },
   "geography": {
@@ -129,13 +132,13 @@
   },
   "annotation": {
     "annotation_type": "automatic",
-    "annotation_method": "NLP-based extraction from PMC full-text articles using rule-based and heuristic methods.",
+    "annotation_method": "NLP-based extraction from PMC full-text using rule-based and heuristic methods to identify and structure patient descriptions.",
     "annotators": {
       "type": "NLP"
     },
-    "labeling_provenance": "Labels derived from unstructured text in PMC articles; no manual curation.",
+    "labeling_provenance": "Labels derived from unstructured text in PMC articles; no human-verified ground truth provided.",
     "known_label_noise": true,
-    "label_noise_description": "Extraction errors due to formatting variability, ambiguous phrasing, and incomplete reporting in source articles.",
+    "label_noise_description": "Extraction errors due to formatting variability, ambiguous referents, and incomplete narrative structure in source text.",
     "annotation_guidelines_available": false
   }
 }

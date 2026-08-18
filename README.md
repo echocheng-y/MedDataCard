@@ -27,7 +27,7 @@
   - **基线卡**：仅用 `dataset_catalog.xlsx` 的真实元数据，零 LLM 依赖、零编造。
   - **Hybrid 卡**：基线 + LLM（OpenAI / Anthropic / **阿里云 DashScope**）从论文摘要 / 仓库 README 补充人口、地理、标注、伦理等字段。
 - **防编造护栏**：LLM 输出任何不符合 schema 的字段（类型 / 枚举 / 列表项违规）会被自动丢弃或回退基线值，并写入 `extraction.pending_verification`，全程可追溯、不静默造假。
-- **抽样验证（M4）**：内置 `evaluate_m4.py`，用人工 gold 标准评估 LLM 抽取准确率与 Cohen's κ。当前在 12 个跨模态数据集上：**字段精确匹配 86.7%，source_type 的 κ = 0.617（substantial）**。
+- **抽样验证（M4）**：内置 `evaluate_m4.py`，用人工 gold 标准评估 LLM 抽取准确率与 Cohen's κ。在全部 26 个跨模态数据集（130 个可比字段）上：**字段精确匹配 90.0%（117/130），source_type 的 κ = 0.675（substantial）**。
 - **批量生成**：`generate_all.py --llm` 一次生成全部 26 张卡（有摘要处 hybrid，无摘要处诚实回退 baseline）。
 
 ## 目录结构
@@ -42,8 +42,8 @@ MedDataCard/
 ├─ app.py                    # Streamlit Web 原型（查看/编辑/导出）
 ├─ generate_all.py           # 批量生成 26 张卡（--llm 开启 hybrid）
 ├─ evaluate_m4.py            # M4 抽样验证：gold 比对 + Cohen's κ
-├─ sources/                  # 12 个数据集的论文摘要/源文本（M4 输入）
-├─ gold/                     # 12 个人工 gold 标准（M4 比对基准）
+├─ sources/                  # 26 个数据集的论文摘要/源文本（M4 输入）
+├─ gold/                     # 26 个人工 gold 标准（M4 比对基准）
 ├─ datacards/                # 生成的数据卡示例输出（26 张）
 ├─ audit_summary.csv         # 跨数据集审计摘要（维度完整度/待核实/地理集中）
 ├─ requirements.txt
@@ -104,23 +104,24 @@ python evaluate_m4.py dashscope   # 或 openai / anthropic
 
 | 指标 | 数值 |
 |---|---|
-| 精确匹配准确率（60 个可比字段） | 52/60 = 86.7% |
-| Cohen's κ（source_type，12 数据集） | 0.617（substantial） |
-| 卡片 schema 合法性 | 12/12 通过 |
-| ST 维度完整度（hybrid 均值 vs 基线均值） | 62.6% vs 10.5% |
+| 精确匹配准确率（130 个可比字段，26 数据集） | 117/130 = 90.0% |
+| Cohen's κ（source_type，26 数据集） | 0.675（substantial） |
+| 卡片 schema 合法性 | 26/26 通过 |
+| ST 维度完整度（hybrid 均值 vs 纯目录基线） | 63.4% vs 10.5%（+52.9 pp） |
+| 数据集多样性评分（Diversity，26 数据集均值） | 0.485 |
 
-诚实说明：LLM 在事实 / 计数抽取上明显强于基线；`source_type` 等粗粒度枚举是弱项（会过修正），故 κ 未达完美——M4 已量化该偏倚，详见 `m4_report.json`。
+诚实说明：LLM 在事实 / 计数抽取上明显强于基线；未命中集中在 `source_type`（6/26，类别过泛化）与 `sample_counts` 键名错配（7/26；其中 3 个为同值异键、4 个为真实错误），而 modality / countries / intended_tasks 零未命中。κ 未达完美（0.675）正反映了这一偏倚，M4 已量化，详见 `m4_report.json`。
 
 ## 待办
 
 - [x] ST 数据卡 Schema（v0.2，JSON Schema 校验通过）
 - [x] 双轨抽取管线（基线 + LLM hybrid）+ 防编造护栏
 - [x] Web 原型（查看/编辑/导出）
-- [x] 抽样验证 + Cohen's κ（M4，κ=0.617）
+- [x] 抽样验证 + Cohen's κ（M4，26 数据集，κ=0.675）
 - [x] 批量生成 26 张卡
 - [x] 开源到 GitHub
 - [ ] 与 ST 官方 checklist 逐条对齐校正 schema
-- [ ] 审计仪表盘（偏倚可视化）、公开排行榜
+- [x] 审计仪表盘（合规/多样性审计 + 偏倚可视化，Tab 3 已上线）、跨数据集排行榜（Tab 2 已上线）
 
 ## 部署（Streamlit Community Cloud）
 
@@ -155,7 +156,7 @@ python evaluate_m4.py dashscope   # 或 openai / anthropic
 - **Schema**: `st_datacard.schema.json` (JSON Schema Draft 2020-12, v0.2) aligned with ST's four pillars + `medical_fields` taxonomy.
 - **Pipeline**: a catalog-only **baseline** card (zero fabrication) plus an LLM **hybrid** card (OpenAI / Anthropic / Alibaba **DashScope**) that fills demographics / geography / annotation / ethics fields from paper abstracts or repo READMEs.
 - **Anti-fabrication guardrail**: any LLM field violating the schema (type / enum / list items) is dropped or reverted to the baseline and logged in `extraction.pending_verification`.
-- **Validation (M4)**: `evaluate_m4.py` compares LLM output against a human gold standard. On 12 cross-modality datasets: **86.7% exact-match accuracy, Cohen's κ = 0.617 (substantial)** on `source_type`.
+- **Validation (M4)**: `evaluate_m4.py` compares LLM output against a human gold standard. On all 26 cross-modality datasets (130 scored cells): **90.0% exact-match accuracy, Cohen's κ = 0.675 (substantial)** on `source_type`.
 
 ```bash
 pip install -r requirements.txt

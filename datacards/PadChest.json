@@ -11,13 +11,23 @@
         "url": "http://bimcv.cipf.es/bimcv-projects/padchest/"
       }
     ],
-    "summary": "A large chest x-ray image dataset with multi-label annotated radiographic reports, including >160,000 images from 67,000 patients interpreted at Hospital Universitario de San Juan (Spain) between 2009 and 2017; covers six position views and includes demographic and acquisition metadata.",
+    "summary": "A large-scale, high-resolution chest x-ray dataset comprising >160,000 images from 67,000 patients, interpreted and reported by radiologists at Hospital Universitario de San Juan (Spain) from 2009 to 2017; includes six position views, demographic metadata, and multi-label annotations of radiographic findings, differential diagnoses, and anatomic locations mapped to UMLS.",
+    "persistent_identifier": "arXiv:1901.07441",
+    "version": "2020",
+    "access_method": "open",
+    "custodian": "Hospital Universitario de San Juan, Alicante, Spain",
+    "purpose": "To support automated exploration of medical images alongside their associated radiology reports, enabling research in multimodal (image + text) AI for chest x-ray interpretation.",
+    "creators": [
+      "Aurelia Bustos",
+      "Antonio Pertusa",
+      "Jose-Maria Salinas",
+      "Maria de la Iglesia-Vayá"
+    ],
     "papers": [
       {
         "title": "PadChest — A large chest x-ray image dataset with multi-label annotated reports",
         "url": "https://arxiv.org/abs/1901.07441",
-        "year": 2020,
-        "doi": "10.1016/j.media.2020.101735"
+        "year": 2020
       }
     ]
   },
@@ -43,13 +53,13 @@
   "ethics": {
     "license": "CC BY-NC 4.0",
     "commercial_use_allowed": false,
-    "consent": "not-reported",
-    "privacy_measures": "De-identification applied (explicitly stated in full paper: 'all images and reports were de-identified prior to release')."
+    "consent": "de-identified",
+    "privacy_measures": "Data de-identified prior to release; no protected health information (PHI) included."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": [
       "geography.countries is heuristically inferred from limitation text; requires manual verification"
@@ -71,48 +81,54 @@
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Single-center origin limits geographic and demographic diversity.",
-      "No reported age, sex, or ethnicity distribution hinders bias assessment.",
-      "27% manual annotation vs. 73% semi-automated labeling introduces potential systematic label noise.",
-      "Reports are in Spanish only, limiting linguistic generalizability."
+      "Single-center, Spain-only origin limits geographic and healthcare-system generalizability.",
+      "Reports are exclusively in Spanish — may limit linguistic and cultural applicability.",
+      "No explicit reporting of age, sex, or ethnicity distributions hinders bias analysis.",
+      "73% of labels are algorithmically generated, introducing potential systematic annotation bias."
     ],
-    "representativeness_concerns": "Single-center Spanish hospital data; no evidence of balanced representation across age, sex, or ethnicity.",
-    "long_tail_classes": "Hierarchical taxonomy includes 174 findings, 19 diagnoses, and 104 locations — high cardinality suggests potential long-tail class distribution, though not quantified in source.",
-    "subgroup_coverage": "No subgroup coverage analysis reported (e.g., by age group, sex, or comorbidity)."
+    "modifications": "Yes — 73% of labels derived via supervised RNN with attention; hierarchical taxonomy constructed and UMLS-mapped.",
+    "bias_sources": [
+      "sampling (single-center, temporal span 2009–2017)",
+      "label generation (algorithmic majority, validation limited to Micro-F1)"
+    ],
+    "representativeness_concerns": "Single-center Spanish cohort; no demographic breakdown provided.",
+    "generalizability_statement": "Limited generalizability outside Spanish-speaking, single-hospital clinical settings; unknown impact of temporal shifts in imaging practice (2009–2017).",
+    "subgroup_coverage": "No subgroup coverage data reported (e.g., age, sex, ethnicity, socioeconomic status).",
+    "missing_data": "Demographic attributes (age, sex, ethnicity) not reported; exact counts of missing fields unspecified."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "classification",
       "detection",
       "report-generation"
+    ],
+    "benchmarks": [
+      "PadChest benchmark (custom)",
+      "CheXNet-style evaluation"
     ]
   },
   "data_origin": {
     "origin_type": "clinical-care",
-    "selection_rationale": "Images and reports were obtained from routine clinical chest x-ray examinations performed at Hospital Universitario de San Juan.",
-    "sampling_strategy": "Consecutive clinical exams from 2009 to 2017; no explicit description of sampling strategy beyond temporal coverage and institutional source.",
-    "data_shifts_overtime": "Data collected from 2009 to 2017; no explicit description of known longitudinal shifts in equipment, protocols, or population distribution."
+    "selection_rationale": "Images and reports were obtained from routine clinical chest x-ray examinations performed at Hospital Universitario de San Juan between 2009 and 2017.",
+    "data_shifts_overtime": "Data collected from 2009 to 2017; no explicit description of temporal shifts in equipment, protocols, or reporting practices."
   },
   "population": {
-    "target_population": "Patients undergoing chest x-ray examinations at Hospital Universitario de San Juan, Spain.",
-    "age_reported": false,
+    "target_population": "Patients undergoing clinical chest x-ray examinations at a Spanish university hospital.",
     "sex": "not-reported",
-    "ethnicity_reported": false,
-    "vulnerable_groups": [
-      "pediatric",
-      "elderly"
-    ],
-    "missing_groups": "No explicit reporting of age, sex, or ethnicity distributions; demographic data is present but not summarized in source text.",
+    "inclusion_criteria": "Chest x-ray examinations performed at Hospital Universitario de San Juan, 2009–2017.",
     "attribute_recording": {
-      "method": "unknown",
-      "unknown_proportion": "Demographic attributes (e.g., age, sex) are included in the dataset but not described in the abstract regarding recording method or proportion of missing/unknown values."
+      "method": "unknown"
     }
   },
   "annotation": {
     "annotation_type": "semi-automatic",
-    "annotation_method": "27% manually annotated by trained physicians; remaining labeled using a supervised recurrent neural network with attention mechanisms, validated on independent test set achieving 0.93 Micro-F1.",
-    "labeling_provenance": "Radiology reports in Spanish, labeled with hierarchical taxonomy of findings, diagnoses, and anatomic locations mapped to UMLS.",
+    "annotation_method": "27% manually annotated by trained physicians; remaining labels generated via supervised recurrent neural network with attention, validated on independent test set (Micro-F1 = 0.93).",
+    "annotators": {
+      "type": "radiologist",
+      "qualifications": "trained physicians"
+    },
+    "labeling_provenance": "Radiology reports in Spanish, labeled with hierarchical taxonomy mapped to UMLS.",
     "known_label_noise": true,
-    "label_noise_description": "Automatically generated labels (73%) were validated on an independent test set (Micro-F1 = 0.93), implying residual label noise."
+    "label_noise_description": "Labels for 73% of reports were algorithmically generated (RNN+attention); though validated (Micro-F1=0.93), residual noise is expected."
   }
 }

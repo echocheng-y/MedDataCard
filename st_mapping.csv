@@ -1,0 +1,19 @@
+rec_id,pillar,recommendation,schema_field,schema_implemented,cards_filled,n_cards,fill_rate_pct,all_mapped_fields
+1.1a,①,Dataset summary,metadata.summary,Y,26,26,100.0,metadata.summary
+1.1b,①,Dataset identity and access,metadata.access_method,Y,26,26,100.0,metadata.persistent_identifier; metadata.access_method; metadata.version; metadata.custodian
+1.1c,①,Reasons for creation & purpose(s),metadata.purpose,Y,26,26,100.0,metadata.purpose; metadata.creators; metadata.funders; metadata.avoided_uses
+1.1d,①,Data origin,data_origin.origin_type,Y,26,26,100.0,data_origin.origin_type; data_origin.selection_rationale
+1.1e,①,Data sampling & aggregation from multiple sources,data_origin.sampling_strategy,Y,11,26,42.3,data_origin.sampling_strategy; data_origin.aggregation_multisource
+1.1f,①,Data shifts over time,data_origin.data_shifts_overtime,Y,6,26,23.1,data_origin.data_shifts_overtime
+1.2a,②,Composition of groups within dataset,population.target_population,Y,26,26,100.0,population.target_population; population.age_reported; population.sex; population.ethnicity_reported; population.missing_groups
+1.2b,②,Attributes of individuals (recording method),population.attribute_recording,Y,22,26,84.6,population.attribute_recording
+1.2c,②,Attributes of individuals (subgroups & disparate outcomes),population.subgroups_disparate_outcomes,Y,3,26,11.5,population.subgroups_disparate_outcomes
+1.3a,③,Declared limitations / sources of bias,bias_and_limitations.known_limitations,Y,26,26,100.0,bias_and_limitations.known_limitations
+1.3b,③,Modifications & synthetic data,bias_and_limitations.modifications,Y,17,26,65.4,bias_and_limitations.modifications
+1.3c,③,Sampling bias,bias_and_limitations.bias_sources,Y,21,26,80.8,bias_and_limitations.bias_sources
+1.3d,③,Aggregation bias,bias_and_limitations.bias_sources,Y,21,26,80.8,bias_and_limitations.bias_sources; data_origin.aggregation_multisource
+1.3e,③,Missing data,bias_and_limitations.missing_data,Y,22,26,84.6,bias_and_limitations.missing_data
+1.3f,③,Label noise / provenance,annotation.known_label_noise,Y,21,26,80.8,annotation.known_label_noise; annotation.labeling_provenance
+1.4a,④,Ethics & governance,ethics.consent,Y,26,26,100.0,ethics.consent; ethics.irb_approval; ethics.license; ethics.legal_compliance; ethics.data_protection_impact_assessment
+1.4b,④,Patient & public participation (PPIE),ethics.public_participation,Y,0,26,0.0,ethics.public_participation
+1.4c,④,Bias & impact assessments,ethics.bias_impact_assessment,Y,3,26,11.5,ethics.bias_impact_assessment; bias_and_limitations.representativeness_concerns

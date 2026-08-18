@@ -1,0 +1,12 @@
+{
+  "dataset_id": "ADNI",
+  "comparable": {
+    "modality.modalities": ["MRI", "genomic"],
+    "modality.sample_counts": {"patients": 2300},
+    "geography.countries": ["United States", "Canada"],
+    "tasks_and_use.intended_tasks": ["classification"],
+    "metadata.source_type": "registry",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

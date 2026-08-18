@@ -29,6 +29,7 @@
   },
   "medical_fields": [
     "Clinical Medicine",
+    "Imaging",
     "Internal Medicine",
     "Surgery",
     "Obstetrics & Gynecology"
@@ -37,7 +38,7 @@
     "modalities": [
       "text"
     ],
-    "scope": "Multiple medical specialties (e.g., internal medicine, pediatrics, surgery, obstetrics/gynecology, psychiatry)",
+    "scope": "multiple medical specialties",
     "data_format": [
       "JSON",
       "CSV"
@@ -50,38 +51,36 @@
     "license": "CC BY 4.0",
     "commercial_use_allowed": true,
     "consent": "not-reported",
-    "data_use_agreement": false
+    "data_use_agreement": false,
+    "privacy_measures": "Data is de-identified and derived from publicly available exam materials; no protected health information (PHI) present."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
-    "pending_verification": [
-      "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: medical_fields[list-items]"
-    ]
+    "pending_verification": []
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Source limited to USMLE-style exams, reflecting U.S.-centric medical education and practice norms",
-      "Lacks real-world clinical context (e.g., patient history, imaging, labs)",
-      "No demographic or socioeconomic attributes reported for examinees or question authors",
-      "Potential bias toward high-resource, English-dominant medical training environments"
+      "Derived exclusively from USMLE-style exams, limiting generalizability to non-US medical education systems or practice contexts.",
+      "Questions reflect standardized testing format and may not represent real-world clinical decision-making scenarios.",
+      "No demographic or subgroup metadata (e.g., age, sex, ethnicity) is associated with questions or answer options."
     ],
-    "representativeness_concerns": "USMLE-focused content may not represent global medical curricula, practice guidelines, or patient populations.",
-    "subgroup_coverage": "No subgroup demographic data available; no reporting on representation across gender, ethnicity, or geographic origin of question authors or examinees."
+    "representativeness_concerns": "US-centric; reflects US medical curriculum and licensing standards only.",
+    "subgroup_coverage": "No patient-level demographic subgroups included; questions are not annotated for population relevance."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "qa"
-    ]
+    ],
+    "excluded_tasks": "Clinical decision support in real-time care settings; direct patient-facing applications without validation."
   },
   "data_origin": {
     "origin_type": "clinical-trial"
   },
   "population": {
-    "target_population": "Candidates taking USMLE-style medical licensing examinations in the United States",
-    "missing_groups": "Non-US examinees; non-English-speaking populations; individuals outside formal medical training pathways"
+    "target_population": "Candidates taking USMLE-style medical licensing examinations in the United States"
   },
   "geography": {
     "countries": [
@@ -94,7 +93,7 @@
   },
   "annotation": {
     "annotation_type": "expert",
-    "labeling_provenance": "Questions and answers sourced directly from USMLE-style board exam materials; explanations provided by domain experts or derived from official answer keys.",
+    "labeling_provenance": "Questions and answers sourced from USMLE-style board exams; explanations provided by domain experts.",
     "known_label_noise": false
   }
 }

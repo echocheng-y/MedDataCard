@@ -13,8 +13,8 @@
     ],
     "summary": "BioASQ is an annual large-scale community challenge on biomedical semantic question answering over the biomedical literature. It releases a growing corpus of biomedical semantic resources and a set of tasks: large-scale online MEDLINE indexing, document retrieval, passage retrieval, snippet extraction, semantic/reading-comprehension question answering, and a novel biomedical semantic QA task that combines retrieval and generation. Training/development data are drawn from PubMed abstracts and full-text biomedical articles in English.",
     "access_method": "registration",
-    "purpose": "To advance biomedical semantic question answering, document/passage retrieval, snippet extraction, and literature-based summarization and QA.",
-    "avoided_uses": "Clinical prediction or patient-level decision support.",
+    "purpose": "To advance biomedical semantic question answering over the biomedical literature, emphasizing literature-based QA rather than clinical prediction.",
+    "avoided_uses": "Clinical decision support or patient-level prediction; non-English biomedical QA.",
     "creators": [
       "National Centre for Scientific Research \"Demokritos\" and collaborators"
     ],
@@ -26,15 +26,16 @@
     ]
   },
   "medical_fields": [
+    "Imaging",
+    "Internal Medicine",
     "Basic Medicine",
-    "Clinical Medicine",
-    "Imaging"
+    "Clinical Medicine"
   ],
   "modality": {
     "modalities": [
       "text"
     ],
-    "scope": "Biomedical literature (MEDLINE, PubMed, PMC)",
+    "scope": "Biomedical literature (PubMed/PMC)",
     "data_format": [
       "XML",
       "JSON",
@@ -46,12 +47,13 @@
     "commercial_use_allowed": false,
     "consent": "not-reported",
     "data_use_agreement": true,
-    "legal_compliance": "Complies with copyright terms of PubMed/PMC content used under fair use and licensing; no PHI or human-subject clinical data included."
+    "privacy_measures": "Data consists of publicly available PubMed/PMC literature; no personal health information.",
+    "legal_compliance": "Complies with PubMed/PMC reuse policies; CC BY-NC-SA 4.0 governs challenge data."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": [
       "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: tasks_and_use/intended_tasks[list-items]"
@@ -60,29 +62,28 @@
   "bias_and_limitations": {
     "known_limitations": [
       "Corpus changes annually; not static.",
-      "English-only; no multilingual support.",
-      "Literature-based QA only; not designed for clinical prediction or patient-level inference.",
+      "QA is literature/retrieval-oriented rather than patient-level.",
+      "English-only corpus.",
       "Requires registration for access."
     ],
-    "representativeness_concerns": "Biased toward English-language, peer-reviewed biomedical literature; excludes non-English, grey literature, and clinical EHR data.",
-    "generalizability_statement": "Results generalize to biomedical literature retrieval and QA tasks in English; limited generalizability to clinical settings, non-English languages, or real-time patient data."
+    "representativeness_concerns": "Biased toward English-language, PubMed-indexed, peer-reviewed biomedical literature; underrepresents non-English, grey, or clinical-source literature.",
+    "generalizability_statement": "Results may not generalize to non-English biomedical QA, clinical EHR-based QA, or domains outside PubMed/PMC coverage.",
+    "missing_data": "No patient-level or clinical encounter data; no demographic or geographic metadata about article origins."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "retrieval",
       "qa"
     ],
-    "excluded_tasks": "Clinical prediction, patient risk stratification, diagnostic classification from imaging or lab data."
+    "excluded_tasks": "Clinical prediction, patient-level diagnosis, multimodal reasoning"
   },
   "data_origin": {
     "origin_type": "research-derived",
     "selection_rationale": "Training/development data are drawn from PubMed abstracts and full-text biomedical articles in English.",
-    "sampling_strategy": "Annual release of curated biomedical literature (PubMed/PMC) and expert-constructed QA pairs; emphasis on semantic coverage and task diversity."
+    "sampling_strategy": "Annual release of curated biomedical literature (PubMed/PMC) for QA tasks; corpus grows yearly."
   },
   "population": {
-    "target_population": "Biomedical literature (PubMed/PMC abstracts and full-text articles in English)",
-    "sex": "not-reported",
-    "ethnicity_reported": false,
+    "target_population": "Biomedical literature (PubMed abstracts and full-text articles in English)",
     "attribute_recording": {
       "method": "computed"
     }
@@ -98,12 +99,12 @@
   },
   "annotation": {
     "annotation_type": "expert",
-    "annotation_method": "Expert-curated question-answer pairs and relevance judgments based on biomedical literature.",
+    "annotation_method": "Human experts construct questions and answers based on biomedical literature; some tasks involve NLP-assisted annotation (e.g., snippet extraction).",
     "annotators": {
       "type": "radiologist",
-      "qualifications": "Biomedical domain experts and information retrieval specialists"
+      "qualifications": "Biomedical domain experts and NLP researchers"
     },
-    "labeling_provenance": "Manually constructed by domain experts; some tasks use NLP-assisted annotation (e.g., MEDLINE indexing).",
+    "labeling_provenance": "Questions and answers manually created by domain experts from PubMed/PMC content.",
     "known_label_noise": false,
     "annotation_guidelines_available": false
   }

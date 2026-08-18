@@ -1,0 +1,1397 @@
+{
+  "provider": "dashscope",
+  "model": "(default)",
+  "degraded_to_baseline": false,
+  "n_datasets": 26,
+  "n_cells": 130,
+  "matched_cells": 117,
+  "exact_match_accuracy": 0.9,
+  "cohen_kappa_source_type": 0.675,
+  "cells": [
+    {
+      "dataset": "NIH ChestX-ray14",
+      "field": "modality.modalities",
+      "gold": [
+        "X-ray"
+      ],
+      "llm": [
+        "X-ray"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "NIH ChestX-ray14",
+      "field": "modality.sample_counts",
+      "gold": {
+        "images": 108948,
+        "patients": 32717
+      },
+      "llm": {
+        "images": 108948,
+        "patients": 32717
+      },
+      "match": true
+    },
+    {
+      "dataset": "NIH ChestX-ray14",
+      "field": "geography.countries",
+      "gold": [
+        "United States"
+      ],
+      "llm": [
+        "United States"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "NIH ChestX-ray14",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification",
+        "detection"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "NIH ChestX-ray14",
+      "field": "metadata.source_type",
+      "gold": "other",
+      "llm": "repository",
+      "match": false
+    },
+    {
+      "dataset": "MIMIC-CXR",
+      "field": "modality.modalities",
+      "gold": [
+        "X-ray"
+      ],
+      "llm": [
+        "X-ray"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MIMIC-CXR",
+      "field": "modality.sample_counts",
+      "gold": {
+        "images": 377110,
+        "studies": 227827
+      },
+      "llm": {
+        "images": 377110,
+        "studies": 227827
+      },
+      "match": true
+    },
+    {
+      "dataset": "MIMIC-CXR",
+      "field": "geography.countries",
+      "gold": [
+        "United States"
+      ],
+      "llm": [
+        "United States"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MIMIC-CXR",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification",
+        "detection"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MIMIC-CXR",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "repository",
+      "match": true
+    },
+    {
+      "dataset": "CheXpert",
+      "field": "modality.modalities",
+      "gold": [
+        "X-ray"
+      ],
+      "llm": [
+        "X-ray"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "CheXpert",
+      "field": "modality.sample_counts",
+      "gold": {
+        "images": 224316,
+        "patients": 65240
+      },
+      "llm": {
+        "images": 224316,
+        "patients": 65240
+      },
+      "match": true
+    },
+    {
+      "dataset": "CheXpert",
+      "field": "geography.countries",
+      "gold": [
+        "United States"
+      ],
+      "llm": [
+        "United States"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "CheXpert",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification",
+        "detection"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "CheXpert",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "repository",
+      "match": true
+    },
+    {
+      "dataset": "PadChest",
+      "field": "modality.modalities",
+      "gold": [
+        "X-ray"
+      ],
+      "llm": [
+        "X-ray"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "PadChest",
+      "field": "modality.sample_counts",
+      "gold": {
+        "images": 168861,
+        "patients": 67000,
+        "studies": 109931
+      },
+      "llm": {
+        "images": 168861,
+        "patients": 67000,
+        "studies": 109931
+      },
+      "match": true
+    },
+    {
+      "dataset": "PadChest",
+      "field": "geography.countries",
+      "gold": [
+        "Spain"
+      ],
+      "llm": [
+        "Spain"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "PadChest",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification",
+        "detection",
+        "report-generation"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "PadChest",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "repository",
+      "match": true
+    },
+    {
+      "dataset": "MIMIC-IV",
+      "field": "modality.modalities",
+      "gold": [
+        "EHR"
+      ],
+      "llm": [
+        "EHR"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MIMIC-IV",
+      "field": "modality.sample_counts",
+      "gold": {
+        "patients": 299712,
+        "admissions": 431231,
+        "icu_stays": 73181
+      },
+      "llm": {
+        "patients": 299712,
+        "studies": 431231,
+        "samples": 73181
+      },
+      "match": false
+    },
+    {
+      "dataset": "MIMIC-IV",
+      "field": "geography.countries",
+      "gold": [
+        "United States"
+      ],
+      "llm": [
+        "United States"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MIMIC-IV",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification",
+        "causal"
+      ],
+      "llm": [
+        "classification",
+        "causal"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MIMIC-IV",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "registry",
+      "match": false
+    },
+    {
+      "dataset": "eICU-CRD",
+      "field": "modality.modalities",
+      "gold": [
+        "EHR"
+      ],
+      "llm": [
+        "EHR"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "eICU-CRD",
+      "field": "modality.sample_counts",
+      "gold": {
+        "admissions": 200859,
+        "patients": 139367,
+        "hospitals": 208
+      },
+      "llm": {
+        "patients": 139367,
+        "studies": 200859
+      },
+      "match": false
+    },
+    {
+      "dataset": "eICU-CRD",
+      "field": "geography.countries",
+      "gold": [
+        "United States"
+      ],
+      "llm": [
+        "United States"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "eICU-CRD",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "eICU-CRD",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "registry",
+      "match": false
+    },
+    {
+      "dataset": "HAM10000",
+      "field": "modality.modalities",
+      "gold": [
+        "dermoscopy"
+      ],
+      "llm": [
+        "dermoscopy"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "HAM10000",
+      "field": "modality.sample_counts",
+      "gold": {
+        "images": 10015
+      },
+      "llm": {
+        "images": 10015,
+        "samples": 10015
+      },
+      "match": true
+    },
+    {
+      "dataset": "HAM10000",
+      "field": "geography.countries",
+      "gold": [
+        "Austria"
+      ],
+      "llm": [
+        "Austria"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "HAM10000",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "HAM10000",
+      "field": "metadata.source_type",
+      "gold": "paper-supplement",
+      "llm": "paper-supplement",
+      "match": true
+    },
+    {
+      "dataset": "Tabula Sapiens",
+      "field": "modality.modalities",
+      "gold": [
+        "single-cell"
+      ],
+      "llm": [
+        "genomic",
+        "single-cell"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "Tabula Sapiens",
+      "field": "modality.sample_counts",
+      "gold": {
+        "cells": 483152
+      },
+      "llm": {
+        "cells": 483152,
+        "patients": 15
+      },
+      "match": true
+    },
+    {
+      "dataset": "Tabula Sapiens",
+      "field": "geography.countries",
+      "gold": [],
+      "llm": null,
+      "match": true
+    },
+    {
+      "dataset": "Tabula Sapiens",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "Tabula Sapiens",
+      "field": "metadata.source_type",
+      "gold": "paper-supplement",
+      "llm": "paper-supplement",
+      "match": true
+    },
+    {
+      "dataset": "TotalSegmentator",
+      "field": "modality.modalities",
+      "gold": [
+        "CT"
+      ],
+      "llm": [
+        "CT"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "TotalSegmentator",
+      "field": "modality.sample_counts",
+      "gold": {
+        "images": 1204
+      },
+      "llm": {
+        "images": 1204,
+        "samples": 1204
+      },
+      "match": true
+    },
+    {
+      "dataset": "TotalSegmentator",
+      "field": "geography.countries",
+      "gold": [
+        "Switzerland"
+      ],
+      "llm": [
+        "Switzerland"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "TotalSegmentator",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "segmentation"
+      ],
+      "llm": [
+        "segmentation"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "TotalSegmentator",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "repository",
+      "match": true
+    },
+    {
+      "dataset": "MedQA",
+      "field": "modality.modalities",
+      "gold": [
+        "text"
+      ],
+      "llm": [
+        "text"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MedQA",
+      "field": "modality.sample_counts",
+      "gold": {
+        "questions": 12723
+      },
+      "llm": {
+        "samples": 12723
+      },
+      "match": false
+    },
+    {
+      "dataset": "MedQA",
+      "field": "geography.countries",
+      "gold": [
+        "United States"
+      ],
+      "llm": [
+        "United States"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MedQA",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "qa"
+      ],
+      "llm": [
+        "qa"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MedQA",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "repository",
+      "match": true
+    },
+    {
+      "dataset": "BraTS 2024",
+      "field": "modality.modalities",
+      "gold": [
+        "MRI"
+      ],
+      "llm": [
+        "MRI"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "BraTS 2024",
+      "field": "modality.sample_counts",
+      "gold": {
+        "gli_post_training": 1350,
+        "gli_pre_training": 1251
+      },
+      "llm": {
+        "patients": 11200
+      },
+      "match": false
+    },
+    {
+      "dataset": "BraTS 2024",
+      "field": "geography.countries",
+      "gold": [],
+      "llm": null,
+      "match": true
+    },
+    {
+      "dataset": "BraTS 2024",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "segmentation"
+      ],
+      "llm": [
+        "segmentation",
+        "classification"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "BraTS 2024",
+      "field": "metadata.source_type",
+      "gold": "challenge",
+      "llm": "challenge",
+      "match": true
+    },
+    {
+      "dataset": "ISIC 2024/历年",
+      "field": "modality.modalities",
+      "gold": [
+        "dermoscopy"
+      ],
+      "llm": [
+        "dermoscopy"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "ISIC 2024/历年",
+      "field": "modality.sample_counts",
+      "gold": {
+        "training_images": 401059,
+        "patients": 1042
+      },
+      "llm": {
+        "images": 434185,
+        "patients": 1042
+      },
+      "match": false
+    },
+    {
+      "dataset": "ISIC 2024/历年",
+      "field": "geography.countries",
+      "gold": [],
+      "llm": null,
+      "match": true
+    },
+    {
+      "dataset": "ISIC 2024/历年",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification",
+        "segmentation"
+      ],
+      "llm": [
+        "classification",
+        "segmentation"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "ISIC 2024/历年",
+      "field": "metadata.source_type",
+      "gold": "challenge",
+      "llm": "challenge",
+      "match": true
+    },
+    {
+      "dataset": "ADNI",
+      "field": "modality.modalities",
+      "gold": [
+        "MRI",
+        "genomic"
+      ],
+      "llm": [
+        "MRI",
+        "genomic",
+        "EHR",
+        "other"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "ADNI",
+      "field": "modality.sample_counts",
+      "gold": {
+        "patients": 2300
+      },
+      "llm": {
+        "patients": 2300
+      },
+      "match": true
+    },
+    {
+      "dataset": "ADNI",
+      "field": "geography.countries",
+      "gold": [
+        "United States",
+        "Canada"
+      ],
+      "llm": [
+        "United States",
+        "Canada"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "ADNI",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification",
+        "detection",
+        "causal"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "ADNI",
+      "field": "metadata.source_type",
+      "gold": "registry",
+      "llm": "registry",
+      "match": true
+    },
+    {
+      "dataset": "BioASQ",
+      "field": "modality.modalities",
+      "gold": [
+        "text"
+      ],
+      "llm": [
+        "text"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "BioASQ",
+      "field": "modality.sample_counts",
+      "gold": null,
+      "llm": null,
+      "match": true
+    },
+    {
+      "dataset": "BioASQ",
+      "field": "geography.countries",
+      "gold": [],
+      "llm": null,
+      "match": true
+    },
+    {
+      "dataset": "BioASQ",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "retrieval",
+        "qa"
+      ],
+      "llm": [
+        "retrieval",
+        "qa"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "BioASQ",
+      "field": "metadata.source_type",
+      "gold": "challenge",
+      "llm": "challenge",
+      "match": true
+    },
+    {
+      "dataset": "CHB-MIT",
+      "field": "modality.modalities",
+      "gold": [
+        "EEG"
+      ],
+      "llm": [
+        "EEG"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "CHB-MIT",
+      "field": "modality.sample_counts",
+      "gold": {
+        "patients": 23
+      },
+      "llm": {
+        "patients": 23,
+        "studies": 24,
+        "samples": 916
+      },
+      "match": true
+    },
+    {
+      "dataset": "CHB-MIT",
+      "field": "geography.countries",
+      "gold": [
+        "United States"
+      ],
+      "llm": [
+        "United States"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "CHB-MIT",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "detection"
+      ],
+      "llm": [
+        "detection"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "CHB-MIT",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "repository",
+      "match": true
+    },
+    {
+      "dataset": "CT-RATE",
+      "field": "modality.modalities",
+      "gold": [
+        "CT",
+        "text"
+      ],
+      "llm": [
+        "CT",
+        "text"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "CT-RATE",
+      "field": "modality.sample_counts",
+      "gold": {
+        "patients": 21304,
+        "images": 50188
+      },
+      "llm": {
+        "images": 50188,
+        "patients": 21304,
+        "studies": 25692
+      },
+      "match": true
+    },
+    {
+      "dataset": "CT-RATE",
+      "field": "geography.countries",
+      "gold": [
+        "Turkey"
+      ],
+      "llm": [
+        "Turkey"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "CT-RATE",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "detection",
+        "report-generation"
+      ],
+      "llm": [
+        "detection",
+        "report-generation",
+        "classification"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "CT-RATE",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "repository",
+      "match": true
+    },
+    {
+      "dataset": "MedMCQA",
+      "field": "modality.modalities",
+      "gold": [
+        "text"
+      ],
+      "llm": [
+        "text"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MedMCQA",
+      "field": "modality.sample_counts",
+      "gold": {
+        "samples": 194000
+      },
+      "llm": {
+        "samples": 194000
+      },
+      "match": true
+    },
+    {
+      "dataset": "MedMCQA",
+      "field": "geography.countries",
+      "gold": [
+        "India"
+      ],
+      "llm": [
+        "India"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MedMCQA",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "qa"
+      ],
+      "llm": [
+        "qa"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MedMCQA",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "challenge",
+      "match": false
+    },
+    {
+      "dataset": "MedMNIST",
+      "field": "modality.modalities",
+      "gold": [
+        "dermoscopy",
+        "X-ray",
+        "CT",
+        "pathology-WSI",
+        "fundus",
+        "other"
+      ],
+      "llm": [
+        "other",
+        "dermoscopy",
+        "X-ray",
+        "pathology-WSI",
+        "CT",
+        "fundus"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MedMNIST",
+      "field": "modality.sample_counts",
+      "gold": {
+        "images": 708000
+      },
+      "llm": {
+        "images": 708000,
+        "samples": 718000
+      },
+      "match": true
+    },
+    {
+      "dataset": "MedMNIST",
+      "field": "geography.countries",
+      "gold": [],
+      "llm": null,
+      "match": true
+    },
+    {
+      "dataset": "MedMNIST",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "MedMNIST",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "challenge",
+      "match": false
+    },
+    {
+      "dataset": "NIH DeepLesion",
+      "field": "modality.modalities",
+      "gold": [
+        "CT"
+      ],
+      "llm": [
+        "CT"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "NIH DeepLesion",
+      "field": "modality.sample_counts",
+      "gold": {
+        "patients": 4427,
+        "images": 32120
+      },
+      "llm": {
+        "images": 32120,
+        "patients": 4427
+      },
+      "match": true
+    },
+    {
+      "dataset": "NIH DeepLesion",
+      "field": "geography.countries",
+      "gold": [
+        "United States"
+      ],
+      "llm": [
+        "United States"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "NIH DeepLesion",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "detection"
+      ],
+      "llm": [
+        "detection"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "NIH DeepLesion",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "other",
+      "match": false
+    },
+    {
+      "dataset": "PMC-Patients",
+      "field": "modality.modalities",
+      "gold": [
+        "text"
+      ],
+      "llm": [
+        "text"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "PMC-Patients",
+      "field": "modality.sample_counts",
+      "gold": {
+        "patients": 167000
+      },
+      "llm": {
+        "patients": 167000
+      },
+      "match": true
+    },
+    {
+      "dataset": "PMC-Patients",
+      "field": "geography.countries",
+      "gold": [],
+      "llm": null,
+      "match": true
+    },
+    {
+      "dataset": "PMC-Patients",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "retrieval",
+        "qa"
+      ],
+      "llm": [
+        "retrieval",
+        "qa",
+        "other"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "PMC-Patients",
+      "field": "metadata.source_type",
+      "gold": "paper-supplement",
+      "llm": "paper-supplement",
+      "match": true
+    },
+    {
+      "dataset": "PhysioNet/CinC 2020",
+      "field": "modality.modalities",
+      "gold": [
+        "ECG"
+      ],
+      "llm": [
+        "ECG"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "PhysioNet/CinC 2020",
+      "field": "modality.sample_counts",
+      "gold": {
+        "samples": 43000
+      },
+      "llm": {
+        "samples": 43000
+      },
+      "match": true
+    },
+    {
+      "dataset": "PhysioNet/CinC 2020",
+      "field": "geography.countries",
+      "gold": [
+        "China",
+        "United States",
+        "Germany"
+      ],
+      "llm": [
+        "China",
+        "United States",
+        "Germany"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "PhysioNet/CinC 2020",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "PhysioNet/CinC 2020",
+      "field": "metadata.source_type",
+      "gold": "challenge",
+      "llm": "challenge",
+      "match": true
+    },
+    {
+      "dataset": "PubMedQA",
+      "field": "modality.modalities",
+      "gold": [
+        "text"
+      ],
+      "llm": [
+        "text"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "PubMedQA",
+      "field": "modality.sample_counts",
+      "gold": null,
+      "llm": {
+        "samples": 273200
+      },
+      "match": true
+    },
+    {
+      "dataset": "PubMedQA",
+      "field": "geography.countries",
+      "gold": [],
+      "llm": null,
+      "match": true
+    },
+    {
+      "dataset": "PubMedQA",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "qa"
+      ],
+      "llm": [
+        "qa"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "PubMedQA",
+      "field": "metadata.source_type",
+      "gold": "paper-supplement",
+      "llm": "paper-supplement",
+      "match": true
+    },
+    {
+      "dataset": "Sleep-EDF Expanded",
+      "field": "modality.modalities",
+      "gold": [
+        "EEG"
+      ],
+      "llm": [
+        "EEG",
+        "EHR"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "Sleep-EDF Expanded",
+      "field": "modality.sample_counts",
+      "gold": {
+        "samples": 197
+      },
+      "llm": {
+        "studies": 197
+      },
+      "match": false
+    },
+    {
+      "dataset": "Sleep-EDF Expanded",
+      "field": "geography.countries",
+      "gold": [
+        "Netherlands"
+      ],
+      "llm": [
+        "Netherlands"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "Sleep-EDF Expanded",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "Sleep-EDF Expanded",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "repository",
+      "match": true
+    },
+    {
+      "dataset": "TCGA",
+      "field": "modality.modalities",
+      "gold": [
+        "genomic",
+        "pathology-WSI"
+      ],
+      "llm": [
+        "genomic",
+        "single-cell",
+        "pathology-WSI"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "TCGA",
+      "field": "modality.sample_counts",
+      "gold": {
+        "patients": 11000
+      },
+      "llm": {
+        "patients": 11000
+      },
+      "match": true
+    },
+    {
+      "dataset": "TCGA",
+      "field": "geography.countries",
+      "gold": [
+        "United States"
+      ],
+      "llm": [
+        "United States"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "TCGA",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification",
+        "detection",
+        "segmentation",
+        "report-generation"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "TCGA",
+      "field": "metadata.source_type",
+      "gold": "registry",
+      "llm": "registry",
+      "match": true
+    },
+    {
+      "dataset": "UK Biobank",
+      "field": "modality.modalities",
+      "gold": [
+        "EHR",
+        "genomic",
+        "MRI"
+      ],
+      "llm": [
+        "EHR",
+        "genomic",
+        "MRI"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "UK Biobank",
+      "field": "modality.sample_counts",
+      "gold": {
+        "patients": 500000
+      },
+      "llm": null,
+      "match": false
+    },
+    {
+      "dataset": "UK Biobank",
+      "field": "geography.countries",
+      "gold": [
+        "United Kingdom"
+      ],
+      "llm": [
+        "United Kingdom"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "UK Biobank",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "classification"
+      ],
+      "llm": [
+        "classification",
+        "detection",
+        "segmentation",
+        "causal",
+        "report-generation"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "UK Biobank",
+      "field": "metadata.source_type",
+      "gold": "registry",
+      "llm": "registry",
+      "match": true
+    },
+    {
+      "dataset": "VinDr-CXR",
+      "field": "modality.modalities",
+      "gold": [
+        "X-ray"
+      ],
+      "llm": [
+        "X-ray"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "VinDr-CXR",
+      "field": "modality.sample_counts",
+      "gold": {
+        "images": 18000,
+        "patients": 18000
+      },
+      "llm": {
+        "images": 18000,
+        "patients": 18000,
+        "studies": 18000
+      },
+      "match": true
+    },
+    {
+      "dataset": "VinDr-CXR",
+      "field": "geography.countries",
+      "gold": [
+        "Vietnam"
+      ],
+      "llm": [
+        "Vietnam"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "VinDr-CXR",
+      "field": "tasks_and_use.intended_tasks",
+      "gold": [
+        "detection",
+        "classification"
+      ],
+      "llm": [
+        "detection",
+        "classification"
+      ],
+      "match": true
+    },
+    {
+      "dataset": "VinDr-CXR",
+      "field": "metadata.source_type",
+      "gold": "repository",
+      "llm": "repository",
+      "match": true
+    }
+  ],
+  "note": "license/commercial_use_allowed 由 catalog 基线提供，未计入 LLM 抽取准确率；本次评测覆盖全部 26 个数据集、130 个可比单元，source_type 的 Cohen's κ=0.675（substantial），基于跨 repository/challenge/paper-supplement/registry/other 的边际分布（26 个 source_type 单元，6 个判错）。其中基线启发式(_infer_source_type)原会判错的 3 个（BraTS 2024、HAM10000、Tabula Sapiens）经 LLM 修正后均正确。集合字段用 gold⊆llm 子集语义判定；sample_counts 用 gold 各键精确匹配（键缺失/值不符/为空即判错）。"
+}

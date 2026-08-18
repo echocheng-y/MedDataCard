@@ -12,14 +12,13 @@
       }
     ],
     "summary": "VinDr-CXR is a large chest X-ray dataset of 18,000 posteroanterior (PA) radiographs from 18,000 patients, collected at two hospitals in Vietnam. It provides 22 localized bounding-box annotations for findings plus 6 global (image-level) labels.",
-    "persistent_identifier": "https://physionet.org/content/vindr-cxr/",
+    "persistent_identifier": "https://doi.org/10.13026/54v7-9g05",
     "version": "2021",
     "access_method": "open",
     "custodian": "VinBigData",
     "purpose": "Used for lesion detection and image-level classification benchmarks.",
     "creators": [
-      "Nguyen et al.",
-      "VinBigData"
+      "Nguyen et al. (VinBigData)"
     ],
     "papers": [
       {
@@ -41,9 +40,10 @@
     "sample_counts": {
       "images": 18000,
       "patients": 18000,
+      "studies": 18000,
       "samples": 18000
     },
-    "scope": "chest",
+    "scope": "Chest, posteroanterior (PA) view",
     "data_format": [
       "DICOM"
     ]
@@ -52,14 +52,14 @@
     "license": "CC BY 4.0",
     "consent": "de-identified",
     "data_use_agreement": false,
-    "privacy_measures": "De-identification performed prior to release.",
+    "privacy_measures": "De-identified; no protected health information retained.",
     "commercial_use_allowed": true,
     "legal_compliance": "Complies with PhysioNet Open Data policy."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": [
       "geography.countries is heuristically inferred from limitation text; requires manual verification",
@@ -86,12 +86,11 @@
     "bias_sources": [
       "geographic bias (Vietnam-only)",
       "view bias (PA-only)",
-      "consensus labeling reduces inter-rater variability in test set"
+      "clinical setting bias (two hospitals)"
     ],
-    "representativeness_concerns": "Limited to two centers in Vietnam; lacks geographic, demographic, and technical diversity.",
-    "generalizability_statement": "Generalizability may be limited to adult PA chest X-rays in similar healthcare settings; not validated on lateral views or non-Vietnamese populations.",
-    "subgroup_coverage": "No explicit reporting on sex, age, or ethnicity subgroups.",
-    "missing_data": "No information provided on missingness of clinical metadata or imaging quality."
+    "representativeness_concerns": "90%+ Vietnamese, two-center, PA-only — limited generalizability to global or multi-view settings.",
+    "generalizability_statement": "Limited generalizability outside Vietnamese adult PA chest X-ray settings.",
+    "subgroup_coverage": "No explicit reporting on sex, age subgroups, or skin tone; known absence of pediatric, pregnancy, elderly, and critical-care representation."
   },
   "tasks_and_use": {
     "intended_tasks": [
@@ -99,25 +98,19 @@
       "classification"
     ],
     "benchmarks": [
-      "abnormality detection",
-      "image-level classification"
+      "VinDr-CXR benchmark"
     ],
-    "excluded_tasks": "Tasks requiring lateral views, pediatric populations, or fine-grained temporal follow-up."
+    "excluded_tasks": "Tasks requiring lateral views, pediatric imaging, or non-chest pathology."
   },
   "data_origin": {
     "origin_type": "clinical-care",
-    "selection_rationale": "18,000 posteroanterior (PA) radiographs from 18,000 patients, collected at two hospitals in Vietnam.",
-    "sampling_strategy": "All images are PA view; no lateral views included."
+    "selection_rationale": "Collected at two hospitals in Vietnam."
   },
   "population": {
     "target_population": "Adult chest X-ray patients",
     "sex": "not-reported",
-    "inclusion_criteria": "Posteroanterior chest X-rays from patients at two hospitals in Vietnam.",
-    "exclusion_criteria": "Lateral views; non-chest X-rays; pediatric or non-adult cases (implied by 'adult chest findings scoped').",
-    "vulnerable_groups": [
-      "adult"
-    ],
-    "missing_groups": "Pediatric, pregnancy, elderly subgroups not explicitly reported or confirmed; lateral-view absence limits anatomical completeness.",
+    "ethnicity_distribution": "Vietnamese",
+    "missing_groups": "Pediatric, pregnancy, elderly, and critical-care populations not explicitly reported; dataset scoped to adult chest findings.",
     "attribute_recording": {
       "method": "unknown"
     }
@@ -128,9 +121,9 @@
     "annotators": {
       "type": "radiologist",
       "count": 17,
-      "qualifications": "radiologists (training), senior radiologists (test consensus)"
+      "qualifications": "Radiologists (training set); senior radiologists (test set, consensus)"
     },
-    "labeling_provenance": "Bounding-box and global labels derived from clinical radiology reports and expert review.",
+    "labeling_provenance": "Bounding-box and global labels derived from expert radiologist annotation.",
     "known_label_noise": true,
     "label_noise_description": "Test set uses consensus labeling, limiting individual-rater variance; training set may contain inter-rater variability."
   }

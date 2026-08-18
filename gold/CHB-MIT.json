@@ -1,0 +1,12 @@
+{
+  "dataset_id": "CHB-MIT",
+  "comparable": {
+    "modality.modalities": ["EEG"],
+    "modality.sample_counts": {"patients": 23},
+    "geography.countries": ["United States"],
+    "tasks_and_use.intended_tasks": ["detection"],
+    "metadata.source_type": "repository",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

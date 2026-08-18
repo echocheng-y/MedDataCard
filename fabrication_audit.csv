@@ -1,0 +1,17 @@
+metric,value
+n_cards,26
+n_hybrid,26
+n_baseline,0
+total_pending_items,24
+guardrail_captures_auto_dropped,14
+geo_heuristic_pending,10
+other_pending,0
+capture_rate_per_hybrid_card,0.538
+pending_per_card,0.923
+dropped_field:medical_fields[list-items],7
+dropped_field:source_type,4
+dropped_field:modality/modalities[list-items],3
+dropped_field:tasks_and_use/intended_tasks[list-items],3
+dropped_field:data_collection_setting,2
+dropped_field:method,1
+dropped_field:annotation_type,1

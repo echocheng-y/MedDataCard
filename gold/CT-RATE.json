@@ -1,0 +1,12 @@
+{
+  "dataset_id": "CT-RATE",
+  "comparable": {
+    "modality.modalities": ["CT", "text"],
+    "modality.sample_counts": {"patients": 21304, "images": 50188},
+    "geography.countries": ["Turkey"],
+    "tasks_and_use.intended_tasks": ["detection", "report-generation"],
+    "metadata.source_type": "repository",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

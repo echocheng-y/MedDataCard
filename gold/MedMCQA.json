@@ -1,0 +1,12 @@
+{
+  "dataset_id": "MedMCQA",
+  "comparable": {
+    "modality.modalities": ["text"],
+    "modality.sample_counts": {"samples": 194000},
+    "geography.countries": ["India"],
+    "tasks_and_use.intended_tasks": ["qa"],
+    "metadata.source_type": "repository",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

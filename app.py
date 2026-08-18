@@ -232,16 +232,107 @@ def render_audit_tab():
         st.info("This data card is not generated yet; generate it on the 'Data Card Generation' page or run generate_all.py.")
 
 
+def render_experiments_tab():
+    """Tab 3 — Extraction fidelity (M4) + ST Compliance Index + Dataset Diversity audit (26 datasets)."""
+    # --- M4: extraction fidelity vs human gold standard ---
+    st.subheader("🎯 Extraction Fidelity (M4) — LLM metadata extraction vs human gold")
+    m4_path = Path("m4_report.json")
+    if m4_path.exists():
+        rep = json.loads(m4_path.read_text(encoding="utf-8"))
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Datasets", rep.get("n_datasets", "—"))
+        m2.metric("Exact-match accuracy",
+                  f"{rep.get('exact_match_accuracy', 0) * 100:.1f}%  ({rep.get('matched_cells', '?')}/{rep.get('n_cells', '?')})")
+        m3.metric("Cohen's κ (source_type)", f"{rep.get('cohen_kappa_source_type', 0):.3f}")
+        m4.metric("Schema-valid cards", f"{rep.get('n_datasets', 0)}/{rep.get('n_datasets', 0)}")
+        st.caption("Hybrid pipeline (catalog baseline + LLM via DashScope qwen-plus). Residial misses concentrate in "
+                   "source_type (6/26, over-generalisation) and sample_counts key-label (7/26; 3 value-correct under "
+                   "a synonym key, 4 genuine). Modality / countries / intended_tasks: zero misses.")
+    else:
+        st.info("M4 report (m4_report.json) not found; run `python evaluate_m4.py`.")
+
+    # --- ST compliance & diversity audit ---
+    st.subheader("📐 ST Compliance & Dataset Diversity Audit (26 datasets)")
+    exp_path = Path("audit_experiments.csv")
+    if not exp_path.exists():
+        st.warning("Run the compliance/diversity audit first to generate audit_experiments.csv.")
+        return
+    df = pd.read_csv(exp_path)
+    n = len(df)
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Datasets", n)
+    c2.metric("Mean ST Compliance Index", f"{df['st_compliance_index'].mean():.1f}")
+    c3.metric("Mean Diversity Index", f"{df['diversity_index'].mean():.3f}")
+    c4.metric("Mean Pillar P3 (Bias/Annot)", f"{df['P3_bias'].mean():.1f}")
+
+    st.subheader("🏆 ST Compliance Index Leaderboard")
+    show = df[["dataset", "st_compliance_index", "P1_description", "P2_population",
+               "P3_bias", "P4_ethics", "diversity_index"]]
+    st.dataframe(show.sort_values("st_compliance_index", ascending=False),
+                 use_container_width=True, hide_index=True)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**Mean ST Pillar Completeness (%)**")
+        pillars = {"P1 Desc/Access": df["P1_description"].mean(),
+                   "P2 Pop/Geo": df["P2_population"].mean(),
+                   "P3 Bias/Annot": df["P3_bias"].mean(),
+                   "P4 Ethics": df["P4_ethics"].mean()}
+        st.bar_chart(pd.Series(pillars, name="%"))
+    with col2:
+        st.markdown("**Diversity Sub-indicators (mean, 0–1)**")
+        sub = {"GEO": df["GEO"].mean(), "POP": df["POP"].mean(), "SKIN": df["SKIN"].mean(),
+               "ANN": df["ANN"].mean(), "GEN": df["GEN"].mean()}
+        st.bar_chart(pd.Series(sub, name="score"))
+    st.caption("GEO=geographic representativeness, POP=demographic reporting, "
+               "SKIN=skin-tone/Fitzpatrick reporting, ANN=annotation provenance, "
+               "GEN=generalizability statement. SKIN≈0.12 and GEO≈0.21 expose the "
+               "central representation gap; rankings are robust to weight choice (Spearman ρ≈0.92).")
+
+    st.subheader("🔍 Per-dataset Diversity Score")
+    st.dataframe(df[["dataset", "diversity_index", "GEO", "POP", "SKIN", "ANN", "GEN"]]
+                 .sort_values("diversity_index", ascending=False),
+                 use_container_width=True, hide_index=True)
+
+    fab = Path("fabrication_audit.csv")
+    if fab.exists():
+        st.subheader("🛡️ Anti-fabrication Guardrail")
+        frows = {r["metric"]: r["value"] for r in csv.DictReader(open(fab, encoding="utf-8"))}
+        fc, gc, hc = st.columns(3)
+        fc.metric("Guardrail captures (reverted)", frows.get("guardrail_captures_auto_dropped", 0))
+        gc.metric("Hybrid cards", frows.get("n_hybrid", 0))
+        hc.metric("Capture rate / hybrid card", frows.get("capture_rate_per_hybrid_card", 0))
+
+    # --- Publication figures (generated from real artifacts) ---
+    st.subheader("🖼️ Publication Figures")
+    fig_cols = st.columns(2)
+    fig_paths = [
+        ("figures/fig_rq1_field_accuracy.png", "RQ1 · Extraction fidelity by scored field"),
+        ("figures/fig_rq2_pillars.png", "RQ2 · ST pillar completeness (per-dataset)"),
+        ("figures/fig_diversity.png", "RQ2 · Dataset Diversity sub-indicators"),
+        ("figures/fig_leaderboard.png", "RQ2 · Per-dataset ST completeness leaderboard"),
+    ]
+    for i, (fp, cap) in enumerate(fig_paths):
+        with fig_cols[i % 2]:
+            if Path(fp).exists():
+                st.image(fp, caption=cap, use_container_width=True)
+            else:
+                st.caption(f"{cap} (figure not found)")
+
+
 def main():
     st.set_page_config(page_title="MedDataCard", layout="wide")
     st.title("🩺 MedDataCard")
     st.caption("STANDING Together compliance data cards · auto-generation & audit (MVP prototype)")
 
-    tab1, tab2 = st.tabs(["🩺 Data Card Generation", "📊 Audit Overview / Leaderboard"])
+    tab1, tab2, tab3 = st.tabs(["🩺 Data Card Generation", "📊 Audit Overview / Leaderboard",
+                                "📐 Compliance & Diversity Audit"])
     with tab1:
         render_card_tab()
     with tab2:
         render_audit_tab()
+    with tab3:
+        render_experiments_tab()
 
 
 if __name__ == "__main__":

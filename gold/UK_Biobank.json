@@ -1,0 +1,12 @@
+{
+  "dataset_id": "UK Biobank",
+  "comparable": {
+    "modality.modalities": ["EHR", "genomic", "MRI"],
+    "modality.sample_counts": {"patients": 500000},
+    "geography.countries": ["United Kingdom"],
+    "tasks_and_use.intended_tasks": ["classification"],
+    "metadata.source_type": "registry",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

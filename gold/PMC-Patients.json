@@ -1,0 +1,12 @@
+{
+  "dataset_id": "PMC-Patients",
+  "comparable": {
+    "modality.modalities": ["text"],
+    "modality.sample_counts": {"patients": 167000},
+    "geography.countries": [],
+    "tasks_and_use.intended_tasks": ["retrieval", "qa"],
+    "metadata.source_type": "paper-supplement",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

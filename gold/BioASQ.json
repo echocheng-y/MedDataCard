@@ -1,0 +1,11 @@
+{
+  "dataset_id": "BioASQ",
+  "comparable": {
+    "modality.modalities": ["text"],
+    "geography.countries": [],
+    "tasks_and_use.intended_tasks": ["retrieval", "qa"],
+    "metadata.source_type": "challenge",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

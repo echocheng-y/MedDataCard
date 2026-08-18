@@ -19,7 +19,7 @@
         "url": "https://www.cancerimagingarchive.net"
       }
     ],
-    "summary": "A comprehensive, multi-omics characterization of human cancers across 33 cancer types and more than 11,000 patients, combining genomic, transcriptomic, epigenomic, and proteomic data with associated clinical and (for many cohorts) radiologic/pathology imaging via TCIA.",
+    "summary": "The Cancer Genome Atlas (TCGA) is a comprehensive, multi-omics characterization of human cancers across 33 cancer types and more than 11,000 patients, combining genomic, transcriptomic, epigenomic, and proteomic data with associated clinical and (for many cohorts) radiologic/pathology imaging via TCIA.",
     "access_method": "open",
     "custodian": "National Cancer Institute (NCI) and National Human Genome Research Institute",
     "purpose": "Molecular subtyping, biomarker discovery, and imaging-genomics research.",
@@ -35,8 +35,9 @@
     ]
   },
   "medical_fields": [
-    "Basic Medicine",
-    "Clinical Medicine"
+    "Clinical Medicine",
+    "Imaging",
+    "Basic Medicine"
   ],
   "modality": {
     "modalities": [
@@ -57,22 +58,22 @@
     ]
   },
   "ethics": {
-    "license": "Open access with data use certification (GDC); dbGaP controlled access for some sensitive data.",
+    "license": "Open access with data use certification (mostly unrestricted)",
     "consent": "informed",
     "irb_approval": true,
     "data_use_agreement": true,
-    "privacy_measures": "De-identification per HIPAA Safe Harbor; certificate of confidentiality; controlled access for germline/genomic data.",
+    "privacy_measures": "De-identification per HIPAA standards; controlled access for sensitive data via dbGaP.",
     "commercial_use_allowed": true,
     "legal_compliance": "Compliant with U.S. Common Rule, HIPAA, and NIH Genomic Data Sharing Policy."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": [
       "geography.countries is heuristically inferred from limitation text; requires manual verification",
-      "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: medical_fields[list-items], modality/modalities[list-items]"
+      "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: modality/modalities[list-items]"
     ]
   },
   "geography": {
@@ -84,80 +85,76 @@
     ],
     "data_collection_setting": "multi-center",
     "collection_period": {
-      "start": "2006-01-01",
-      "end": "2018-01-01"
-    },
-    "institution_count": 100
+      "start": "2006",
+      "end": "2018"
+    }
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Retrospective design",
+      "Retrospective",
       "US-dominated enrollment",
       "Limited paired imaging-genomics cohorts",
       "Cross-platform/batch heterogeneity",
       "Uneven subtype representation"
     ],
-    "modifications": "Data harmonized via GDC bioinformatics pipelines; some synthetic controls used in assay validation.",
+    "modifications": "No synthetic data; data harmonized across platforms with batch correction where possible.",
     "bias_sources": [
-      "Sampling bias (US-centric, adult-focused)",
-      "Missingness bias (uneven biospecimen availability)",
-      "Technical bias (platform-specific batch effects)"
+      "sampling",
+      "geographic",
+      "technical (cross-platform/batch)"
     ],
-    "representativeness_concerns": "90%+ US-based; underrepresentation of pediatric, global south, and certain racial/ethnic groups.",
-    "long_tail_classes": "Rare cancer subtypes (e.g., adrenocortical carcinoma) have <100 cases.",
-    "generalizability_statement": "Findings may not generalize to non-US populations or pediatric cancers due to demographic and technical biases.",
-    "subgroup_coverage": "Limited coverage of non-White racial groups; sparse longitudinal follow-up for some cohorts.",
-    "missing_data": "Variable completeness of clinical variables (e.g., treatment history, comorbidities) and imaging metadata."
+    "representativeness_concerns": "US-dominated enrollment; limited international and minority representation.",
+    "long_tail_classes": "Uneven subtype representation.",
+    "generalizability_statement": "Findings may not generalize to non-US populations or underrepresented cancer subtypes.",
+    "subgroup_coverage": "Uneven coverage across ancestry groups, age groups, and cancer subtypes.",
+    "missing_data": "Missing clinical variables in some cohorts; missing imaging for many genomic cases."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "classification",
-      "detection",
       "segmentation",
-      "report-generation"
+      "report-generation",
+      "causal"
     ],
     "benchmarks": [
-      "TCGA-BRCA",
-      "TCGA-LUAD",
-      "TCGA-GBM"
+      "cBioPortal",
+      "TCGA Pan-Cancer Atlas"
     ],
-    "excluded_tasks": "Real-time clinical decision support; direct diagnostic use without regulatory validation."
+    "excluded_tasks": "Real-time clinical decision support; direct diagnostic use without validation."
   },
   "aliases": [
     "TCGA"
   ],
   "data_origin": {
     "origin_type": "registry",
-    "selection_rationale": "Retrospective collection across 33 cancer types to enable molecular subtyping and biomarker discovery.",
-    "sampling_strategy": "Cohort-based recruitment across multiple institutions; cancer-type stratified sampling.",
-    "aggregation_multisource": "Aggregated from >100 contributing institutions; harmonized via GDC pipelines with platform-specific normalization.",
-    "data_shifts_overtime": "Cross-platform/batch heterogeneity; evolution of sequencing/imaging technologies over time (2006–2018)."
+    "selection_rationale": "Comprehensive, multi-omics characterization of human cancers across 33 cancer types.",
+    "sampling_strategy": "Retrospective; US-led with international contributing sites.",
+    "aggregation_multisource": "Aggregates data from multiple institutions and platforms; includes cross-platform/batch heterogeneity."
   },
   "population": {
     "target_population": "Patients diagnosed with any of 33 cancer types.",
     "age_reported": true,
     "sex": "both",
     "ethnicity_reported": true,
-    "inclusion_criteria": "Diagnosis of a TCGA-listed cancer type; availability of biospecimens and clinical data.",
-    "exclusion_criteria": "Insufficient sample quality or missing core clinical annotations.",
+    "inclusion_criteria": "Diagnosis of one of 33 TCGA-defined cancer types.",
+    "exclusion_criteria": "Not specified in source text.",
     "vulnerable_groups": [
-      "elderly"
+      "cancer-patients"
     ],
-    "missing_groups": "Pediatric cancers underrepresented; limited representation of non-US racial/ethnic minorities.",
+    "missing_groups": "Limited paired imaging-genomics cohorts; US-dominated enrollment; uneven subtype representation.",
     "attribute_recording": {
       "method": "unknown"
     }
   },
   "annotation": {
     "annotation_type": "expert",
-    "annotation_method": "Pathology review by expert panels; molecular profiling via standardized assays; clinical annotation curation by site PIs.",
+    "annotation_method": "Expert curation of molecular and clinical annotations; pathology slide review by pathologists.",
     "annotators": {
       "type": "pathologist",
-      "qualifications": "Board-certified pathologists and molecular oncologists"
+      "qualifications": "Board-certified pathologists; molecular biologists"
     },
-    "labeling_provenance": "Clinical and molecular labels derived from centralized biospecimen processing and expert pathology review.",
+    "labeling_provenance": "Clinical and molecular annotations derived from centralized biospecimen processing and expert review.",
     "known_label_noise": true,
-    "label_noise_description": "Inter-observer variability in histopathology grading; batch effects in molecular assays.",
-    "annotation_guidelines_available": true
+    "label_noise_description": "Cross-platform/batch heterogeneity; uneven subtype representation; limited paired imaging-genomics cohorts."
   }
 }

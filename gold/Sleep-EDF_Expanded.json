@@ -1,0 +1,12 @@
+{
+  "dataset_id": "Sleep-EDF Expanded",
+  "comparable": {
+    "modality.modalities": ["EEG"],
+    "modality.sample_counts": {"samples": 197},
+    "geography.countries": ["Netherlands"],
+    "tasks_and_use.intended_tasks": ["classification"],
+    "metadata.source_type": "repository",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

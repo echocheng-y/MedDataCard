@@ -16,31 +16,35 @@
       }
     ],
     "summary": "A large-scale multiple-choice QA dataset for medical education and entrance examination, containing 194,000 questions spanning 21 medical subjects drawn from Indian medical qualifying examinations (AIIMS/NEET-PG). Each question has four answer options and a single correct answer, covering pre-clinical, para-clinical, and clinical medicine.",
+    "version": "2022",
     "access_method": "open",
+    "custodian": "AIIMS Delhi",
     "purpose": "Benchmarking medical knowledge of language models.",
+    "avoided_uses": "Clinical decision support; direct patient-facing applications; inference outside Indian medical curriculum context.",
     "creators": [
       "Pal et al."
-    ],
-    "funders": [
-      "AIIMS Delhi"
     ],
     "papers": [
       {
         "title": "MedMCQA: A Large-scale Multi-Subject Multi-Choice Dataset for Medical QA",
-        "url": "https://aclanthology.org/2022.acl-long.387/",
+        "url": "https://aclanthology.org/2022.acl-long.357/",
         "year": 2022,
-        "doi": "10.18653/v1/2022.acl-long.387"
+        "doi": "10.18653/v1/2022.acl-long.357"
       }
     ]
   },
   "medical_fields": [
-    "Clinical Medicine"
+    "Clinical Medicine",
+    "Imaging",
+    "Internal Medicine",
+    "Surgery",
+    "Obstetrics & Gynecology"
   ],
   "modality": {
     "modalities": [
       "text"
     ],
-    "scope": "21 medical subjects covering pre-clinical, para-clinical, and clinical medicine",
+    "scope": "21 medical subjects including pre-clinical, para-clinical, and clinical medicine.",
     "data_format": [
       "JSON",
       "CSV"
@@ -53,16 +57,18 @@
     "license": "MIT",
     "commercial_use_allowed": true,
     "consent": "not-reported",
-    "data_use_agreement": false
+    "data_use_agreement": false,
+    "privacy_measures": "Data contains no personally identifiable information (PII); derived from publicly released exam materials.",
+    "legal_compliance": "Complies with Indian copyright norms for publicly released examination content; no PII or sensitive health data.",
+    "bias_impact_assessment": "Explicitly acknowledges India-centric curriculum as a limitation affecting global applicability and equity."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": [
-      "geography.countries is heuristically inferred from limitation text; requires manual verification",
-      "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: medical_fields[list-items]"
+      "geography.countries is heuristically inferred from limitation text; requires manual verification"
     ]
   },
   "geography": {
@@ -72,35 +78,69 @@
     "regions": [
       "Asia"
     ],
-    "data_collection_setting": "registry"
+    "data_collection_setting": "registry",
+    "institution_count": 1
   },
   "bias_and_limitations": {
     "known_limitations": [
       "Derived from entrance exams (not clinical practice)",
-      "Single-correct-answer format",
+      "Single-correct-answer format does not reflect diagnostic uncertainty",
       "No explicit reasoning-chain labels",
-      "India-centric curriculum"
+      "India-centric curriculum limits generalizability"
     ],
-    "representativeness_concerns": "Not representative of global medical curricula or clinical decision-making contexts.",
-    "subgroup_coverage": "Limited to Indian medical student cohort; no demographic subgroup reporting (e.g., age, gender, institution)."
+    "modifications": "Questions were reformatted into standardized JSON/CSV; no semantic modification.",
+    "bias_sources": [
+      "Geographic bias (India-only curriculum)",
+      "Format bias (multiple-choice abstraction from real-world clinical reasoning)",
+      "Temporal bias (exam years not specified; possible outdated content)"
+    ],
+    "representativeness_concerns": "Over-represents Indian medical education context; underrepresents global clinical practice, diverse patient populations, and non-exam-based knowledge assessment.",
+    "long_tail_classes": "Subject distribution uneven; some specialties (e.g., community medicine, forensic medicine) have fewer questions.",
+    "generalizability_statement": "Results may not generalize to non-Indian medical licensing systems or clinical decision-making contexts.",
+    "subgroup_coverage": "No coverage of demographic subgroups (age, sex, ethnicity) — questions are decontextualized from patient attributes.",
+    "missing_data": "No patient-level or demographic metadata; no image or multimodal data."
   },
+  "aliases": [
+    "MedMCQA"
+  ],
   "data_origin": {
     "origin_type": "research-derived",
-    "selection_rationale": "Questions drawn from Indian medical qualifying examinations (AIIMS/NEET-PG) for medical education and entrance examination purposes."
+    "selection_rationale": "Questions drawn from Indian medical qualifying examinations (AIIMS/NEET-PG) to cover breadth of medical knowledge required for licensure.",
+    "aggregation_multisource": "Aggregated from multiple years and variants of AIIMS and NEET-PG exams.",
+    "data_shifts_overtime": "Curriculum changes across exam years may introduce temporal shifts in topic emphasis or difficulty."
   },
   "population": {
-    "target_population": "Indian medical students preparing for postgraduate entrance examinations (AIIMS/NEET-PG)",
-    "missing_groups": "Non-Indian medical trainees; practitioners in clinical practice; non-English-speaking or non-Indian curriculum contexts."
+    "target_population": "Indian medical students preparing for postgraduate entrance examinations (AIIMS/NEET-PG).",
+    "age_reported": false,
+    "sex": "not-reported",
+    "ethnicity_reported": false,
+    "inclusion_criteria": "Questions appearing in official AIIMS and NEET-PG examinations between unspecified years.",
+    "exclusion_criteria": "Questions not part of official AIIMS/NEET-PG syllabi or formats.",
+    "missing_groups": "Non-Indian medical trainees; practitioners outside India-centric curricula; non-English-speaking learners (all questions in English).",
+    "attribute_recording": {
+      "method": "unknown"
+    },
+    "subgroups_disparate_outcomes": "India-centric curriculum limits generalizability to other national licensing frameworks (e.g., USMLE, PLAB); potential disparities for learners from resource-limited or non-English-medium backgrounds."
   },
   "annotation": {
     "annotation_type": "expert",
-    "labeling_provenance": "Correct answers sourced from official AIIMS/NEET-PG exam answer keys.",
-    "known_label_noise": false
+    "annotation_method": "Questions and answers sourced directly from official AIIMS/NEET-PG examinations; correctness verified by domain experts.",
+    "annotators": {
+      "type": "examination-board",
+      "qualifications": "Indian medical licensing examination authorities"
+    },
+    "labeling_provenance": "Correct answers are official keys from AIIMS/NEET-PG exams.",
+    "known_label_noise": false,
+    "annotation_guidelines_available": false
   },
   "tasks_and_use": {
     "intended_tasks": [
-      "qa"
+      "qa",
+      "classification"
     ],
-    "excluded_tasks": "Clinical decision support, real-time diagnosis, open-ended explanation generation (due to lack of reasoning-chain labels)."
+    "benchmarks": [
+      "MedMCQA leaderboard (HuggingFace)"
+    ],
+    "excluded_tasks": "Clinical decision support, patient-facing tools, open-ended generation, multimodal reasoning"
   }
 }

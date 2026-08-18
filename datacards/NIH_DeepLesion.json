@@ -4,11 +4,11 @@
   "dataset_name": "NIH DeepLesion",
   "metadata": {
     "source_type": "other",
-    "homepage": "https://nihcc.box.com/v/deeplesion",
+    "homepage": "https://nihcc.app.box.com/v/DeepLesion",
     "repositories": [
       {
         "platform": "Kaggle",
-        "url": "https://www.kaggle.com/datasets/nihdeeplesion/deeplesion"
+        "url": "https://www.kaggle.com/datasets/nihcc/deeplesion"
       }
     ],
     "summary": "DeepLesion is a large-scale CT lesion dataset gathered from the NIH Clinical Center, containing 32,735 lesions across 32,120 axial CT slices from 4,427 patients, spanning various body parts (lung, liver, kidney, bone, etc.).",
@@ -37,24 +37,20 @@
       "images": 32120,
       "patients": 4427
     },
-    "scope": "various body parts (lung, liver, kidney, bone, etc.)",
-    "data_format": [
-      "DICOM"
-    ]
+    "scope": "various body parts (lung, liver, kidney, bone, etc.)"
   },
   "ethics": {
     "license": "NIH Clinical Center research-use license",
     "consent": "de-identified",
     "irb_approval": true,
     "data_use_agreement": false,
-    "privacy_measures": "de-identified",
     "commercial_use_allowed": false,
-    "legal_compliance": "compliant with NIH Clinical Center data policies"
+    "legal_compliance": "Compliant with NIH Clinical Center data governance policies"
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": [
       "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: source_type, tasks_and_use/intended_tasks[list-items]"
@@ -67,45 +63,25 @@
       "heterogeneous lesion types pooled",
       "no per-lesion pathology confirmation"
     ],
-    "modifications": "not reported",
-    "bias_sources": [
-      "label derivation from PACS bookmarks (not ground-truth pathology)",
-      "single-center sampling"
-    ],
-    "representativeness_concerns": "single-center (NIH Clinical Center), US-only",
-    "long_tail_classes": "heterogeneous lesion types pooled",
-    "generalizability_statement": "limited generalizability beyond NIH Clinical Center and US clinical CT practice",
-    "subgroup_coverage": "not reported",
-    "missing_data": "not reported"
+    "representativeness_concerns": "single-center, United States only",
+    "subgroup_coverage": "no demographic subgroup information reported"
   },
   "tasks_and_use": {
     "intended_tasks": [
       "detection"
-    ],
-    "benchmarks": [
-      "DeepLesion benchmark"
-    ],
-    "excluded_tasks": "segmentation, classification without bounding box context"
+    ]
   },
   "data_origin": {
     "origin_type": "clinical-care",
-    "selection_rationale": "lesions gathered from PACS bookmarks (radiologist-measured marks) at NIH Clinical Center",
-    "sampling_strategy": "not reported",
-    "aggregation_multisource": "single-source (NIH Clinical Center)",
-    "data_shifts_overtime": "not reported"
+    "selection_rationale": "lesions mined from PACS bookmarks (radiologist-measured marks) at NIH Clinical Center"
   },
   "population": {
-    "target_population": "patients undergoing CT imaging at NIH Clinical Center",
-    "age_reported": false,
-    "sex": "not-reported",
-    "ethnicity_reported": false,
-    "inclusion_criteria": "lesions with radiologist-placed PACS bookmarks",
-    "exclusion_criteria": "not reported",
-    "missing_groups": "not reported",
+    "target_population": "patients undergoing clinical CT imaging at NIH Clinical Center",
+    "vulnerable_groups": [
+      "critical-care"
+    ],
     "attribute_recording": {
-      "method": "proxy-reported",
-      "unknown_proportion": "not reported",
-      "recoding_modifications": "not reported"
+      "method": "proxy-reported"
     }
   },
   "geography": {
@@ -116,19 +92,16 @@
       "North America"
     ],
     "data_collection_setting": "single-center",
-    "collection_period": {},
     "institution_count": 1
   },
   "annotation": {
     "annotation_type": "semi-automatic",
     "annotation_method": "bounding boxes with RECIST measurements mined from PACS bookmarks (radiologist-measured marks)",
     "annotators": {
-      "type": "radiologist",
-      "qualifications": "NIH Clinical Center radiologists"
+      "type": "radiologist"
     },
     "labeling_provenance": "PACS bookmarks (radiologist-measured marks), not full segmentation masks",
     "known_label_noise": true,
-    "label_noise_description": "boxes derived from PACS bookmarks (RECIST), not full segmentation; no per-lesion pathology confirmation",
-    "annotation_guidelines_available": false
+    "label_noise_description": "boxes derived from PACS bookmarks (RECIST), not full segmentation; no per-lesion pathology confirmation"
   }
 }

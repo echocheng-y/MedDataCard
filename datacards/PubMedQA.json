@@ -22,21 +22,21 @@
     "papers": [
       {
         "title": "PubMedQA: A Dataset for Biomedical Research Question Answering",
-        "url": "https://aclanthology.org/D19-1248/",
+        "url": "https://pubmedqa.github.io",
         "year": 2019
       }
     ]
   },
   "medical_fields": [
     "Clinical Medicine",
-    "Basic Medicine",
-    "Imaging"
+    "Imaging",
+    "Basic Medicine"
   ],
   "modality": {
     "modalities": [
       "text"
     ],
-    "scope": "Biomedical research questions and PubMed abstracts",
+    "scope": "Biomedical literature (PubMed abstracts)",
     "data_format": [
       "JSON",
       "TSV"
@@ -50,13 +50,13 @@
     "commercial_use_allowed": true,
     "consent": "not-reported",
     "data_use_agreement": false,
-    "privacy_measures": "No personal health information; derived from publicly available PubMed abstracts.",
-    "legal_compliance": "Complies with PubMed's public use terms; no PHI."
+    "privacy_measures": "Data derived from publicly available PubMed abstracts; no protected health information.",
+    "legal_compliance": "Complies with PubMed's public use terms; no PHI included."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": []
   },
@@ -64,19 +64,19 @@
     "known_limitations": [
       "Derived from PubMed abstracts (not patient data)",
       "Ternary answer space (Yes/No/Maybe) restricts granularity",
-      "Expert-labeled set is small (1,000 samples)",
+      "Expert-labeled set is small (n=1,000)",
       "Evidence limited to abstract-level text"
     ],
-    "modifications": "PQA-A artificially generated from abstract rationales; PQA-U unlabeled.",
+    "modifications": "Artificially generated QA pairs (PQA-A) from abstract rationales.",
     "bias_sources": [
-      "Sampling bias (abstracts only, no full-text or clinical context)",
-      "Labeling bias (small expert set, synthetic expansion)"
+      "Sampling bias (abstracts selected for question generation)",
+      "Labeling bias (small expert set)",
+      "Coverage bias (English-only, PubMed-indexed literature)"
     ],
-    "representativeness_concerns": "Abstracts reflect published, English-language, peer-reviewed literature — underrepresents non-English, preprint, or negative-result studies.",
-    "long_tail_classes": "Ternary classification; 'Maybe' class may be underrepresented or inconsistently applied.",
-    "generalizability_statement": "Results may not generalize to full-text biomedical documents, clinical notes, or non-English literature.",
-    "subgroup_coverage": "No demographic or geographic subgroup coverage — abstracts lack patient-level attributes.",
-    "missing_data": "PQA-U has no labels; PQA-A labels are synthetic and may lack expert validation."
+    "representativeness_concerns": "Limited to English-language PubMed abstracts; excludes full-text, non-English, or non-indexed biomedical literature.",
+    "generalizability_statement": "Results may not generalize to clinical QA, non-abstract text, or multilingual settings.",
+    "subgroup_coverage": "No demographic or geographic subgroup coverage — abstracts lack such metadata.",
+    "missing_data": "PQA-U subset is unlabeled; PQA-A labels are synthetic."
   },
   "data_origin": {
     "origin_type": "research-derived",
@@ -86,10 +86,7 @@
     "target_population": "Biomedical research questions grounded in English-language PubMed abstracts",
     "sex": "not-reported",
     "inclusion_criteria": "Questions answerable with Yes/No/Maybe based on a single PubMed abstract.",
-    "missing_groups": "No patient-level or demographic population; not applicable.",
-    "attribute_recording": {
-      "method": "unknown"
-    }
+    "exclusion_criteria": "Questions requiring external knowledge or multi-abstract synthesis."
   },
   "geography": {
     "countries": [
@@ -102,12 +99,12 @@
   },
   "annotation": {
     "annotation_type": "expert",
-    "annotation_method": "Manually annotated by experts for PQA-L; PQA-A generated from abstract rationales.",
+    "annotation_method": "Manual annotation by experts for PQA-L; artificial generation from abstract rationales for PQA-A.",
     "annotators": {
-      "type": "researcher",
-      "qualifications": "Biomedical domain expertise"
+      "type": "radiologist"
     },
-    "labeling_provenance": "PQA-L: expert-annotated; PQA-A: artificially generated from abstract rationales; PQA-U: unlabeled."
+    "labeling_provenance": "PQA-L: expert-annotated; PQA-A: artificially generated from abstract rationales; PQA-U: unlabeled.",
+    "known_label_noise": false
   },
   "tasks_and_use": {
     "intended_tasks": [
@@ -116,6 +113,6 @@
     "benchmarks": [
       "PubMedQA benchmark"
     ],
-    "excluded_tasks": "Tasks requiring patient-level data, real-world clinical decision support, or fine-grained answer spans."
+    "excluded_tasks": "Clinical decision support, patient-facing applications, real-time diagnosis"
   }
 }

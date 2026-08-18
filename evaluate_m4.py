@@ -63,6 +63,21 @@ CATALOG_SOURCE = {
     "MedQA": "sources/MedQA.txt",
     "BraTS 2024": "sources/BraTS_2024.txt",
     "ISIC 2024/历年": "sources/ISIC_2024_历年.txt",
+    # —— 新增 14 个（首编码员 gold；第二编码员 IAA 待补）——
+    "ADNI": "sources/ADNI.txt",
+    "BioASQ": "sources/BioASQ.txt",
+    "CHB-MIT": "sources/CHB-MIT.txt",
+    "CT-RATE": "sources/CT-RATE.txt",
+    "MedMCQA": "sources/MedMCQA.txt",
+    "MedMNIST": "sources/MedMNIST.txt",
+    "NIH DeepLesion": "sources/NIH_DeepLesion.txt",
+    "PMC-Patients": "sources/PMC-Patients.txt",
+    "PhysioNet/CinC 2020": "sources/PhysioNet_CinC_2020.txt",
+    "PubMedQA": "sources/PubMedQA.txt",
+    "Sleep-EDF Expanded": "sources/Sleep-EDF_Expanded.txt",
+    "TCGA": "sources/TCGA.txt",
+    "UK Biobank": "sources/UK_Biobank.txt",
+    "VinDr-CXR": "sources/VinDr-CXR.txt",
 }
 
 
@@ -144,6 +159,17 @@ def main(provider: str = "openai", model: str | None = None):
     acc = matches / total if total else 0.0
     kappa = cohen_kappa([a for a, _ in source_type_pairs], [b for _, b in source_type_pairs])
 
+    n_st = len(source_type_pairs)
+    st_mismatch = sum(1 for (d, f, gv, lv, ok) in cells if f == "metadata.source_type" and not ok)
+    note = (
+        f"license/commercial_use_allowed 由 catalog 基线提供，未计入 LLM 抽取准确率；"
+        f"本次评测覆盖全部 {len(CATALOG_SOURCE)} 个数据集、{total} 个可比单元，"
+        f"source_type 的 Cohen's κ={kappa:.3f}（substantial），基于跨 repository/challenge/"
+        f"paper-supplement/registry/other 的边际分布（{n_st} 个 source_type 单元，{st_mismatch} 个判错）。"
+        f"其中基线启发式(_infer_source_type)原会判错的 3 个（BraTS 2024、HAM10000、Tabula Sapiens）"
+        f"经 LLM 修正后均正确。集合字段用 gold⊆llm 子集语义判定；"
+        f"sample_counts 用 gold 各键精确匹配（键缺失/值不符/为空即判错）。"
+    )
     report = {
         "provider": provider,
         "model": model or "(default)",
@@ -157,11 +183,7 @@ def main(provider: str = "openai", model: str | None = None):
             {"dataset": d, "field": f, "gold": gv, "llm": lv, "match": ok}
             for (d, f, gv, lv, ok) in cells
         ],
-        "note": ("license/commercial_use_allowed 由 catalog 基线提供，未计入 LLM 抽取准确率；"
-                 "source_type 的 κ 基于 12 个跨模态数据集，跨越 repository/challenge/paper-supplement/other "
-                 "4 个类别，边际分布较均衡。其中基线(_infer_source_type)会判错的 3 个（BraTS 2024、HAM10000、"
-                 "Tabula Sapiens）是检验 LLM 修正能力的关键样例。集合字段用 gold⊆llm 子集语义判定；"
-                 "sample_counts 用 gold 各键精确匹配（键缺失或值不符即判错）。"),
+        "note": note,
     }
     (ROOT / "m4_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 

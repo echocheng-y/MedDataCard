@@ -39,21 +39,25 @@ schema-illegal content into a shipped card.
 
 ### 2.2 Evaluation corpus
 
-12 datasets were sampled to span **six modalities** and to break the homogeneity of an earlier 4-dataset
-chest-X-ray pilot:
+26 datasets were sampled to span **nine primary modalities** and to break the homogeneity of an earlier
+4-dataset chest-X-ray pilot:
 
-| Modality | Datasets |
+| Primary modality | Datasets |
 |---|---|
-| EHR / clinical | MIMIC-IV, eICU-CRD |
-| Radiography (chest X-ray) | NIH ChestX-ray14, MIMIC-CXR, CheXpert, PadChest |
+| EHR / clinical | MIMIC-IV, eICU-CRD, UK Biobank |
+| Radiography (X-ray) | NIH ChestX-ray14, MIMIC-CXR, CheXpert, PadChest, VinDr-CXR |
+| CT | TotalSegmentator, CT-RATE, NIH DeepLesion |
+| MRI | BraTS 2024, ADNI |
 | Dermatoscopy | HAM10000, ISIC 2024 |
+| Pathology (WSI) / Genomics | TCGA, MedMNIST* |
 | Single-cell transcriptomics | Tabula Sapiens |
-| CT | TotalSegmentator |
-| Text (medical QA) | MedQA |
-| MRI (brain Tumor) | BraTS 2024 |
+| Text (medical QA / retrieval) | MedQA, MedMCQA, BioASQ, PubMedQA, PMC-Patients |
+| Physiological (EEG / ECG) | CHB-MIT, Sleep-EDF Expanded, PhysioNet/CinC 2020 |
 
-The `source_type` gold labels deliberately span all four relevant schema categories
-(`repository`, `challenge`, `paper-supplement`, `other`) so that the categorical agreement metric is
+\*MedMNIST spans ten sub-modalities (dermoscopy, X-ray, CT, pathology-WSI, fundus, and others).
+
+The `source_type` gold labels deliberately span five relevant schema categories
+(`repository`, `challenge`, `paper-supplement`, `registry`, `other`) so that the categorical agreement metric is
 not degenerate.
 
 ### 2.3 Gold standard (honest scope)
@@ -74,7 +78,7 @@ only as provenance redundancy).
 
 ### 2.4 Metrics
 
-- **Exact-match accuracy** over the 5 scored fields × 12 datasets = 60 cells. Set-valued fields use
+- **Exact-match accuracy** over the 5 scored fields × 26 datasets = 130 cells. Set-valued fields use
   *subset semantics* (`gold ⊆ llm`); count/categorical fields require exact equality.
 - **Cohen's κ** computed only on `source_type` (the single categorical field), to measure
   beyond-chance agreement and to expose baseline-vs-LLM correction behavior.
@@ -83,37 +87,49 @@ only as provenance redundancy).
 
 ## 3. Results
 
-Run on DashScope `qwen-plus`, no API-key degradation (all 12 cards produced by the hybrid track).
+Run on DashScope `qwen-plus`, no API-key degradation (all 26 cards produced by the hybrid track).
 
 ### 3.1 Overall accuracy
 
-**52 / 60 = 86.7%** exact-match. All 16 factual/count cells (modalities, sample counts, countries,
-intended tasks) matched; the misses concentrate in the coarse `source_type` enum (4 / 12).
+**117 / 130 = 90.0%** exact-match. All 78 set-valued cells (modalities, countries, intended tasks) matched
+under subset semantics; the misses concentrate in the coarse `source_type` enum (6 / 26) and in
+`sample_counts` key labels (7 / 26).
 
-If cosmetic key-label mismatches are relaxed to "value-correct", accuracy rises to **~56 / 60 ≈ 93%**.
+If cosmetic key-label mismatches are relaxed to "value-correct", accuracy rises to **120 / 130 ≈ 92%**.
 
 ### 3.2 Cohen's κ on `source_type`
 
-**κ = 0.617** (Landis–Koch: *substantial* agreement). This is a meaningful recovery from the earlier
+**κ = 0.675** (Landis–Koch: *substantial* agreement). This is a meaningful recovery from the earlier
 4-dataset pilot, where κ was degenerate (≈ −0.2) due to n=4, skewed marginals, and LLM non-determinism.
-The 12-dataset, 4-category spread stabilizes the estimate.
+The 26-dataset, 5-category spread stabilizes the estimate.
 
-The LLM *correctly corrected* 3 baseline misses (recovering `paper-supplement` and `challenge` labels the
-heuristic had missed), but *over-corrected* 3 `repository` datasets into `registry`/`other` — a net-neutral
-effect on κ, and the clearest weakness of the current design.
+The LLM *correctly corrected* 3 baseline heuristic misses (recovering `paper-supplement` and `challenge`
+labels the heuristic had missed for BraTS 2024, HAM10000, and Tabula Sapiens), but *introduced* 6 of its
+own `source_type` over-generalisations (confusing `repository`, `registry`, `challenge`, and `other`) — a net
+regression of three on this field, and the clearest weakness of the current design.
 
-### 3.3 Error analysis (8 misses)
+### 3.3 Error analysis (13 misses)
 
 | # | Dataset | Field | Type | Detail |
 |---|---|---|---|---|
 | 1 | NIH ChestX-ray14 | source_type | substantive | LLM → `repository`, gold `other` |
 | 2 | MIMIC-IV | source_type | substantive | LLM → `registry`, gold `repository` |
 | 3 | eICU-CRD | source_type | substantive | LLM → `registry`, gold `repository` |
-| 4 | BraTS 2024 | sample_counts | substantive | wrong magnitude (11800) |
-| 5 | MIMIC-IV | sample_counts | cosmetic | key `studies` vs gold `admissions` |
-| 6 | eICU-CRD | sample_counts | cosmetic | key `samples` vs gold `icu_stays` |
-| 7 | MedQA | sample_counts | cosmetic | key `samples` vs gold `questions` |
-| 8 | ISIC 2024 | sample_counts | cosmetic | key `images` vs gold `training_images` |
+| 4 | MedMCQA | source_type | substantive | LLM → `challenge`, gold `repository` |
+| 5 | MedMNIST | source_type | substantive | LLM → `challenge`, gold `repository` |
+| 6 | NIH DeepLesion | source_type | substantive | LLM → `other`, gold `repository` |
+| 7 | MIMIC-IV | sample_counts | cosmetic | key `studies` vs gold `admissions` (value-correct) |
+| 8 | eICU-CRD | sample_counts | partial | key `studies` vs `admissions`; `hospitals`=208 missing |
+| 9 | MedQA | sample_counts | cosmetic | key `samples` vs gold `questions` (value-correct) |
+| 10 | BraTS 2024 | sample_counts | substantive | LLM `patients`=11200, gold `gli_post/pre_training` (wrong) |
+| 11 | ISIC 2024 | sample_counts | substantive | LLM `images`=434185 vs gold `training_images`=401059 (conflict) |
+| 12 | Sleep-EDF Expanded | sample_counts | cosmetic | key `studies` vs gold `samples` (value-correct) |
+| 13 | UK Biobank | sample_counts | substantive | LLM null, gold `patients`=500000 |
+
+Of the seven `sample_counts` misses, three are pure key-label mismatches with identical values
+(MIMIC-IV, MedQA, Sleep-EDF) and four are genuine errors (BraTS 2024, ISIC 2024, the missing eICU
+hospital count, and the UK Biobank null). Of the six `source_type` misses, none are random: all are
+the LLM over-assigning a coarse repository/registry/challenge/other label.
 
 ### 3.4 Guardrail defects found and fixed during validation
 
@@ -128,7 +144,7 @@ Running M4 against the live pipeline surfaced two real defects in the anti-fabri
    a list violation, the baseline list is restored as the base and only individually-valid, non-duplicate
    LLM items are retained.
 
-After both fixes, **12 / 12 generated cards are schema-valid** and every dropped field is traceable via
+After both fixes, **26 / 26 generated cards are schema-valid** and every dropped field is traceable via
 `pending_verification`.
 
 ## 4. Threats to Validity
@@ -138,13 +154,13 @@ After both fixes, **12 / 12 generated cards are schema-valid** and every dropped
 - **License excluded.** License/commercial fields come from the catalog, so fabrication risk there is
   unmeasured by this harness (mitigated separately by the catalog being human-curated).
 - **LLM non-determinism.** `source_type` varied across runs on small n; κ is reported at the observed
-  run, and the 12-dataset spread is chosen to keep it stable.
-- **n = 12.** Adequate for a pilot estimate; a production claim would warrant 30–50 datasets.
+  run, and the 26-dataset spread is chosen to keep it stable.
+- **n = 26.** Adequate for a credible estimate; a production claim would still warrant 30–50 datasets.
 
 ## 5. Conclusion
 
-The hybrid pipeline recovers structured ST metadata from source text at **86.7% exact-match** (≈93% when
-key-label tolerance is applied), with **substantial** categorical agreement (κ = 0.617) on `source_type`.
+The hybrid pipeline recovers structured ST metadata from source text at **90.0% exact-match** (≈92% when
+key-label tolerance is applied), with **substantial** categorical agreement (κ = 0.675) on `source_type`.
 The schema-conformance guardrail makes fabrication into a *detected-and-reverted* event rather than a
 silent one — a property validated by the two defects it caught. The dominant residual weakness is the
 coarse `source_type` enum, where the LLM both fixes and introduces errors at similar rates.

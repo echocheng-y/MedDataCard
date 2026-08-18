@@ -11,7 +11,7 @@
         "url": "https://physionet.org/content/mimic-cxr-jpg/"
       }
     ],
-    "summary": "A large dataset of 377,110 chest x-rays associated with 227,827 imaging studies sourced from the Beth Israel Deaconess Medical Center between 2011–2016; images are de-identified and labeled with 14 conditions derived via NLP from free-text radiology reports.",
+    "summary": "A large dataset of 377,110 chest x-rays associated with 227,827 imaging studies sourced from the Beth Israel Deaconess Medical Center between 2011 and 2016. Images are provided with 14 labels derived from two natural language processing tools applied to the corresponding free-text radiology reports. Derived entirely from the MIMIC-CXR database; all images de-identified.",
     "persistent_identifier": "arXiv:1901.07042",
     "version": "v2.0.0",
     "access_method": "credentialed",
@@ -45,44 +45,42 @@
     },
     "scope": "chest",
     "data_format": [
-      "JPEG"
+      "JPG"
     ]
   },
   "ethics": {
-    "license": "PhysioNet Data Use Agreement (DUA)",
+    "license": "PhysioNet DUA",
     "commercial_use_allowed": false,
     "consent": "waived",
     "irb_approval": true,
     "data_use_agreement": true,
     "privacy_measures": "All images have been de-identified to protect patient privacy.",
-    "legal_compliance": "Complies with U.S. HIPAA regulations; de-identification performed per Safe Harbor method."
+    "legal_compliance": "Complies with PhysioNet data use requirements; IRB-approved at BIDMC."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": []
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Labels derived from NLP of radiology reports, not expert review — may contain inaccuracies or omissions.",
-      "Single-center origin limits generalizability across institutions, devices, and populations.",
-      "No demographic statistics reported (age, sex, ethnicity), limiting bias analysis.",
-      "Temporal range (2011–2016) may not reflect current imaging practices or disease prevalence."
+      "Labels derived from NLP of free-text reports introduce label noise.",
+      "Single-center origin limits geographic and practice diversity.",
+      "No demographic subgroup statistics reported (e.g., age, sex, ethnicity).",
+      "De-identification may remove clinically relevant metadata."
     ],
-    "modifications": "Yes — JPEG conversion and NLP-derived labeling applied to original DICOMs from MIMIC-CXR.",
+    "modifications": "Yes — conversion from DICOM to JPG and NLP-derived labeling; derived from MIMIC-CXR.",
     "bias_sources": [
       "labeling",
       "sampling",
-      "geographic",
-      "temporal"
+      "geographic"
     ],
-    "representativeness_concerns": "90%+ single-center (BIDMC, Boston, USA); no demographic breakdown provided.",
-    "long_tail_classes": "Not specified in source text.",
-    "generalizability_statement": "Limited generalizability beyond similar academic U.S. hospital settings and time period (2011–2016).",
-    "subgroup_coverage": "No subgroup coverage information reported (e.g., age, sex, race, socioeconomic status).",
-    "missing_data": "Label incompleteness due to NLP failure on ambiguous or unstructured report text; no quantification provided."
+    "representativeness_concerns": "Single-center (BIDMC, Boston, USA); no evidence of diverse demographic or international representation.",
+    "generalizability_statement": "Generalizability limited by single-center, US-based, 2011–2016 cohort; no explicit assessment of temporal or device-related shifts.",
+    "subgroup_coverage": "No subgroup coverage information reported.",
+    "missing_data": "Demographic attributes (age, sex, ethnicity) not reported in source text."
   },
   "tasks_and_use": {
     "intended_tasks": [
@@ -90,22 +88,19 @@
       "detection"
     ],
     "benchmarks": [
-      "MIMIC-CXR Benchmark (standard train/val/test splits)"
+      "MIMIC-CXR benchmark"
     ]
   },
   "data_origin": {
     "origin_type": "clinical-care",
-    "selection_rationale": "Derived entirely from the MIMIC-CXR database, which contains chest radiographs collected during routine clinical care.",
-    "data_shifts_overtime": "Data collected 2011–2016; no explicit statement of temporal shifts, but device/software changes over this 5-year span may introduce distributional shifts."
+    "selection_rationale": "Derived entirely from the MIMIC-CXR database; aims to provide a convenient processed version and standard reference.",
+    "data_shifts_overtime": "Data collected 2011–2016; no explicit statement of longitudinal shifts or multi-version comparisons in source text."
   },
   "population": {
-    "target_population": "Adult patients undergoing chest radiography in clinical care at Beth Israel Deaconess Medical Center.",
+    "target_population": "Adult patients undergoing chest radiography at Beth Israel Deaconess Medical Center",
     "sex": "not-reported",
-    "inclusion_criteria": "Chest radiographs performed at Beth Israel Deaconess Medical Center with associated free-text radiology reports.",
     "attribute_recording": {
-      "method": "computed",
-      "unknown_proportion": "Unknown proportion of missing or ambiguous labels due to NLP extraction limitations; no quantification provided in source text.",
-      "recoding_modifications": "Labels derived via two NLP tools applied to free-text radiology reports; no further recoding details provided."
+      "method": "unknown"
     }
   },
   "geography": {
@@ -124,12 +119,12 @@
   },
   "annotation": {
     "annotation_type": "semi-automatic",
-    "annotation_method": "Two natural language processing tools applied to free-text radiology reports to derive 14 labels.",
+    "annotation_method": "14 labels derived via NLP from free-text radiology reports using two natural language processing tools",
     "annotators": {
       "type": "NLP"
     },
-    "labeling_provenance": "Labels derived from free-text radiology reports via NLP; presence of label noise implied but not quantified.",
+    "labeling_provenance": "Labels extracted from free-text radiology reports via NLP; no manual verification stated in abstract.",
     "known_label_noise": true,
-    "label_noise_description": "Labels are derived from NLP of free-text reports and thus subject to extraction errors, ambiguity, and incompleteness."
+    "label_noise_description": "Labels derived from NLP of free-text reports; known to contain noise due to imperfect extraction."
   }
 }

@@ -1,0 +1,12 @@
+{
+  "dataset_id": "MedMNIST",
+  "comparable": {
+    "modality.modalities": ["dermoscopy", "X-ray", "CT", "pathology-WSI", "fundus", "other"],
+    "modality.sample_counts": {"images": 708000},
+    "geography.countries": [],
+    "tasks_and_use.intended_tasks": ["classification"],
+    "metadata.source_type": "repository",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

@@ -8,7 +8,7 @@
     "repositories": [
       {
         "platform": "Zenodo",
-        "url": "https://zenodo.org/records/6617125"
+        "url": "https://zenodo.org/communities/tabula-sapiens/"
       }
     ],
     "summary": "The Tabula Sapiens is a molecular atlas integrating single-cell transcriptomic data from 483,152 cells across 24 tissues and 15 donors, using a unified processing pipeline. It provides cell-type annotations spanning many human organs and serves as a reference for tissue mapping, cell-type identification, and cross-tissue comparative studies.",
@@ -30,10 +30,13 @@
     ]
   },
   "medical_fields": [
-    "Basic Medicine"
+    "Basic Medicine",
+    "Imaging",
+    "Internal Medicine"
   ],
   "modality": {
     "modalities": [
+      "genomic",
       "single-cell"
     ],
     "scope": "24 human tissues",
@@ -43,7 +46,7 @@
       "FASTQ"
     ],
     "sample_counts": {
-      "samples": 483152,
+      "cells": 483152,
       "patients": 15
     }
   },
@@ -52,48 +55,44 @@
     "commercial_use_allowed": true,
     "consent": "informed",
     "data_use_agreement": false,
-    "privacy_measures": "De-identified donor data; no protected health information retained."
+    "privacy_measures": "De-identified donor data; no protected health information released."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
-    "pending_verification": [
-      "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: medical_fields[list-items]"
-    ]
+    "pending_verification": []
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Limited to 15 donors and 24 tissues; underrepresentation of rare cell types; absence of longitudinal sampling; potential batch effects despite unified pipeline."
+      "Limited donor diversity (n=15), potentially underrepresenting global population structure",
+      "Tissue sampling bias: some tissues overrepresented (e.g., blood, lung), others underrepresented or absent",
+      "Age distribution centered around mean 51 years; limited representation of pediatric and elderly donors"
     ],
-    "modifications": "Data processed through unified computational pipeline (normalization, integration, clustering); no synthetic data generation reported.",
+    "modifications": "Data processed through unified computational pipeline including normalization, batch correction, and clustering.",
     "bias_sources": [
-      "sampling_bias (limited donor count and tissue coverage)",
-      "technical bias (batch effects, platform-specific artifacts)"
+      "sampling_bias",
+      "donor_demographics_bias",
+      "tissue_accessibility_bias"
     ],
-    "representativeness_concerns": "15 donors may not represent global demographic diversity; ethnicity not reported.",
-    "long_tail_classes": "Rare cell types underrepresented due to sampling depth and detection limits.",
-    "generalizability_statement": "Findings generalizable to healthy adult human tissues represented; limited generalizability to disease states, pediatric/elderly populations, or underrepresented ethnic groups.",
-    "subgroup_coverage": "Gender-balanced; age mean 51 years; ethnicity and geographic origin not reported.",
-    "missing_data": "Ethnicity, detailed clinical metadata, and socioeconomic variables not reported."
+    "representativeness_concerns": "15 donors, mean age 51, balanced sex — insufficient for broad demographic or geographic representativeness.",
+    "long_tail_classes": "Rare cell types (e.g., specific immune subsets) may be under-sampled.",
+    "generalizability_statement": "Findings generalizable primarily to adult donors of similar demographic background; limited generalizability to pediatric, geriatric, or underrepresented ethnic populations.",
+    "subgroup_coverage": "Sex-balanced; age and ethnicity coverage not fully reported.",
+    "missing_data": "Some tissues had low cell yield or failed QC; metadata completeness varies per donor/tissue."
   },
   "data_origin": {
     "origin_type": "research-derived",
     "selection_rationale": "Donors selected to represent diverse tissues and balanced gender; age range not specified in abstract but mean age stated as 51 in descriptor.",
-    "sampling_strategy": "Single-cell RNA-seq from 24 tissues across 15 donors; unified processing pipeline applied.",
-    "aggregation_multisource": "Multi-institution consortium; no description of aggregation method or impact on composition in source text."
+    "sampling_strategy": "Multi-donor, multi-tissue sampling with unified processing pipeline.",
+    "aggregation_multisource": "Data aggregated across 24 tissues from 15 donors via standardized scRNA-seq workflow."
   },
   "population": {
     "target_population": "Human donors providing tissue samples for single-cell RNA-seq",
     "age_reported": true,
-    "age_range": {
-      "unit": "years"
-    },
     "sex": "both",
-    "sex_distribution": {
-      "unit": "count"
-    },
+    "sex_distribution": {},
     "attribute_recording": {
       "method": "unknown"
     }
@@ -103,17 +102,16 @@
   },
   "annotation": {
     "annotation_type": "expert",
-    "annotation_method": "Cell-type annotations generated by expert curation with cross-tissue consistency checks.",
+    "annotation_method": "Cell-type annotations performed by domain experts using marker genes and reference atlases.",
     "annotators": {
       "type": "researcher",
-      "qualifications": "Expert biologists and computational biologists"
+      "qualifications": "domain experts in single-cell genomics and cell biology"
     },
-    "labeling_provenance": "Manually curated cell-type labels based on marker gene expression and literature."
+    "labeling_provenance": "Manually curated cell-type labels based on transcriptomic profiles and known markers."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "classification"
-    ],
-    "excluded_tasks": "Clinical diagnosis or therapeutic decision support without further validation."
+    ]
   }
 }

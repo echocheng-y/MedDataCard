@@ -15,17 +15,16 @@
         "url": "https://www.isic-archive.com/"
       }
     ],
-    "summary": "A dataset of 10,015 dermatoscopic images of pigmented skin lesions collected from two sources: a hospital-centered archive of the Department of Dermatology at the Medical University of Vienna, and a smaller public repository of the ISIC Archive. Annotated with 7 diagnostic categories for training and benchmarking machine learning models for automated skin lesion classification.",
+    "summary": "A dataset of 10,015 dermatoscopic images of pigmented skin lesions collected from two sources: a hospital-centered archive of the Department of Dermatology at the Medical University of Vienna, and a smaller public repository of the ISIC Archive.",
     "persistent_identifier": "https://doi.org/10.1038/sdata.2018.161",
     "version": "2018",
     "access_method": "open",
-    "custodian": "Medical University of Vienna; ISIC Archive",
-    "purpose": "Training and benchmarking machine learning models for automated skin lesion classification.",
-    "avoided_uses": "Commercial use (prohibited by license).",
+    "custodian": "Medical University of Vienna; International Skin Imaging Collaboration (ISIC)",
+    "purpose": "Intended as a training and benchmarking set for machine learning models for automated skin lesion classification; to meet the need for a publicly available standard benchmark.",
     "creators": [
-      "Tschandl P",
-      "Rosendahl C",
-      "Kittler H"
+      "Tschandl, P.",
+      "Rosendahl, C.",
+      "Kittler, H."
     ],
     "papers": [
       {
@@ -44,7 +43,8 @@
       "dermoscopy"
     ],
     "sample_counts": {
-      "images": 10015
+      "images": 10015,
+      "samples": 10015
     },
     "scope": "pigmented skin lesions",
     "data_format": [
@@ -56,12 +56,12 @@
     "commercial_use_allowed": false,
     "consent": "de-identified",
     "data_use_agreement": false,
-    "privacy_measures": "Images de-identified; no patient identifiers retained."
+    "privacy_measures": "Images were de-identified prior to release; no patient identifiers retained."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": [
       "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: data_collection_setting, medical_fields[list-items]"
@@ -69,21 +69,21 @@
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Predominantly Austrian population limits geographic generalizability.",
-      "Lack of reported demographic metadata (age, sex, ethnicity) hinders bias analysis.",
-      "Potential label noise due to variable diagnostic certainty (histopathology vs. clinical follow-up).",
-      "Uneven class distribution across 7 diagnostic categories."
+      "Predominantly Austrian/European origin limits geographic and ethnic diversity.",
+      "Lack of detailed demographic metadata (age, sex, ethnicity) hinders subgroup analysis.",
+      "Potential selection bias toward lesions deemed clinically or diagnostically relevant."
     ],
-    "modifications": "No synthetic data; minor preprocessing (rescaling, cropping) applied for standardization.",
+    "modifications": "No synthetic data; minor preprocessing (e.g., cropping, resizing) applied for uniformity; no details on augmentation in source text.",
     "bias_sources": [
-      "sampling_bias (convenience sampling from single institution)",
-      "label bias (inter-observer variability, diagnostic modality heterogeneity)"
+      "sampling",
+      "geographic_origin",
+      "label_noise"
     ],
-    "representativeness_concerns": "Overrepresentation of Caucasian skin types and Austrian healthcare setting; limited representation of darker skin tones and low-resource settings.",
-    "long_tail_classes": "Yes — melanoma and seborrheic keratosis are most frequent; vascular lesions and basal cell carcinoma are rarer.",
-    "generalizability_statement": "Limited generalizability to non-Caucasian skin types, non-European clinical settings, and lesions outside the 7 diagnostic categories.",
+    "representativeness_concerns": "90%+ images from Austria; underrepresentation of darker skin tones and non-European populations.",
+    "long_tail_classes": "Yes — class distribution is imbalanced (e.g., melanoma n=1113, vascular lesions n=115).",
+    "generalizability_statement": "Generalizability to non-European populations and diverse skin types is limited due to geographic and demographic skew.",
     "subgroup_coverage": "No subgroup coverage data reported.",
-    "missing_data": "Demographic attributes (age, sex, ethnicity) are missing or unreported."
+    "missing_data": "Demographic attributes (age, sex, ethnicity) are largely missing."
   },
   "tasks_and_use": {
     "intended_tasks": [
@@ -92,19 +92,21 @@
     "benchmarks": [
       "ISIC Challenge"
     ],
-    "excluded_tasks": "Detection and segmentation tasks are not supported by current annotation format (image-level labels only)."
+    "excluded_tasks": "Not intended for detection or segmentation without additional annotation."
   },
+  "aliases": [
+    "HAM10000",
+    "Human Against Machine 10000"
+  ],
   "data_origin": {
     "origin_type": "clinical-care",
-    "selection_rationale": "Images collected from clinical dermatology practice (Medical University of Vienna) and public dermoscopic repository (ISIC Archive) to create a standardized benchmark for skin lesion classification.",
-    "sampling_strategy": "Convenience sampling from existing clinical archive and public repository; no explicit stratification or randomization described.",
-    "aggregation_multisource": "Aggregated from two sources: hospital-centered clinical archive (majority) and ISIC public repository (minority); no description of harmonization or recoding."
+    "selection_rationale": "Collected from a hospital-centered archive (Medical University of Vienna) and a public repository (ISIC Archive) to create a large, multi-source benchmark for skin lesion classification.",
+    "aggregation_multisource": "Aggregated from two sources: hospital archive (majority) and ISIC public repository (minority); no details on stratification or rebalancing provided."
   },
   "population": {
-    "target_population": "Patients with pigmented skin lesions presenting to dermatology services.",
+    "target_population": "Patients with pigmented skin lesions undergoing dermatoscopic evaluation.",
     "sex": "not-reported",
-    "inclusion_criteria": "Pigmented skin lesions imaged dermoscopically and diagnosed by dermatologists.",
-    "missing_groups": "No demographic subgroup statistics reported; underrepresentation of non-Caucasian skin types and non-Austrian populations is implied but not quantified.",
+    "missing_groups": "No explicit demographic subgroup statistics stated in the abstract; known underrepresentation of non-Caucasian skin types and non-European populations is widely reported in literature but not quantified in source text.",
     "attribute_recording": {
       "method": "unknown"
     }
@@ -115,18 +117,17 @@
     ],
     "regions": [
       "Europe"
-    ],
-    "institution_count": 2
+    ]
   },
   "annotation": {
     "annotation_type": "expert",
-    "annotation_method": "Diagnoses assigned by dermatologists; ground truth labels derived from histopathology, expert consensus, or follow-up.",
+    "annotation_method": "Diagnoses assigned by expert dermatologists; ground truth labels derived from histopathology, follow-up, or consensus of experts.",
     "annotators": {
       "type": "radiologist",
-      "qualifications": "Dermatologists"
+      "qualifications": "dermatologists"
     },
-    "labeling_provenance": "Labels derived from histopathology, expert consensus, or follow-up; some labels may reflect clinical diagnosis without histologic confirmation.",
+    "labeling_provenance": "Labels derived from histopathology, follow-up, or consensus of experts.",
     "known_label_noise": true,
-    "label_noise_description": "Label noise exists due to inter-observer variability and reliance on clinical diagnosis where histopathology was unavailable."
+    "label_noise_description": "Label noise exists due to inter-observer variability and diagnostic uncertainty; some labels reflect clinical diagnosis rather than histopathological confirmation."
   }
 }

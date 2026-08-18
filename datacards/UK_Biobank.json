@@ -4,10 +4,10 @@
   "dataset_name": "UK Biobank",
   "metadata": {
     "source_type": "registry",
-    "homepage": "https://www.ukbiobank.ac.uk",
+    "homepage": "https://ukbiobank.ac.uk",
     "repositories": [
       {
-        "platform": "ukbiobank.ac.uk",
+        "platform": "other",
         "url": "https://www.ukbiobank.ac.uk"
       }
     ],
@@ -24,7 +24,10 @@
     ]
   },
   "medical_fields": [
-    "Clinical Medicine"
+    "Clinical Medicine",
+    "Imaging",
+    "Internal Medicine",
+    "Basic Medicine"
   ],
   "modality": {
     "modalities": [
@@ -38,11 +41,7 @@
       "CSV",
       "BGEN",
       "FASTQ"
-    ],
-    "sample_counts": {
-      "patients": 500000,
-      "studies": 100000
-    }
+    ]
   },
   "ethics": {
     "license": "application-based access (academic free tier / industry fee)",
@@ -50,17 +49,15 @@
     "irb_approval": true,
     "data_use_agreement": true,
     "commercial_use_allowed": false,
-    "privacy_measures": "De-identification; strict data access controls; secure research environment (RE)",
-    "legal_compliance": "Complies with UK Data Protection Act 2018 and GDPR"
+    "privacy_measures": "De-identification; strict data access governance"
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": [
-      "geography.countries is heuristically inferred from limitation text; requires manual verification",
-      "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: medical_fields[list-items]"
+      "geography.countries is heuristically inferred from limitation text; requires manual verification"
     ]
   },
   "geography": {
@@ -84,22 +81,24 @@
       "imaging is a sub-sample",
       "not real-time EHR"
     ],
-    "representativeness_concerns": "UK-only; underrepresentation of younger adults, ethnic minorities, and socioeconomically disadvantaged groups",
-    "subgroup_coverage": "Limited coverage of non-White ethnic groups; regional variation in recruitment density across England, Scotland, Wales, and Northern Ireland",
-    "missing_data": "Imaging data available for only ~20% of cohort; EHR linkage incomplete for some participants"
+    "representativeness_concerns": "UK-only; age 40–69; healthy-volunteer bias; underrepresentation of minority ethnic groups and younger/older adults",
+    "subgroup_coverage": "Limited coverage of non-White ethnic groups; no explicit reporting of sex distribution in source text",
+    "missing_data": "Imaging data available only for ~100,000 participants; EHR completeness varies by linkage status and time"
   },
   "tasks_and_use": {
     "intended_tasks": [
       "classification",
+      "detection",
+      "segmentation",
       "causal",
-      "retrieval"
+      "report-generation"
     ],
-    "excluded_tasks": "Real-time clinical decision support; direct patient-facing deployment without validation"
+    "excluded_tasks": "Real-time clinical decision support; use without ethics/approval"
   },
   "data_origin": {
     "origin_type": "registry",
     "selection_rationale": "Prospective, population-based cohort recruitment across the UK",
-    "sampling_strategy": "Participants aged 40–69 recruited from general population across UK; imaging sub-study (~100,000) is a subset"
+    "sampling_strategy": "Participants aged 40–69 recruited from general population; MRI sub-study (~100,000) is a subset"
   },
   "population": {
     "target_population": "Adults aged 40–69 in the United Kingdom",
@@ -110,14 +109,14 @@
       "unit": "years"
     },
     "sex": "both",
-    "ethnicity_reported": true,
-    "missing_groups": "Underrepresentation of younger adults (<40), children, and certain ethnic minority groups relative to UK population; healthy-volunteer bias",
-    "vulnerable_groups": [
-      "elderly"
-    ]
+    "missing_groups": "UK-only; middle-aged/older volunteers (healthy-volunteer bias); pediatric, pregnant, and critically ill populations underrepresented",
+    "attribute_recording": {
+      "method": "self-reported",
+      "unknown_proportion": "Not specified in source text"
+    }
   },
   "annotation": {
     "annotation_type": "expert",
-    "annotation_method": "Phenotype curation from EHR, imaging reports, and manual review; genomic variant calling pipelines"
+    "labeling_provenance": "Phenotypes derived from EHR, self-report, imaging expert review, and genotyping pipelines"
   }
 }

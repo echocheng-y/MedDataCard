@@ -1,0 +1,12 @@
+{
+  "dataset_id": "PhysioNet/CinC 2020",
+  "comparable": {
+    "modality.modalities": ["ECG"],
+    "modality.sample_counts": {"samples": 43000},
+    "geography.countries": ["China", "United States", "Germany"],
+    "tasks_and_use.intended_tasks": ["classification"],
+    "metadata.source_type": "challenge",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

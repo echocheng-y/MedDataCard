@@ -1,0 +1,11 @@
+{
+  "dataset_id": "PubMedQA",
+  "comparable": {
+    "modality.modalities": ["text"],
+    "geography.countries": [],
+    "tasks_and_use.intended_tasks": ["qa"],
+    "metadata.source_type": "paper-supplement",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

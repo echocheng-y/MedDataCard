@@ -1,0 +1,12 @@
+{
+  "dataset_id": "VinDr-CXR",
+  "comparable": {
+    "modality.modalities": ["X-ray"],
+    "modality.sample_counts": {"images": 18000, "patients": 18000},
+    "geography.countries": ["Vietnam"],
+    "tasks_and_use.intended_tasks": ["detection", "classification"],
+    "metadata.source_type": "repository",
+    "ethics.license": null,
+    "ethics.commercial_use_allowed": null
+  }
+}

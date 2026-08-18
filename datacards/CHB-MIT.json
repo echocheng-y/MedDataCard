@@ -11,11 +11,11 @@
         "url": "https://physionet.org/content/chbmit/"
       }
     ],
-    "summary": "Continuous scalp EEG recordings from 23 pediatric patients (24 recordings) with intractable seizures at Boston Children's Hospital; 916+ hours, 23-channel, 256 Hz, 198 expert-annotated seizure events with onset times.",
-    "persistent_identifier": "https://doi.org/10.13026/c2jg-ta72",
+    "summary": "The CHB-MIT Scalp EEG database comprises continuous scalp EEG recordings from 23 pediatric patients (24 recordings; one patient contributed two) with intractable seizures at Boston Children's Hospital. It contains 916+ hours of EEG (256 Hz, 23 electrodes) with 198 expert-annotated seizure events and marked seizure onset times.",
+    "persistent_identifier": "https://doi.org/10.13026/C24C7X",
     "access_method": "open",
-    "custodian": "Boston Children's Hospital and MIT",
-    "purpose": "Benchmark for epileptic seizure detection and prediction from EEG.",
+    "custodian": "PhysioNet",
+    "purpose": "Benchmark for epileptic seizure detection and onset localization from scalp EEG.",
     "creators": [
       "Children's Hospital Boston (now Boston Children's Hospital)",
       "MIT"
@@ -45,32 +45,34 @@
     "commercial_use_allowed": true,
     "consent": "de-identified",
     "irb_approval": true,
-    "privacy_measures": "Data de-identified per HIPAA Safe Harbor; no protected health information included."
+    "data_use_agreement": false,
+    "privacy_measures": "Data are de-identified; no protected health information (PHI) is included."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": [
-      "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: medical_fields[list-items], source_type"
+      "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: medical_fields[list-items]"
     ]
   },
   "bias_and_limitations": {
     "known_limitations": [
       "Pediatric intractable epilepsy only",
-      "Single-center collection",
+      "Single-center origin limits generalizability",
       "Small subject count (n=23)",
-      "Labels are event-level (seizure onset), not frame-wise or dense annotations"
+      "Labels are sparse event-level annotations (onset times), not dense per-frame labels"
     ],
-    "representativeness_concerns": "Not representative of adult epilepsy, generalized epilepsy without intractability, or non-US healthcare settings.",
-    "subgroup_coverage": "Only pediatric patients from a single US tertiary center; no reported sex, ethnicity, or socioeconomic subgroup breakdown."
+    "representativeness_concerns": "90%+ from single US pediatric tertiary epilepsy center; lacks diversity in age (only pediatric), geography, ethnicity, and epilepsy etiology.",
+    "subgroup_coverage": "No reported coverage of sex, ethnicity, or socioeconomic subgroups.",
+    "missing_data": "No mention of missing channels, recording gaps, or incomplete annotations in source text."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "detection"
     ],
-    "excluded_tasks": "Frame-wise segmentation, classification of non-seizure EEG patterns (e.g., interictal spikes) without additional annotation"
+    "excluded_tasks": "Dense frame-wise classification, adult seizure prediction, non-epileptic seizure detection, or multimodal fusion — due to data scope and annotation granularity."
   },
   "aliases": [
     "CHB-MIT EEG",
@@ -79,7 +81,7 @@
   "catalog_ref": "CHB-MIT",
   "data_origin": {
     "origin_type": "clinical-care",
-    "selection_rationale": "Pediatric patients with intractable seizures admitted to a tertiary epilepsy center."
+    "selection_rationale": "Patients were selected from a tertiary pediatric epilepsy center based on diagnosis of intractable seizures requiring long-term EEG monitoring."
   },
   "population": {
     "target_population": "Pediatric patients with intractable epilepsy",
@@ -88,7 +90,7 @@
     "vulnerable_groups": [
       "pediatric"
     ],
-    "missing_groups": "Adults, geriatric patients, non-pediatric epilepsy subtypes, diverse geographic/ethnic populations"
+    "missing_groups": "Adults, geriatric populations, non-pediatric epilepsy subtypes, diverse geographic/ethnic populations — due to single-center pediatric tertiary referral cohort."
   },
   "geography": {
     "countries": [

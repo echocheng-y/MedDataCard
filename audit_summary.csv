@@ -1,27 +1,27 @@
 dataset,medical_fields,modalities,license,countries,geography_single_center,st_completeness_pct,pending_count,schema_valid,method
-NIH ChestX-ray14,Imaging/Internal Medicine,X-ray,CC0 / Public Domain,United States,Y,55.1,1,Y,hybrid
-CheXpert,Imaging/Internal Medicine,X-ray,CC BY-SA 4.0,United States,N,66.7,2,Y,hybrid
-MIMIC-CXR,Imaging/Internal Medicine,X-ray,PhysioNet Data Use Agreement (DUA),United States,Y,69.6,0,Y,hybrid
-PadChest,Imaging/Internal Medicine,X-ray,CC BY-NC 4.0,Spain,Y,55.1,1,Y,hybrid
-VinDr-CXR,Imaging/Internal Medicine,X-ray,CC BY 4.0,Vietnam,N,68.1,2,Y,hybrid
-BraTS 2024,Imaging,MRI,"Competition registration agreement (non-commercial, research-only use)",,N,60.9,1,Y,hybrid
-ISIC 2024/历年,Imaging/Clinical Medicine,dermoscopy,CC-BY-NC,,N,65.2,1,Y,hybrid
-HAM10000,Imaging,dermoscopy,CC BY-NC 4.0,Austria,N,68.1,1,Y,hybrid
-MedMNIST,Imaging/Basic Medicine/Clinical Medicine,other/dermoscopy/X-ray/pathology-WSI/CT/fundus/ultrasound,CC BY 4.0 (DermaMNIST: CC BY-NC),,N,66.7,1,Y,hybrid
-TotalSegmentator,Imaging/Surgery/Internal Medicine,CT,CC BY 4.0,Switzerland,Y,53.6,0,Y,hybrid
-CT-RATE,Imaging/Internal Medicine,CT/text,CC BY-NC-SA 4.0,Turkey,Y,68.1,2,Y,hybrid
-NIH DeepLesion,Imaging/Internal Medicine/Surgery,CT,NIH Clinical Center research-use license,United States,N,73.9,1,Y,hybrid
-UK Biobank,Clinical Medicine,EHR/genomic/MRI,application-based access (academic free tier / industry fee),United Kingdom,N,59.4,2,Y,hybrid
-TCGA,Basic Medicine/Clinical Medicine,genomic/single-cell/pathology-WSI,Open access with data use certification (GDC); dbGaP controlled access for some sensitive data.,United States,N,78.3,2,Y,hybrid
-ADNI,Clinical Medicine/Imaging/Internal Medicine,MRI/genomic/EHR/text,"application-based DUA (research use, not open)",United States/Canada,N,78.3,2,Y,hybrid
-Tabula Sapiens,Basic Medicine,single-cell,CC BY 4.0,,N,62.3,1,Y,hybrid
-MIMIC-IV,Clinical Medicine,EHR,PhysioNet Credentialed Data Use Agreement,United States,Y,82.6,2,Y,hybrid
-eICU-CRD,Clinical Medicine,EHR,PhysioNet Credentialed Data Use Agreement,United States,N,69.6,1,Y,hybrid
-Sleep-EDF Expanded,Imaging/Internal Medicine,EEG/ECG/other,ODC-BY 1.0,Netherlands,N,66.7,1,Y,hybrid
-CHB-MIT,Clinical Medicine/Imaging/Internal Medicine,EEG,ODC-BY 1.0,United States,Y,52.2,1,Y,hybrid
-PhysioNet/CinC 2020,Imaging/Internal Medicine,ECG,Open Data Commons (ODC) license,China/United States/Germany,N,63.8,0,Y,hybrid
-PMC-Patients,Clinical Medicine,text,CC BY 4.0 (per Scientific Data article); individual PMC articles retain original copyright and licensing terms.,,N,73.9,1,Y,hybrid
-MedQA,Clinical Medicine/Internal Medicine/Surgery/Obstetrics & Gynecology,text,CC BY 4.0,United States,N,39.1,1,Y,hybrid
-MedMCQA,Clinical Medicine,text,MIT,India,N,43.5,2,Y,hybrid
-PubMedQA,Clinical Medicine/Basic Medicine/Imaging,text,CC BY 4.0,United States,N,60.9,0,Y,hybrid
-BioASQ,Basic Medicine/Clinical Medicine/Imaging,text,CC BY-NC-SA 4.0,,N,52.2,1,Y,hybrid
+NIH ChestX-ray14,Imaging/Internal Medicine,X-ray,CC0 / 公有领域,United States,Y,68.1,1,Y,hybrid
+CheXpert,Imaging/Internal Medicine,X-ray,Stanford 研究许可,United States,N,62.3,1,Y,hybrid
+MIMIC-CXR,Imaging/Internal Medicine,X-ray,PhysioNet DUA,United States,Y,66.7,0,Y,hybrid
+PadChest,Imaging/Internal Medicine,X-ray,CC BY-NC 4.0,Spain,Y,63.8,1,Y,hybrid
+VinDr-CXR,Imaging/Internal Medicine,X-ray,CC BY 4.0,Vietnam,N,62.3,2,Y,hybrid
+BraTS 2024,Imaging,MRI,"Synapse Challenge Registration Agreement (non-commercial, research-only)",,N,66.7,1,Y,hybrid
+ISIC 2024/历年,Imaging/Clinical Medicine,dermoscopy,CC-BY-NC,,N,63.8,1,Y,hybrid
+HAM10000,Imaging,dermoscopy,CC BY-NC 4.0,Austria,N,62.3,1,Y,hybrid
+MedMNIST,Imaging/Clinical Medicine,other/dermoscopy/X-ray/pathology-WSI/CT/fundus/ultrasound,CC BY 4.0 (DermaMNIST: CC BY-NC),,N,65.2,1,Y,hybrid
+TotalSegmentator,Imaging/Internal Medicine/Surgery,CT,CC BY 4.0,Switzerland,Y,56.5,0,Y,hybrid
+CT-RATE,Imaging/Internal Medicine,CT/text,CC BY-NC-SA 4.0,Turkey,Y,63.8,2,Y,hybrid
+NIH DeepLesion,Imaging/Internal Medicine/Surgery,CT,NIH Clinical Center research-use license,United States,N,50.7,1,Y,hybrid
+UK Biobank,Clinical Medicine/Imaging/Internal Medicine/Basic Medicine,EHR/genomic/MRI,application-based access (academic free tier / industry fee),United Kingdom,N,55.1,1,Y,hybrid
+TCGA,Clinical Medicine/Imaging/Basic Medicine,genomic/single-cell/pathology-WSI,Open access with data use certification (mostly unrestricted),United States,N,73.9,2,Y,hybrid
+ADNI,Clinical Medicine/Imaging/Internal Medicine,MRI/genomic/EHR/other,"Data Use Agreement (DUA) required; research use only, not open access.",United States/Canada,N,75.4,2,Y,hybrid
+Tabula Sapiens,Basic Medicine/Imaging/Internal Medicine,genomic/single-cell,CC BY 4.0,,N,59.4,0,Y,hybrid
+MIMIC-IV,Clinical Medicine/Imaging/Internal Medicine/Surgery,EHR,PhysioNet Credentialed Data Use Agreement,United States,Y,71.0,2,Y,hybrid
+eICU-CRD,Clinical Medicine/Imaging/Internal Medicine/Surgery,EHR,PhysioNet Credentialed Data Use Agreement,United States,N,68.1,1,Y,hybrid
+Sleep-EDF Expanded,Imaging/Internal Medicine,EEG/EHR,ODC-BY 1.0,Netherlands,N,58.0,1,Y,hybrid
+CHB-MIT,Clinical Medicine/Imaging/Internal Medicine,EEG,ODC-BY 1.0,United States,Y,55.1,1,Y,hybrid
+PhysioNet/CinC 2020,Imaging/Internal Medicine,ECG,Open Data Commons Attribution License (ODC-BY) / PhysioNet Challenge License,China/United States/Germany,N,76.8,0,Y,hybrid
+PMC-Patients,Clinical Medicine/Imaging/Internal Medicine/Surgery,text,CC BY 4.0 (per Scientific Data article); individual PMC articles subject to their own copyright/licensing terms.,,N,75.4,0,Y,hybrid
+MedQA,Clinical Medicine/Imaging/Internal Medicine/Surgery/Obstetrics & Gynecology,text,CC BY 4.0,United States,N,39.1,0,Y,hybrid
+MedMCQA,Clinical Medicine/Imaging/Internal Medicine/Surgery/Obstetrics & Gynecology,text,MIT,India,N,76.8,1,Y,hybrid
+PubMedQA,Clinical Medicine/Imaging/Basic Medicine,text,CC BY 4.0,United States,N,59.4,0,Y,hybrid
+BioASQ,Imaging/Internal Medicine/Basic Medicine/Clinical Medicine,text,CC BY-NC-SA 4.0,,N,52.2,1,Y,hybrid

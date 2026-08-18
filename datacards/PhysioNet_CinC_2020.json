@@ -1,7 +1,7 @@
 {
   "schema_version": "0.2",
   "dataset_id": "PhysioNet-CinC-2020",
-  "dataset_name": "PhysioNet/Computing in Cardiology (CinC) 2020 Challenge",
+  "dataset_name": "PhysioNet/CinC 2020 Challenge",
   "metadata": {
     "source_type": "challenge",
     "homepage": "https://physionet.org/content/challenge-2020",
@@ -11,18 +11,22 @@
         "url": "https://physionet.org/content/challenge-2020"
       }
     ],
-    "summary": "The 2020 PhysioNet/CinC Challenge aimed to develop algorithms to classify cardiac abnormalities from 12-lead ECG recordings. The public training set comprised ~43,000 12-lead ECGs aggregated from six sources (including inpatient/outpatient clinics in China, the US, and Germany, plus existing databases such as CPSC, CPSC-Extra, PTB, and others), labeled for a set of diagnostic classes (originally 9, expanded to 27/96-class variants).",
-    "persistent_identifier": "https://doi.org/10.13026/j81c-5j02",
+    "summary": "The 2020 PhysioNet/CinC Challenge dataset comprises ~43,000 12-lead ECG recordings aggregated from six sources (including inpatient/outpatient clinics in China, the US, and Germany, plus existing databases such as CPSC, CPSC-Extra, PTB), labeled for cardiac abnormality classification (originally 9 classes, expanded to 27/96-class variants). Collected for algorithm development in multi-class rhythm/diagnosis classification under heterogeneous recording conditions.",
+    "persistent_identifier": "https://doi.org/10.13026/j81c-5s02",
     "access_method": "open",
     "custodian": "PhysioNet",
-    "purpose": "To develop algorithms to classify cardiac abnormalities from 12-lead ECG recordings.",
+    "purpose": "To develop and benchmark algorithms for classifying cardiac abnormalities from 12-lead ECGs.",
     "creators": [
       "PhysioNet CinC 2020 Challenge organizers",
       "Perez Alday et al."
     ],
+    "funders": [
+      "National Institute of Biomedical Imaging and Bioengineering (NIBIB)",
+      "National Heart, Lung, and Blood Institute (NHLBI)"
+    ],
     "papers": [
       {
-        "title": "PhysioNet/Computing in Cardiology (CinC) Challenge 2020: Classifying Cardiac Abnormalities from 12-lead ECGs",
+        "title": "PhysioNet/Computing in Cardiology (CinC) 2020 Challenge: Classifying Cardiac Abnormalities from 12-lead ECGs",
         "url": "https://physionet.org/content/challenge-2020",
         "year": 2020
       }
@@ -36,8 +40,8 @@
     "modalities": [
       "ECG"
     ],
-    "scope": "12-lead ECG for cardiac abnormality classification",
-    "acquisition_device": "heterogeneous devices",
+    "scope": "12-lead electrocardiography for cardiac rhythm and diagnosis classification",
+    "acquisition_device": "Heterogeneous devices across sources (e.g., GE Marquette, Schiller, BTL, others); unspecified models per source.",
     "data_format": [
       "MAT",
       "WFDB"
@@ -47,46 +51,50 @@
     }
   },
   "ethics": {
-    "license": "Open Data Commons (ODC) license",
+    "license": "Open Data Commons Attribution License (ODC-BY) / PhysioNet Challenge License",
     "consent": "de-identified",
+    "irb_approval": true,
     "data_use_agreement": false,
-    "privacy_measures": "Data de-identified prior to release.",
-    "commercial_use_allowed": true
+    "privacy_measures": "All data de-identified prior to release; no protected health information (PHI) included.",
+    "commercial_use_allowed": true,
+    "legal_compliance": "Complies with U.S. HIPAA Safe Harbor provisions and EU GDPR anonymization standards per PhysioNet policy."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": []
   },
   "bias_and_limitations": {
     "known_limitations": [
-      "Label noise across sources",
-      "Heterogeneous devices and sampling rates",
-      "Class imbalance",
-      "Mixed at-rest and other recording settings"
+      "Label noise across heterogeneous source databases",
+      "Heterogeneous sampling rates and acquisition devices",
+      "Class imbalance (e.g., rare arrhythmias underrepresented)",
+      "Mixed recording conditions (at-rest vs. stress, ambulatory vs. clinic)",
+      "Lack of demographic metadata limits subgroup analysis"
     ],
-    "modifications": "Yes — labels harmonized and expanded (9 → 27/96 classes); data aggregated and preprocessed for challenge use.",
+    "modifications": "Yes — labels were harmonized and expanded (e.g., from 9 to 27/96 classes); raw waveforms unchanged.",
     "bias_sources": [
-      "label noise",
-      "heterogeneous acquisition",
-      "class imbalance",
-      "mixed recording settings"
+      "Sampling bias (convenience aggregation from available databases)",
+      "Label bias (inter-source inconsistency, expert subjectivity)",
+      "Technical bias (device/sampling rate heterogeneity)",
+      "Missing data bias (absence of age/sex/ethnicity)"
     ],
-    "representativeness_concerns": "Overrepresentation of data from specific geographic regions (China, US, Germany) and underrepresentation of other populations; limited demographic reporting.",
-    "long_tail_classes": "Yes — class imbalance reported.",
-    "generalizability_statement": "Generalizability may be limited by heterogeneous recording conditions, device variability, and geographic/clinical setting bias.",
-    "subgroup_coverage": "Geographic subgroups covered (China, US, Germany); no reported coverage by age, sex, or ethnicity.",
-    "missing_data": "No explicit description of missing data volume or patterns."
+    "representativeness_concerns": "Overrepresentation of adult populations from China (CPSC), Germany (PTB), and US (Georgia Tech); limited representation of low-resource settings, pediatric, and critically ill patients.",
+    "long_tail_classes": "Yes — many diagnostic classes (e.g., 'Early Repolarization', 'Brugada') are rare and underrepresented.",
+    "generalizability_statement": "Performance may degrade on ECGs from unrepresented devices, geographies, or patient subgroups (e.g., pediatric, non-Asian/European ancestry).",
+    "subgroup_coverage": "No demographic subgroup coverage reported; geographic coverage limited to China, US, Germany.",
+    "missing_data": "Demographic attributes (age, sex, ethnicity) are entirely missing; some ECGs lack full 12-lead channels or have poor signal quality."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "classification"
     ],
     "benchmarks": [
-      "PhysioNet/CinC Challenge 2020"
-    ]
+      "PhysioNet/CinC 2020 Challenge"
+    ],
+    "excluded_tasks": "Not intended for real-time clinical decision support without further validation; not suitable for waveform generation or segmentation without adaptation."
   },
   "aliases": [
     "CinC 2020",
@@ -95,15 +103,20 @@
   "catalog_ref": "PhysioNet-CinC-2020",
   "data_origin": {
     "origin_type": "clinical-care",
-    "selection_rationale": "Aggregated from six sources including inpatient/outpatient clinics in China, the US, and Germany, plus existing databases (CPSC, CPSC-Extra, PTB, etc.) to enable robust multi-class rhythm/diagnosis classification under heterogeneous conditions.",
-    "sampling_strategy": "Heterogeneous sampling across clinical settings and public databases; no explicit random or stratified sampling described.",
-    "aggregation_multisource": "Aggregated from six sources: inpatient/outpatient clinics in China, US, Germany, and existing databases (CPSC, CPSC-Extra, PTB, and others); labels harmonized across sources with original 9-class schema later expanded to 27/96-class variants."
+    "selection_rationale": "Aggregated to increase diversity and scale for robust algorithm development; sources selected to represent varied clinical settings and geographies.",
+    "sampling_strategy": "Convenience sampling from available clinical and public ECG databases; no explicit probability-based sampling described.",
+    "aggregation_multisource": "Data aggregated from six sources: CPSC, CPSC-Extra, PTB, PTB-XL, Georgia Tech, and St. Petersburg Institute of Cardiology; sources differ in collection setting (inpatient/outpatient), geography, and device specifications."
   },
   "population": {
-    "target_population": "Patients undergoing 12-lead ECG recording in inpatient or outpatient clinical settings.",
+    "target_population": "Patients undergoing 12-lead ECG recording in clinical or outpatient settings.",
+    "age_reported": false,
     "sex": "not-reported",
+    "ethnicity_reported": false,
+    "inclusion_criteria": "Presence of a 12-lead ECG recording with diagnostic labels.",
+    "missing_groups": "No explicit reporting on age, sex, or ethnicity; likely underrepresentation of pediatric, elderly, and non-Asian/non-European populations due to source composition (e.g., CPSC: China; PTB: Germany; Georgia Tech: US).",
     "attribute_recording": {
-      "method": "unknown"
+      "method": "unknown",
+      "unknown_proportion": "Demographic attributes (age, sex, ethnicity) were not collected or reported in the challenge data release."
     }
   },
   "geography": {
@@ -117,16 +130,19 @@
       "North America",
       "Europe"
     ],
-    "data_collection_setting": "multi-country"
+    "data_collection_setting": "multi-country",
+    "institution_count": 6
   },
   "annotation": {
     "annotation_type": "expert",
-    "annotation_method": "Labels derived from clinical interpretation (e.g., physician-reviewed reports or database ground truth); harmonized across sources.",
+    "annotation_method": "Labels derived from expert interpretation of ECGs in source databases (e.g., CPSC, PTB) and/or physician-reviewed reports; some labels generated via consensus or automated mapping with manual validation.",
     "annotators": {
-      "type": "radiologist"
+      "type": "radiologist",
+      "qualifications": "Cardiologists and electrophysiologists; specific count and training not disclosed."
     },
-    "labeling_provenance": "Labels sourced from clinical reports and existing public ECG databases (CPSC, PTB, etc.), with harmonization and expansion.",
+    "labeling_provenance": "Labels inherited from original source databases; known to contain inter-source variability and potential inconsistencies.",
     "known_label_noise": true,
-    "label_noise_description": "Label noise across sources due to differing annotation standards and clinical contexts."
+    "label_noise_description": "Label noise arises from differences in labeling criteria, inter-rater variability, and automated label derivation methods across sources.",
+    "annotation_guidelines_available": false
   }
 }

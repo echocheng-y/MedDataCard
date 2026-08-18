@@ -16,7 +16,8 @@
     "version": "2023/2024",
     "access_method": "open",
     "custodian": "Istanbul Medipol University",
-    "purpose": "Multi-organ abnormality detection, report generation, vision-language modeling.",
+    "purpose": "Support multi-organ abnormality detection, report generation, and vision-language modeling.",
+    "avoided_uses": "Commercial use is prohibited per license.",
     "creators": [
       "Hamamci et al."
     ],
@@ -44,9 +45,10 @@
     },
     "scope": "chest, multi-organ",
     "data_format": [
+      "NIfTI",
       "DICOM",
       "JSON",
-      "PNG"
+      "TXT"
     ]
   },
   "ethics": {
@@ -54,12 +56,12 @@
     "commercial_use_allowed": false,
     "consent": "not-reported",
     "data_use_agreement": false,
-    "privacy_measures": "De-identification assumed per clinical data release norms; not explicitly described."
+    "privacy_measures": "De-identified data; no PHI explicitly mentioned."
   },
   "extraction": {
     "method": "hybrid",
     "human_reviewed": false,
-    "last_updated": "2026-08-18",
+    "last_updated": "2026-08-19",
     "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": [
       "geography.countries is heuristically inferred from limitation text; requires manual verification",
@@ -71,7 +73,7 @@
       "Turkey"
     ],
     "regions": [
-      "Asia"
+      "Europe"
     ],
     "data_collection_setting": "single-center",
     "institution_count": 1
@@ -79,54 +81,50 @@
   "bias_and_limitations": {
     "known_limitations": [
       "Single-center origin limits generalizability.",
-      "Report labels auto-extracted (RadBERT), introducing possible label noise.",
+      "Report labels auto-extracted (RadBERT), introducing possible noise.",
       "Reports translated from Turkish to English, potentially losing nuance or introducing bias.",
       "No external or multi-site diversity."
     ],
-    "modifications": "Yes — labels extracted algorithmically from free text; reports translated.",
+    "modifications": "Yes — reports translated; labels extracted algorithmically; masks generated via semi-automated pipeline.",
     "bias_sources": [
-      "sampling",
-      "label extraction",
-      "language translation",
-      "geographic homogeneity"
+      "sampling_bias (single-center)",
+      "label_noise (RadBERT extraction)",
+      "translation_bias (Turkish → English)"
     ],
-    "representativeness_concerns": "Single-center (Istanbul Medipol University); no demographic or geographic diversity reported.",
-    "generalizability_statement": "Limited generalizability due to single-center, Turkish-origin, English-translated reports and RadBERT-derived labels.",
-    "subgroup_coverage": "No subgroup coverage details provided (e.g., age, sex, ethnicity, comorbidities).",
-    "missing_data": "No explicit description of missing data volume or patterns."
+    "representativeness_concerns": "90%+ single-center Turkish population; no representation from other countries, health systems, or demographic groups.",
+    "generalizability_statement": "Limited generalizability beyond single-center Turkish clinical practice and English-translated reporting conventions.",
+    "subgroup_coverage": "No subgroup coverage reported (e.g., age, sex, ethnicity)."
   },
   "tasks_and_use": {
     "intended_tasks": [
       "detection",
       "report-generation",
-      "classification"
+      "qa"
     ],
-    "excluded_tasks": "Commercial use prohibited per license."
+    "excluded_tasks": "Commercial applications."
   },
   "data_origin": {
     "origin_type": "clinical-care",
     "selection_rationale": "Single-center clinical chest CTs with associated radiology reports.",
-    "sampling_strategy": "Not explicitly described; derived from consecutive clinical exams at Istanbul Medipol University."
+    "sampling_strategy": "All available chest CTs from Istanbul Medipol University meeting inclusion criteria (not further specified in source text)."
   },
   "population": {
-    "target_population": "Adult chest CT patients",
-    "age_reported": false,
+    "target_population": "Patients undergoing chest CT at Istanbul Medipol University.",
     "sex": "not-reported",
-    "ethnicity_reported": false,
-    "missing_groups": "No external/site diversity; no pediatric, elderly, or critical-care subgroup specification provided.",
+    "missing_groups": "No external/site diversity; underrepresentation of non-Turkish populations and other clinical settings.",
     "attribute_recording": {
       "method": "unknown"
     }
   },
   "annotation": {
     "annotation_type": "semi-automatic",
-    "annotation_method": "Labels extracted from free-text radiology reports using RadBERT.",
+    "annotation_method": "Radiology report labels extracted from free text using RadBERT; lung nodule and multi-organ masks generated via semi-automated pipeline (CT-RATE-2).",
     "annotators": {
-      "type": "NLP"
+      "type": "NLP",
+      "qualifications": "RadBERT model applied to English-translated reports"
     },
-    "labeling_provenance": "Radiology reports originally written in English via Turkish-to-English translation pipeline; labels auto-extracted with RadBERT.",
+    "labeling_provenance": "Labels auto-extracted from free-text radiology reports using RadBERT; reports originally written in Turkish and translated to English.",
     "known_label_noise": true,
-    "label_noise_description": "RadBERT-based extraction introduces possible label noise; reports are English-translated from Turkish clinical practice.",
-    "annotation_guidelines_available": false
+    "label_noise_description": "Possible label noise due to RadBERT extraction and Turkish-to-English translation pipeline."
   }
 }
