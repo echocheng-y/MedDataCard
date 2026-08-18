@@ -5,6 +5,14 @@
 
 [English](#english) | 中文
 
+## 🚀 在线 Demo
+
+已部署到 Streamlit Community Cloud：
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://meddatacard.streamlit.app)
+
+无需 API key 即可查看基线数据卡；填写 key 后可用 LLM 从论文摘要补充字段。
+
 ## 背景
 
 - **标准**：[STANDING Together](https://www.standingtogether.ai/) 共识（*The Lancet Digital Health* + *NEJM AI*，2024-12-18，DOI `10.1016/S2589-7500(24)00224-3`）——医学 AI 数据集报告与评估的统一标准本体（18 条记录建议，4 大支柱）。
@@ -120,10 +128,14 @@ python evaluate_m4.py dashscope   # 或 openai / anthropic
 
 [![Deploy to Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=github.com/echocheng-y/MedDataCard)
 
+已部署实例：**https://meddatacard.streamlit.app**
+
 步骤：
 1. 打开 [Streamlit Cloud](https://streamlit.io/cloud)，用 GitHub 登录并授权。
 2. 新建 App，选择仓库 `echocheng-y/MedDataCard`、分支 `main`、主文件 `app.py`，点 **Deploy**。
 3. 完成后获得一个公开 URL，任何人可直接打开使用（已通过本地冒烟测试，无 key 时自动降级 baseline 模式）。
+
+本次部署踩坑记录：首次部署时 Streamlit Cloud 需安装 GitHub App 并授权 `MedDataCard` 仓库，否则表单会报 `branch/file does not exist`。
 
 > 如需启用 LLM 抽取：在 App 的 **Settings → Secrets** 中加入
 > `DASHSCOPE_API_KEY = "你的key"`（或 `OPENAI_API_KEY` / `ANTHROPIC_API_KEY`）；不配置则自动使用目录基线元数据生成。
@@ -137,6 +149,8 @@ python evaluate_m4.py dashscope   # 或 openai / anthropic
 ## English
 
 **MedDataCard** automatically generates [STANDING Together](https://www.standingtogether.ai/)-compliant data cards for medical-AI datasets and runs metadata-level compliance audits.
+
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://meddatacard.streamlit.app)
 
 - **Schema**: `st_datacard.schema.json` (JSON Schema Draft 2020-12, v0.2) aligned with ST's four pillars + `medical_fields` taxonomy.
 - **Pipeline**: a catalog-only **baseline** card (zero fabrication) plus an LLM **hybrid** card (OpenAI / Anthropic / Alibaba **DashScope**) that fills demographics / geography / annotation / ethics fields from paper abstracts or repo READMEs.
