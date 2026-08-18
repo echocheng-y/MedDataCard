@@ -141,7 +141,7 @@ def render_card_tab():
         st.write(f"**许可证**：{rec['license']}")
 
         st.header("② LLM 抽取（可选）")
-        provider = st.selectbox("Provider", ["openai", "anthropic"])
+        provider = st.selectbox("Provider", ["openai", "anthropic", "dashscope"])
         api_key = st.text_input("API Key（留空则仅用目录基线卡）", type="password")
         source_text = st.text_area("粘贴论文摘要 / README 文本（用于 LLM 补充字段）", height=160)
 
