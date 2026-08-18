@@ -1,10 +1,17 @@
 {
   "dataset_id": "BraTS 2024",
   "comparable": {
-    "modality.modalities": ["MRI"],
-    "modality.sample_counts": {"gli_post_training": 1350, "gli_pre_training": 1251},
+    "modality.modalities": [
+      "MRI"
+    ],
+    "modality.sample_counts": {
+      "gli_post_training": 1350,
+      "gli_pre_training": 1251
+    },
     "geography.countries": [],
-    "tasks_and_use.intended_tasks": ["segmentation"],
+    "tasks_and_use.intended_tasks": [
+      "segmentation"
+    ],
     "metadata.source_type": "challenge",
     "ethics.license": "competition registration",
     "ethics.commercial_use_allowed": null

@@ -29,8 +29,8 @@
     ]
   },
   "medical_fields": [
-    "影像学",
-    "内科学"
+    "Imaging",
+    "Internal Medicine"
   ],
   "modality": {
     "modalities": [
@@ -57,7 +57,7 @@
     "method": "hybrid",
     "human_reviewed": false,
     "last_updated": "2026-08-18",
-    "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+    "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
     "pending_verification": []
   },
   "bias_and_limitations": {

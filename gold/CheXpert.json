@@ -1,10 +1,19 @@
 {
   "dataset_id": "CheXpert",
   "comparable": {
-    "modality.modalities": ["X-ray"],
-    "modality.sample_counts": {"images": 224316, "patients": 65240},
-    "geography.countries": ["United States"],
-    "tasks_and_use.intended_tasks": ["classification"],
+    "modality.modalities": [
+      "X-ray"
+    ],
+    "modality.sample_counts": {
+      "images": 224316,
+      "patients": 65240
+    },
+    "geography.countries": [
+      "United States"
+    ],
+    "tasks_and_use.intended_tasks": [
+      "classification"
+    ],
     "metadata.source_type": "repository",
     "ethics.license": null,
     "ethics.commercial_use_allowed": null

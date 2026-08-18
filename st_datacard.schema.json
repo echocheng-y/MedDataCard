@@ -316,8 +316,8 @@
       "items": {
         "type": "string",
         "enum": [
-          "基础医学", "临床医学", "中医学", "中药学",
-          "妇产科学", "影像学", "内科学", "外科学", "其他"
+          "Basic Medicine", "Clinical Medicine", "Traditional Chinese Medicine", "Chinese Materia Medica",
+          "Obstetrics & Gynecology", "Imaging", "Internal Medicine", "Surgery", "Other"
         ]
       },
       "minItems": 1,

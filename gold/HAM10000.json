@@ -1,10 +1,18 @@
 {
   "dataset_id": "HAM10000",
   "comparable": {
-    "modality.modalities": ["dermoscopy"],
-    "modality.sample_counts": {"images": 10015},
-    "geography.countries": ["Austria"],
-    "tasks_and_use.intended_tasks": ["classification"],
+    "modality.modalities": [
+      "dermoscopy"
+    ],
+    "modality.sample_counts": {
+      "images": 10015
+    },
+    "geography.countries": [
+      "Austria"
+    ],
+    "tasks_and_use.intended_tasks": [
+      "classification"
+    ],
     "metadata.source_type": "paper-supplement",
     "ethics.license": "CC BY-NC 4.0",
     "ethics.commercial_use_allowed": false

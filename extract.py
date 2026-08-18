@@ -106,7 +106,7 @@ def baseline_from_catalog(dataset_id: str) -> dict:
     pending = []
     geo = rec["geo_hints"]
     if geo:
-        pending.append("geography.countries 由局限文本启发式推断，待人工核实")
+        pending.append("geography.countries is heuristically inferred from limitation text; requires manual verification")
 
     # modality：仅在有值时写入可选字段（避免 None 违反类型约束）
     modality = {"modalities": rec["modalities"]}
@@ -144,7 +144,7 @@ def baseline_from_catalog(dataset_id: str) -> dict:
             "method": "manual",
             "human_reviewed": False,
             "last_updated": _dt.date.today().isoformat(),
-            "notes": "基线卡仅来自 dataset_catalog.xlsx 真实元数据；其余字段需论文/README 或人工补充。",
+            "notes": "Baseline card derived solely from dataset_catalog.xlsx real metadata; remaining fields require paper/README or manual completion.",
             "pending_verification": pending,
         },
     }
@@ -269,7 +269,7 @@ def extract_with_llm(dataset_id: str, source_text: str,
         merged["extraction"]["method"] = "hybrid"
         if dropped:
             merged["extraction"]["pending_verification"].append(
-                "以下 LLM 字段因不符合 schema 约束已自动丢弃并回退基线值，待人工核实："
+                "The following LLM fields were auto-dropped for violating schema constraints and reverted to baseline; pending manual review: "
                 + ", ".join(sorted(set(dropped)))
             )
         return merged

@@ -1,10 +1,18 @@
 {
   "dataset_id": "TotalSegmentator",
   "comparable": {
-    "modality.modalities": ["CT"],
-    "modality.sample_counts": {"images": 1204},
-    "geography.countries": ["Switzerland"],
-    "tasks_and_use.intended_tasks": ["segmentation"],
+    "modality.modalities": [
+      "CT"
+    ],
+    "modality.sample_counts": {
+      "images": 1204
+    },
+    "geography.countries": [
+      "Switzerland"
+    ],
+    "tasks_and_use.intended_tasks": [
+      "segmentation"
+    ],
     "metadata.source_type": "repository",
     "ethics.license": "CC BY 4.0",
     "ethics.commercial_use_allowed": true
