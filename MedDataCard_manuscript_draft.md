@@ -90,7 +90,7 @@ Under 200 random Dirichlet weight vectors, the Spearman rank correlation between
 
 ## 5. Discussion
 
-**Operationalizing the representation gap.** Geographic representativeness (0.21) and skin-tone/Fitzpatrick reporting (0.12) reveal that current flagship medical-AI training and evaluation data are highly concentrated in source, and minority and dark-skinned populations are nearly invisible at the documentation level. MedDataCard converts this qualitative concern into a quantifiable metric comparable across datasets and rankable on a leaderboard (Fig. 5 renders the gap structure per dataset: the SKIN column is nearly all red, the GEO column is broadly low), directly answering the STANDING Together core demand to disclose transparently who is represented and how. The gap is not remedied by changing data type. Figure 6 stratifies the five sub-indicators by modality and shows that skin-tone reporting stays at or near zero in all seven modality groups, while EHR/tabular resources uniquely fail to report annotation provenance. Multi-modal resources reach the highest composite diversity (0.60) but still omit skin-tone, so adding modalities does not by itself close the representation gap.
+**Operationalizing the representation gap.** Geographic representativeness (0.21) and skin-tone/Fitzpatrick reporting (0.12) reveal that current flagship medical-AI training and evaluation data are highly concentrated in source, and minority and dark-skinned populations are nearly invisible at the documentation level. MedDataCard converts this qualitative concern into a quantifiable metric comparable across datasets and rankable on a leaderboard (Fig. 5 renders the gap structure per dataset: the SKIN column is nearly all red, the GEO column is broadly low), directly answering the STANDING Together core demand to disclose transparently who is represented and how. The gap is not remedied by changing data type. Figure 6 stratifies the five sub-indicators by modality and shows that skin-tone reporting stays at or near zero in all seven modality groups, while EHR/tabular resources uniquely fail to report annotation provenance. Multi-modal resources reach the highest composite diversity (0.60) but still omit skin-tone, so adding modalities does not by itself close the representation gap. 模态×地理大区的交叉表（图7）进一步显示缺口在地理维度上叠加：EHR/tabular 仅源自北美（多样性 0.31），基因组学仅源自未指明地区（0.53），而放射/影像覆盖全部六大洲（0.42–0.67），因此仅凭模态广度或地理覆盖都无法单独弥补缺口。
 
 **Anti-fabrication as a compliance trust mechanism.** RQ3 shows that under the constraint of zero fabricated fields escaping, disclosure becomes trustworthy. This is fundamentally different from purely generative data-card tools, which may use fluent text to mask facts unsupported by source files. The guardrail decouples "how much the LLM can fill" from "what the LLM cannot invent," making automated extraction acceptable in regulatory and journal-review settings.
 
@@ -106,7 +106,7 @@ Under 200 random Dirichlet weight vectors, the Spearman rank correlation between
 - **Convenience sample.** The 26 datasets are a flagship set covering major modalities, not a census of medical-AI datasets; generalizability is bounded accordingly. Within the modality-stratified analysis (Fig. 6), several groups are small (Genomics n=1, EHR/Tabular n=2, Physio n=3); their subgroup means are reported as exploratory and should not be over-interpreted.
 - **Metadata-level, not raw-data-level.** The audit uses only metadata from public abstracts or READMEs and touches no raw data, so it cannot assess true skin-tone distributions or actual subgroup performance, which require data-level measurement; datasets with empty geographic or skin-tone fields are counted as "not reported" rather than estimated.
 - **Normative absolute thresholds.** The compliance index and diversity score depend on weights and metric definitions; we provide weight-sensitivity evidence, but the thresholds themselves need community negotiation.
-- **Literature verification.** MONET (Nat Med 2024;30(4), DOI 10.1038/s41591-024-02887-x) volume, issue, and pages are verified; UNI / CONCH / Virchow, also Nat Med 2024 exemplars, need final verification before submission (search date 2026-08).
+- **Literature verification.** 五篇基础模型范例均已核验（检索日期 2026-08）：UNI、CONCH、MONET 分别为 *Nat Med* 2024;30:850-862、863-874、1154-1165；Virchow 为 *Nat Med* 2024;30:2924-2935；Prov-GigaPath 为 *Nature* 2024;630:181-188。
 
 **Future work.** We will complete multi-coder IAA (the layered representation-gap figure is already generated; see Fig. 5), adopt the reproducible dataset diversity score as a foundation metric for broader fairness auditing (RO6) and regulatory submission workflows, and extend the audit from metadata to licensed raw-distribution indicators.
 
@@ -133,11 +133,11 @@ Source code, the ST data-card schema, audit scripts, all 26 generated data cards
 5. Lhoest Q, et al. HuggingFace Datasets: a unified interface for sharing, exploring, and processing datasets. *EMNLP 2021 (Demos)*. 2021.
 6. Brickley D, Burgess M, Noy N. Google Dataset Search: Building a search engine for datasets in an open Web ecosystem. *WWW 2019*. 2019.
 7. Ma J, He Y, Li F, et al. Segment Anything in Medical Images. *Nat Commun*. 2024; 15(1):654. DOI: 10.1038/s41467-024-44824-z. PMID: 38253604.
-8. Chen RJ, et al. Towards a general-purpose foundation model for computational pathology. *Nat Med*. 2024. DOI: 10.1038/s41591-024-02857-3.
-9. Lu MY, et al. A visual-language foundation model for computational pathology. *Nat Med*. 2024. DOI: 10.1038/s41591-024-02856-4.
-10. Xu H, et al. A whole-slide foundation model for gigapixel pathology. *Nature*. 2024. DOI: 10.1038/s41586-024-07441-w.
-11. Vorontsov E, et al. A foundation model for clinical-grade computational pathology and rare cancers detection. *Nat Med*. 2024. DOI: 10.1038/s41591-024-03141-0.
-12. MONET: a literature-based image–text foundation model for transparent medical imaging AI (medical concept retriever). *Nat Med*. 2024;30(4). DOI: 10.1038/s41591-024-02887-x.
+8. Chen RJ, et al. Towards a general-purpose foundation model for computational pathology. *Nat Med*. 2024;30:850-862. DOI: 10.1038/s41591-024-02857-3.
+9. Lu MY, et al. A visual-language foundation model for computational pathology. *Nat Med*. 2024;30:863-874. DOI: 10.1038/s41591-024-02856-4.
+10. Xu H, et al. A whole-slide foundation model for gigapixel pathology. *Nature*. 2024;630:181-188. DOI: 10.1038/s41586-024-07441-w.
+11. Vorontsov E, et al. A foundation model for clinical-grade computational pathology and rare cancers detection. *Nat Med*. 2024;30:2924-2935. DOI: 10.1038/s41591-024-03141-0.
+12. MONET: a literature-based image–text foundation model for transparent medical imaging AI (medical concept retriever). *Nat Med*. 2024;30(4):1154-1165. DOI: 10.1038/s41591-024-02887-x.
 
 ---
 
@@ -149,3 +149,4 @@ Source code, the ST data-card schema, audit scripts, all 26 generated data cards
 - **Fig. 4**: Per-dataset ST completeness leaderboard (RQ2), range 39.1%–76.8%.
 - **Fig. 5**: Representation-gap heatmap (26 datasets × 5 sub-indicators, sorted by composite Diversity Index; worst at top). SKIN nearly all red, GEO broadly low → core representation gap.
 - **Fig. 6**: Modality-stratified representation gaps (7 modality groups × 5 sub-indicators + composite Diversity Index per group; group sizes n annotated). SKIN near-zero in every group (modality-agnostic gap); EHR/tabular uniquely omits annotation provenance (0.00); multi-modal highest composite Diversity (0.60) yet SKIN 0.00.
+- **Fig. 7**: 模态×地理大区表示缺口矩阵（6 模态组 × 8 地理大区；单元格=平均复合多样性指数，标注 n；'-'=该模态无源自该地区的数据集）。EHR/tabular 仅限于北美（0.31）；基因组学仅未指明地区（0.53）；放射/影像覆盖全部六大洲（0.42–0.67）。

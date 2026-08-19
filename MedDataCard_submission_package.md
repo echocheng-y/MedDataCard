@@ -60,3 +60,55 @@ MedDataCard turns the STANDING Together consensus into executable, auditable dat
 
 **Data availability**
 Source code, the ST data-card schema, audit scripts, all 26 generated data cards, and publication figures are released in the project repository at https://github.com/echocheng-y/MedDataCard. The interactive web tool and audit dashboard are deployed at https://meddatacard.streamlit.app. No raw dataset was accessed; the audit is metadata-level and requires no data-use agreement.
+
+---
+
+# Part D. Cover Letter (Lancet Digital Health variant)
+
+**[Date]**
+
+Editorial Office
+The Lancet Digital Health
+
+Dear Editor,
+
+Please consider our manuscript "MedDataCard: an automated framework for generating STANDING Together-compliant medical-AI data cards and auditing representation gaps" for publication in The Lancet Digital Health.
+
+The Lancet Digital Health seeks work that advances equitable, trustworthy, and clinically actionable digital health. MedDataCard responds directly. Algorithmic bias in medical AI is a health-equity problem: we show that 26 flagship datasets concentrate representation in source geography (geographic sub-indicator 0.21) and nearly omit skin-tone documentation (0.12), and that this gap is modality-agnostic and compounds geographically (EHR/tabular only from North America; genomics only from an unspecified region). By turning the 2024 STANDING Together consensus into machine-readable, auditable data cards with a zero-fabrication guardrail, MedDataCard gives regulators, journal reviewers, and clinical deployment teams a computable tool to demand and verify representation disclosure before models reach patients.
+
+Across 26 datasets the hybrid pipeline reached 90.0% extraction accuracy (Cohen kappa 0.675) under a zero-fabrication constraint, with 100% schema coverage of the 18 ST documentation recommendations and a reproducible compliance and diversity leaderboard. The work is translational: it converts a qualitative equity concern into a rankable metric and an open-source Streamlit tool already deployed at https://meddatacard.streamlit.app.
+
+The manuscript is original, unpublished, and not under consideration elsewhere; all authors approve submission. No ethical approval was required (metadata-only audit, no human-subjects raw data). We confirm alignment with the STANDING Together disclosure principles this journal advocates.
+
+Thank you for your consideration.
+
+Sincerely,
+[Corresponding Author Name]
+[Affiliation]
+[Email]
+
+---
+
+# Part E. Cover Letter (Scientific Data variant)
+
+**[Date]**
+
+Editorial Office
+Scientific Data (Nature Portfolio)
+
+Dear Editor,
+
+We submit our manuscript "MedDataCard: an automated framework for generating STANDING Together-compliant medical-AI data cards and auditing representation gaps" as a Data Descriptor to Scientific Data.
+
+Scientific Data publishes descriptions of scientifically valuable datasets and the tools that make them reusable. MedDataCard delivers a reusable, open resource: 26 ST-compliant medical-AI data cards generated from public abstracts or repository READMEs, a constrained JSON schema operationalizing the 18 STANDING Together documentation recommendations, and a metadata-level audit of representation gaps across those datasets, all released with code, schemas, and figures. The resource is immediately reusable: other teams can regenerate cards for new datasets, reproduce the compliance and diversity leaderboard, and adopt the five-indicator diversity score as a foundation metric for fairness auditing.
+
+The accompanying data are fully available: source code, schema, audit scripts, all 26 generated data cards, and publication figures are in the project repository (https://github.com/echocheng-y/MedDataCard); the interactive generator and audit dashboard are deployed at https://meddatacard.streamlit.app. No raw dataset was accessed; the audit is metadata-level and requires no data-use agreement, so the descriptor is reproducible without restricted data.
+
+We confirm the manuscript describes a publicly available, citable resource with clear reuse value, and that all authors approve submission. No ethical approval was required.
+
+Thank you for your consideration.
+
+Sincerely,
+[Corresponding Author Name]
+[Affiliation]
+[Email]

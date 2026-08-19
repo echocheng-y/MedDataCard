@@ -348,6 +348,22 @@ def render_experiments_tab():
         )
     else:
         st.caption("Figure 6 · modality-stratified representation gap (figure not found)")
+    st.divider()
+    # Figure 7 — modality x geographic-region representation-gap matrix (wide, full width)
+    reg_fp = "figures/fig_modality_region_gap.png"
+    if Path(reg_fp).exists():
+        st.image(
+            reg_fp,
+            caption="Figure 7 · Modality x geographic-region representation-gap matrix: mean "
+                    "composite Diversity Index per modality group across 8 geographic regions "
+                    "(n annotated; '-' = no dataset of that modality from that region). The gap "
+                    "compounds along both axes: EHR/Tabular is confined to North America (0.31) and "
+                    "Genomics only to an unspecified region (0.53), while Radiology/Imaging spans all "
+                    "six continent-level regions (0.42-0.67).",
+            use_container_width=True,
+        )
+    else:
+        st.caption("Figure 7 · modality x region gap matrix (figure not found)")
 
 
 def main():
