@@ -332,6 +332,22 @@ def render_experiments_tab():
         )
     else:
         st.caption("Figure 5 · representation-gap heatmap (figure not found)")
+    st.divider()
+    # Figure 6 — modality-stratified representation gap (wide, full width)
+    mod_fp = "figures/fig_modality_gap.png"
+    if Path(mod_fp).exists():
+        st.image(
+            mod_fp,
+            caption="Figure 6 · Modality-stratified representation gaps. The Skin/Fitzpatrick "
+                    "sub-indicator is near-zero across every modality group (0.00 for Text/NLP, "
+                    "Multi-modal, Physio, EHR, Genomics; 0.27 for Radiology), showing the skin-"
+                    "representation gap is modality-agnostic. EHR/Tabular uniquely lacks annotation "
+                    "reporting (ANN=0.00). Multi-modal resources show the highest composite Diversity "
+                    "Index (0.60) yet still report SKIN=0.00. Group sizes n are annotated.",
+            use_container_width=True,
+        )
+    else:
+        st.caption("Figure 6 · modality-stratified representation gap (figure not found)")
 
 
 def main():
