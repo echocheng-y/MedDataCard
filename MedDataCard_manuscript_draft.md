@@ -67,6 +67,10 @@ We sampled **26 flagship medical-AI datasets** spanning nine major modalities: r
 ### 3.6 Metrics
 *Extraction fidelity* is exact-match accuracy over scored fields; set fields use `gold ⊆ llm` subset semantics and counts or categorical source types use exact equality. We report Cohen's kappa for source type to expose baseline versus LLM correction behavior. *Standard fidelity* is the field-level implementation rate of the schema against each documentation recommendation and the empirical fill rate over 26 cards. *Compliance and diversity* use per-pillar completeness plus a composite ST Compliance Index, and a five-indicator dataset diversity score (geographic representativeness, population-subgroup reporting, skin-tone/Fitzpatrick reporting, annotation provenance, generalizability statement). *Weight sensitivity* draws 200 Dirichlet weight vectors and computes the Spearman rank correlation between alternative-weight and equal-weight rankings.
 
+### 计划中的第二位编码者一致性（IAA）
+
+M4 衡量的是「LLM 对 gold」的保真度，本身并不能证明 gold 标准自身可靠，因为现有 gold 由单一编码者完成。为对 gold 做可靠性认证，我们计划引入第二位独立编码者（Coder B），在双盲程序与统一编码指南（IAA_PROTOCOL.md）下，基于同一批 `sources/<id>.txt` 摘录对全部 26 个数据集 × 5 个被评分字段 = 130 个单元重新编码。一致性采用**按字段分别设计、绝不混为一谈**的统计量：对 `source_type` 计算 Cohen's κ（5 类）；对三个集合字段（modalities、countries、intended_tasks）将原子值展开为「存在/不存在」二值决策后计算 Cohen's κ 并附平均 Jaccard；对 `sample_counts` 报告逐键精确匹配率与总体一致率（不强行套用 κ）。各 κ/一致率均通过 2000 次 bootstrap 重采样给出 95% 置信区间。计算脚本 `compute_iaa.py` 复用了 M4 完全相同的字段定义与比较语义。**所有 IAA 数值均为 PENDING**，待第二位编码者完成 `coder_b/` 后方可得出；协议与脚本已就绪，标注完成后一条命令即可产出真实数值。IAA（gold 的人类—人类可靠性）与上文「LLM 对 gold」的数字（90.0% 精确匹配；source_type κ = 0.675）是两个不同概念，分开报告。
+
 ### 3.7 Implementation and availability
 MedDataCard runs without GPU. Data cards are produced by `generate_all.py --llm --provider dashscope`; M4 evaluation by `evaluate_m4.py`; audits by `audit_st_mapping.py`, `audit_fabrication.py`, and `audit_compliance_diversity.py`. The web tool is a Streamlit application with three tabs (card generation, compliance and diversity audit, publication figures). Source code, schemas, audit scripts, generated cards, and figures are released under the repository license; the dashboard is deployed at https://meddatacard.streamlit.app.
 
@@ -102,7 +106,7 @@ Under 200 random Dirichlet weight vectors, the Spearman rank correlation between
 
 ## 6. Limitations and future work
 
-- **Single-coder gold standard.** The current M4 gold standard was built by one coder; inter-annotator agreement (IAA) is not yet reported. A second independent coder will be added and Cohen's kappa computed as reliability evidence.
+- **Single-coder gold standard（IAA 待补 / PENDING）.** 现有 M4 gold 由单一编码者构建。第二位独立编码者与全量双编码协议现已定义（IAA_PROTOCOL.md），计算脚本 `compute_iaa.py` 已就位并通过校验（gold 自比自检得到 κ = 1.0）。但第二位编码者尚未完成 `coder_b/` 标注，因此全部 IAA 数值——source_type 的 Cohen's κ、三个集合字段的 κ / 平均 Jaccard、以及 `sample_counts` 的一致率——仍标记为 **PENDING**，本文不报告具体值。待 Coder B 完成后，真实的人类—人类一致性可由一条命令算出并作为 gold 可靠性证据补充报告；不预先断言任何 IAA 数值。
 - **Convenience sample.** The 26 datasets are a flagship set covering major modalities, not a census of medical-AI datasets; generalizability is bounded accordingly. Within the modality-stratified analysis (Fig. 6), several groups are small (Genomics n=1, EHR/Tabular n=2, Physio n=3); their subgroup means are reported as exploratory and should not be over-interpreted.
 - **Metadata-level, not raw-data-level.** The audit uses only metadata from public abstracts or READMEs and touches no raw data, so it cannot assess true skin-tone distributions or actual subgroup performance, which require data-level measurement; datasets with empty geographic or skin-tone fields are counted as "not reported" rather than estimated.
 - **Normative absolute thresholds.** The compliance index and diversity score depend on weights and metric definitions; we provide weight-sensitivity evidence, but the thresholds themselves need community negotiation.

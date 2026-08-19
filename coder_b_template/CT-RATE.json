@@ -1,0 +1,10 @@
+{
+  "dataset_id": "CT-RATE",
+  "comparable": {
+    "modality.modalities": [],
+    "modality.sample_counts": {},
+    "geography.countries": [],
+    "tasks_and_use.intended_tasks": [],
+    "metadata.source_type": ""
+  }
+}
