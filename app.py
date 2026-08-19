@@ -318,6 +318,20 @@ def render_experiments_tab():
                 st.image(fp, caption=cap, use_container_width=True)
             else:
                 st.caption(f"{cap} (figure not found)")
+    st.divider()
+    # Figure 5 — representation-gap heatmap (wide, full width)
+    rep_fp = "figures/fig_representation_gap.png"
+    if Path(rep_fp).exists():
+        st.image(
+            rep_fp,
+            caption="Figure 5 · Representation-gap heatmap: 5 diversity sub-indicators "
+                    "across 26 medical-AI datasets (worst at top). GEO (0.21) and SKIN "
+                    "(0.12) are the dominant blind spots; ANN (0.77) and GEN (0.85) are "
+                    "broadly covered.",
+            use_container_width=True,
+        )
+    else:
+        st.caption("Figure 5 · representation-gap heatmap (figure not found)")
 
 
 def main():
